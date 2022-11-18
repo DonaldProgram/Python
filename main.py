@@ -111,8 +111,6 @@ rectBoutonrep1 = Decoration.boutonReponse1.get_rect()
 rectBoutonrep1.x = 20
 rectBoutonrep1.y = 200
 
-
-
 # fonction qui fait tourner le quizz
 def Drapeaux():
     if fenetreDrapeau == True:
@@ -121,7 +119,7 @@ def Drapeaux():
         if event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 1:
                 if rectBoutonrep1.collidepoint(pos):
-                    print("bouton1")
+                    ...
 
         # variable servant a afficher le mots quizz
         police = pygame.font.SysFont("monospace", 60)
@@ -145,6 +143,17 @@ def Drapeaux():
         screen.blit(Decoration.boutonReponse2, (rectBoutonrep1.x + 150, rectBoutonrep1.y))
         screen.blit(Decoration.boutonReponse3, (rectBoutonrep1.x + 470, rectBoutonrep1.y))
         screen.blit(Decoration.boutonReponse4, (rectBoutonrep1.x + 620, rectBoutonrep1.y))
+
+        # afficher les textes sur les rectangles
+        police = pygame.font.SysFont("monospace", 20)
+        reponse_texte1 = police.render("Allemagne", 1, (0, 255, 255))
+        screen.blit(reponse_texte1, (rectBoutonrep1.x+9, rectBoutonrep1.y + 54))
+        reponse_texte2 = police.render("Etats-Unis", 1, (0, 255, 255))
+        screen.blit(reponse_texte2, (rectBoutonrep1.x + 155, rectBoutonrep1.y + 54))
+        reponse_texte3 = police.render("Belgique", 1, (0, 255, 255))
+        screen.blit(reponse_texte3, (rectBoutonrep1.x + 490, rectBoutonrep1.y + 54))
+        reponse_texte4 = police.render("Italie", 1, (0, 255, 255))
+        screen.blit(reponse_texte4, (rectBoutonrep1.x + 650, rectBoutonrep1.y + 54))
 
         
 
