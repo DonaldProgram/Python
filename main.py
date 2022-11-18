@@ -106,26 +106,23 @@ def Menu():
 
 
 
-
 # rectangle des reponses
-rectBoutonrep1 = Decoration.boutonReponse1.get_rect() 
-rectBoutonrep1.x = 30
-rectBoutonrep1.y = 160
+rectBoutonrep1 = Decoration.boutonReponse1.get_rect()
+rectBoutonrep1.x = 20
+rectBoutonrep1.y = 200
 
-rectBoutonrep2 = Decoration.boutonReponse2.get_rect() 
-rectBoutonrep2.x = 30
-rectBoutonrep2.y = 210
 
-rectBoutonrep3 = Decoration.boutonReponse3.get_rect() 
-rectBoutonrep3.x = 30
-rectBoutonrep3.y = 260
 
-rectBoutonrep4 = Decoration.boutonReponse4.get_rect() 
-rectBoutonrep4.x = 30
-rectBoutonrep4.y = 310
 # fonction qui fait tourner le quizz
 def Drapeaux():
     if fenetreDrapeau == True:
+        # fonction pour lancer le jeu a partir du bouton
+        pos = pygame.mouse.get_pos()
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if event.button == 1:
+                if rectBoutonrep1.collidepoint(pos):
+                    print("bouton1")
+
         # variable servant a afficher le mots quizz
         police = pygame.font.SysFont("monospace", 60)
         QUIZ_texte = police.render("QUIZZ", 1, (0, 0, 0))
@@ -145,9 +142,10 @@ def Drapeaux():
 
         # afficher les rectangle de reponse
         screen.blit(Decoration.boutonReponse1, rectBoutonrep1)
-        screen.blit(Decoration.boutonReponse2, rectBoutonrep2)
-        screen.blit(Decoration.boutonReponse3, rectBoutonrep3)
-        screen.blit(Decoration.boutonReponse4, rectBoutonrep4)
+        screen.blit(Decoration.boutonReponse2, (rectBoutonrep1.x + 150, rectBoutonrep1.y))
+        screen.blit(Decoration.boutonReponse3, (rectBoutonrep1.x + 470, rectBoutonrep1.y))
+        screen.blit(Decoration.boutonReponse4, (rectBoutonrep1.x + 620, rectBoutonrep1.y))
+
         
 
 
