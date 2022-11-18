@@ -22,6 +22,14 @@ class Decoration():
     ble = pygame.image.load("decoration/blé.png")
     lutin = pygame.image.load("decoration/lutin1.png")
     bouton = pygame.image.load("decoration/bouton.png")
+    boutonReponse1 = pygame.image.load("decoration/rectangle.png")
+    boutonReponse2 = pygame.image.load("decoration/rectangle.png")
+    boutonReponse3 = pygame.image.load("decoration/rectangle.png")
+    boutonReponse4 = pygame.image.load("decoration/rectangle.png")
+
+# charge toute les images de drapeaux
+class DrapeauImage():
+    allemagne = pygame.image.load("drapeau/allemagne.png")
 
 # boucle running faisant tourner le jeu tant que la croix n'a pas ete pressé
 running = True
@@ -98,9 +106,50 @@ def Menu():
 
 
 
+
+# rectangle des reponses
+rectBoutonrep1 = Decoration.boutonReponse1.get_rect() 
+rectBoutonrep1.x = 30
+rectBoutonrep1.y = 160
+
+rectBoutonrep2 = Decoration.boutonReponse2.get_rect() 
+rectBoutonrep2.x = 30
+rectBoutonrep2.y = 210
+
+rectBoutonrep3 = Decoration.boutonReponse3.get_rect() 
+rectBoutonrep3.x = 30
+rectBoutonrep3.y = 260
+
+rectBoutonrep4 = Decoration.boutonReponse4.get_rect() 
+rectBoutonrep4.x = 30
+rectBoutonrep4.y = 310
+# fonction qui fait tourner le quizz
 def Drapeaux():
     if fenetreDrapeau == True:
-        ...
+        # variable servant a afficher le mots quizz
+        police = pygame.font.SysFont("monospace", 60)
+        QUIZ_texte = police.render("QUIZZ", 1, (0, 0, 0))
+
+        # affichage du mots quizz
+        screen.blit(QUIZ_texte, (300, 0))
+        
+        # affichage du mots choisissez une reponse
+        police = pygame.font.SysFont(".", 40)
+        Choose_reponse1 = police.render("Choisissez", 1, (0, 0, 0))
+        Choose_reponse2 = police.render("votre reponse:", 1, (0, 0, 0))
+        screen.blit(Choose_reponse1, (20, 140))
+        screen.blit(Choose_reponse2, (20, 165))
+
+        # afficher le drapeaux test allemagne
+        screen.blit(DrapeauImage.allemagne, (330, 100))
+
+        # afficher les rectangle de reponse
+        screen.blit(Decoration.boutonReponse1, rectBoutonrep1)
+        screen.blit(Decoration.boutonReponse2, rectBoutonrep2)
+        screen.blit(Decoration.boutonReponse3, rectBoutonrep3)
+        screen.blit(Decoration.boutonReponse4, rectBoutonrep4)
+        
+
 
 
 # boucle de toute les fenetres après le menu
@@ -119,6 +168,7 @@ while running:
  
     if fenetreDrapeau == True:
         screen.fill("#e4faff")
+        Drapeaux()
         # appeler la fonction drapeau
 
     # mise a jour de l'ecran
