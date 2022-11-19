@@ -107,9 +107,21 @@ def Menu():
 
 
 # rectangle des reponses
-rectBoutonrep1 = Decoration.boutonReponseJuste.get_rect()
-rectBoutonrep1.x = 20
-rectBoutonrep1.y = 200
+rectBoutonrepJuste = Decoration.boutonReponseJuste.get_rect()
+rectBoutonrepJuste.x = 20
+rectBoutonrepJuste.y = 200
+
+rectBoutonrep2 = Decoration.boutonReponseJuste.get_rect()
+rectBoutonrep2.x = 170
+rectBoutonrep2.y = 200
+
+rectBoutonrep3 = Decoration.boutonReponseJuste.get_rect()
+rectBoutonrep3.x = 490
+rectBoutonrep3.y = 200
+
+rectBoutonrep4 = Decoration.boutonReponseJuste.get_rect()
+rectBoutonrep4.x = 640
+rectBoutonrep4.y = 200
 
 # fonction qui fait tourner le quizz
 def Drapeaux():
@@ -118,7 +130,7 @@ def Drapeaux():
         pos = pygame.mouse.get_pos()
         if event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 1:
-                if rectBoutonrep1.collidepoint(pos):
+                if rectBoutonrepJuste.collidepoint(pos):
                     ...
 
         # variable servant a afficher le mots quizz
@@ -139,21 +151,21 @@ def Drapeaux():
         screen.blit(DrapeauImage.allemagne, (330, 100))
 
         # afficher les rectangle de reponse
-        screen.blit(Decoration.boutonReponseJuste, rectBoutonrep1)
-        screen.blit(Decoration.boutonReponse2, (rectBoutonrep1.x + 150, rectBoutonrep1.y))
-        screen.blit(Decoration.boutonReponse3, (rectBoutonrep1.x + 470, rectBoutonrep1.y))
-        screen.blit(Decoration.boutonReponse4, (rectBoutonrep1.x + 620, rectBoutonrep1.y))
+        screen.blit(Decoration.boutonReponseJuste, rectBoutonrepJuste)
+        screen.blit(Decoration.boutonReponse2, (rectBoutonrep2.x, rectBoutonrep2.y))
+        screen.blit(Decoration.boutonReponse3, (rectBoutonrep3.x, rectBoutonrep3.y))
+        screen.blit(Decoration.boutonReponse4, (rectBoutonrep4.x, rectBoutonrep4.y))
 
         # afficher les textes sur les rectangles
         police = pygame.font.SysFont("monospace", 20)
         reponse_texte1 = police.render("Allemagne", 1, (0, 255, 255))
-        screen.blit(reponse_texte1, (rectBoutonrep1.x+9, rectBoutonrep1.y + 54))
+        screen.blit(reponse_texte1, (rectBoutonrepJuste.x+9, rectBoutonrepJuste.y + 54))
         reponse_texte2 = police.render("Etats-Unis", 1, (0, 255, 255))
-        screen.blit(reponse_texte2, (rectBoutonrep1.x + 155, rectBoutonrep1.y + 54))
+        screen.blit(reponse_texte2, (rectBoutonrepJuste.x + 155, rectBoutonrepJuste.y + 54))
         reponse_texte3 = police.render("Belgique", 1, (0, 255, 255))
-        screen.blit(reponse_texte3, (rectBoutonrep1.x + 490, rectBoutonrep1.y + 54))
+        screen.blit(reponse_texte3, (rectBoutonrepJuste.x + 490, rectBoutonrepJuste.y + 54))
         reponse_texte4 = police.render("Italie", 1, (0, 255, 255))
-        screen.blit(reponse_texte4, (rectBoutonrep1.x + 650, rectBoutonrep1.y + 54))
+        screen.blit(reponse_texte4, (rectBoutonrepJuste.x + 650, rectBoutonrepJuste.y + 54))
 
         
 
