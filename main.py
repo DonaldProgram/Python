@@ -113,25 +113,21 @@ choix_reponse_bouton = [20, 170, 490, 640]
 rectBoutonrepJuste = Decoration.boutonReponseJuste.get_rect()
 rectBoutonrepJuste.x = random.choice(choix_reponse_bouton)
 choix_reponse_bouton.remove(rectBoutonrepJuste.x)
-print(rectBoutonrepJuste.x)
 rectBoutonrepJuste.y = 200
 
 rectBoutonrep2 = Decoration.boutonReponseJuste.get_rect()
 rectBoutonrep2.x = random.choice(choix_reponse_bouton)
 choix_reponse_bouton.remove(rectBoutonrep2.x)
-print(rectBoutonrep2.x)
 rectBoutonrep2.y = 200
 
 rectBoutonrep3 = Decoration.boutonReponseJuste.get_rect()
 rectBoutonrep3.x = random.choice(choix_reponse_bouton)
 choix_reponse_bouton.remove(rectBoutonrep3.x)
-print(rectBoutonrep3.x)
 rectBoutonrep3.y = 200
 
 rectBoutonrep4 = Decoration.boutonReponseJuste.get_rect()
 rectBoutonrep4.x = random.choice(choix_reponse_bouton)
 choix_reponse_bouton.remove(rectBoutonrep4.x)
-print(rectBoutonrep4.x)
 rectBoutonrep4.y = 200
 
 # fonction qui fait tourner le quizz
