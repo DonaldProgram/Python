@@ -22,7 +22,7 @@ class Decoration():
     ble = pygame.image.load("decoration/blé.png")
     lutin = pygame.image.load("decoration/lutin1.png")
     bouton = pygame.image.load("decoration/bouton.png")
-    boutonReponse1 = pygame.image.load("decoration/rectangle.png")
+    boutonReponseJuste = pygame.image.load("decoration/rectangle.png")
     boutonReponse2 = pygame.image.load("decoration/rectangle.png")
     boutonReponse3 = pygame.image.load("decoration/rectangle.png")
     boutonReponse4 = pygame.image.load("decoration/rectangle.png")
@@ -31,7 +31,7 @@ class Decoration():
 class DrapeauImage():
     allemagne = pygame.image.load("drapeau/allemagne.png")
 
-# boucle running faisant tourner le jeu tant que la croix n'a pas ete pressé
+# variable running faisant tourner le jeu tant que la croix n'a pas ete pressé
 running = True
 
 
@@ -107,7 +107,7 @@ def Menu():
 
 
 # rectangle des reponses
-rectBoutonrep1 = Decoration.boutonReponse1.get_rect()
+rectBoutonrep1 = Decoration.boutonReponseJuste.get_rect()
 rectBoutonrep1.x = 20
 rectBoutonrep1.y = 200
 
@@ -139,7 +139,7 @@ def Drapeaux():
         screen.blit(DrapeauImage.allemagne, (330, 100))
 
         # afficher les rectangle de reponse
-        screen.blit(Decoration.boutonReponse1, rectBoutonrep1)
+        screen.blit(Decoration.boutonReponseJuste, rectBoutonrep1)
         screen.blit(Decoration.boutonReponse2, (rectBoutonrep1.x + 150, rectBoutonrep1.y))
         screen.blit(Decoration.boutonReponse3, (rectBoutonrep1.x + 470, rectBoutonrep1.y))
         screen.blit(Decoration.boutonReponse4, (rectBoutonrep1.x + 620, rectBoutonrep1.y))
