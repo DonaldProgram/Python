@@ -1,5 +1,5 @@
-# importation du module pygame + initialisation de tout ses modules
-import pygame
+# importation du module pygame et random + initialisation de tout ses modules
+import pygame, random
 pygame.init()
 
 # creation de la fenetre + changement du titre + du logo
@@ -106,21 +106,32 @@ def Menu():
 
 
 
-# rectangle des reponses
+# rectangle des reponses + choix aleatoire de leurs emplacements
+choix_reponse_bouton = [20, 170, 490, 640]
+
+# choix aleatoire de leurs emplacement
 rectBoutonrepJuste = Decoration.boutonReponseJuste.get_rect()
-rectBoutonrepJuste.x = 20
+rectBoutonrepJuste.x = random.choice(choix_reponse_bouton)
+choix_reponse_bouton.remove(rectBoutonrepJuste.x)
+print(rectBoutonrepJuste.x)
 rectBoutonrepJuste.y = 200
 
 rectBoutonrep2 = Decoration.boutonReponseJuste.get_rect()
-rectBoutonrep2.x = 170
+rectBoutonrep2.x = random.choice(choix_reponse_bouton)
+choix_reponse_bouton.remove(rectBoutonrep2.x)
+print(rectBoutonrep2.x)
 rectBoutonrep2.y = 200
 
 rectBoutonrep3 = Decoration.boutonReponseJuste.get_rect()
-rectBoutonrep3.x = 490
+rectBoutonrep3.x = random.choice(choix_reponse_bouton)
+choix_reponse_bouton.remove(rectBoutonrep3.x)
+print(rectBoutonrep3.x)
 rectBoutonrep3.y = 200
 
 rectBoutonrep4 = Decoration.boutonReponseJuste.get_rect()
-rectBoutonrep4.x = 640
+rectBoutonrep4.x = random.choice(choix_reponse_bouton)
+choix_reponse_bouton.remove(rectBoutonrep4.x)
+print(rectBoutonrep4.x)
 rectBoutonrep4.y = 200
 
 # fonction qui fait tourner le quizz
@@ -152,20 +163,20 @@ def Drapeaux():
 
         # afficher les rectangle de reponse
         screen.blit(Decoration.boutonReponseJuste, rectBoutonrepJuste)
-        screen.blit(Decoration.boutonReponse2, (rectBoutonrep2.x, rectBoutonrep2.y))
-        screen.blit(Decoration.boutonReponse3, (rectBoutonrep3.x, rectBoutonrep3.y))
-        screen.blit(Decoration.boutonReponse4, (rectBoutonrep4.x, rectBoutonrep4.y))
+        screen.blit(Decoration.boutonReponse2, rectBoutonrep2)
+        screen.blit(Decoration.boutonReponse3, rectBoutonrep3)
+        screen.blit(Decoration.boutonReponse4, rectBoutonrep4)
 
         # afficher les textes sur les rectangles
         police = pygame.font.SysFont("monospace", 20)
         reponse_texte1 = police.render("Allemagne", 1, (0, 255, 255))
         screen.blit(reponse_texte1, (rectBoutonrepJuste.x+9, rectBoutonrepJuste.y + 54))
         reponse_texte2 = police.render("Etats-Unis", 1, (0, 255, 255))
-        screen.blit(reponse_texte2, (rectBoutonrepJuste.x + 155, rectBoutonrepJuste.y + 54))
+        screen.blit(reponse_texte2, (rectBoutonrep2.x + 6, rectBoutonrep2.y + 54))
         reponse_texte3 = police.render("Belgique", 1, (0, 255, 255))
-        screen.blit(reponse_texte3, (rectBoutonrepJuste.x + 490, rectBoutonrepJuste.y + 54))
+        screen.blit(reponse_texte3, (rectBoutonrep3.x + 15, rectBoutonrep3.y + 54))
         reponse_texte4 = police.render("Italie", 1, (0, 255, 255))
-        screen.blit(reponse_texte4, (rectBoutonrepJuste.x + 650, rectBoutonrepJuste.y + 54))
+        screen.blit(reponse_texte4, (rectBoutonrep4.x + 23, rectBoutonrep4.y + 54))
 
         
 
