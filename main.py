@@ -1,5 +1,5 @@
-# importation du module pygame et random + initialisation de tout ses modules
-import pygame, random
+# importation du module pygame et random et time + initialisation de tout ses modules
+import pygame, random, time
 pygame.init()
 
 # creation de la fenetre + changement du titre + du logo
@@ -40,8 +40,8 @@ running = True
 # fonction gerant le menu
 # rectangle du bouton
 rectBoutonStart = Decoration.bouton.get_rect() 
-rectBoutonStart.x = 500
-rectBoutonStart.y = 200
+rectBoutonStart.x = 465
+rectBoutonStart.y = 0
 # variable faisant tourner le menu
 fenetreMenu = True
 # fonction du menu
@@ -133,12 +133,18 @@ rectBoutonrep4.y = 200
 # fonction qui fait tourner le quizz
 def Drapeaux():
     if fenetreDrapeau == True:
-        # fonction pour lancer le jeu a partir du bouton
+        # verifer si un des rectangle de reponses est cliquer
         pos = pygame.mouse.get_pos()
         if event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 1:
                 if rectBoutonrepJuste.collidepoint(pos):
-                    ...
+                    print("allemagne")
+                elif rectBoutonrep2.collidepoint(pos):
+                    print("USA")
+                elif rectBoutonrep3.collidepoint(pos):
+                    print("Belgique")
+                elif rectBoutonrep4.collidepoint(pos):
+                    print("Italie")
 
         # variable servant a afficher le mots quizz
         police = pygame.font.SysFont("monospace", 60)
@@ -194,6 +200,7 @@ while running:
  
     if fenetreDrapeau == True:
         screen.fill("#e4faff")
+        pos = pygame.mouse.get_pos()
         Drapeaux()
         # appeler la fonction drapeau
 
