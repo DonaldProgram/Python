@@ -26,6 +26,12 @@ class Decoration():
     boutonReponse2 = pygame.image.load("decoration/rectangle.png")
     boutonReponse3 = pygame.image.load("decoration/rectangle.png")
     boutonReponse4 = pygame.image.load("decoration/rectangle.png")
+    perenoel = pygame.image.load("decoration/perenoel.png")
+    guirlande = pygame.image.load("decoration/guirlande1.png")
+    guirlande2 = pygame.image.load("decoration/guirlande2.png")
+    cookie = pygame.image.load("decoration/cookie.png")
+    renne = pygame.image.load("decoration/renne.png")
+
 
 # charge toute les images de drapeaux
 class DrapeauImage():
@@ -33,7 +39,6 @@ class DrapeauImage():
 
 # variable running faisant tourner le jeu tant que la croix n'a pas ete pressé
 running = True
-
 
 
 
@@ -103,6 +108,20 @@ def Menu():
 
         # affichage du bouton pour lancer le jeu
         screen.blit(Decoration.bouton, (rectBoutonStart))
+
+        # affichage des guirlande
+        screen.blit(Decoration.guirlande, (470, 110))
+        screen.blit(Decoration.guirlande2, (320, 10))
+
+        # affichage de cookie
+        screen.blit(Decoration.cookie, (675, 300))
+
+        # affichage d'un renne
+        screen.blit(Decoration.renne, (380, 230))
+
+        # affichage du perenoel
+        screen.blit(Decoration.perenoel, (400, 235))
+
 
 
 
