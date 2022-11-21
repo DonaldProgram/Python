@@ -1,5 +1,5 @@
-# importation du module pygame et random et time + initialisation de tout ses modules
-import pygame, random, time
+# importation du module pygame et random + initialisation de tout ses modules
+import pygame, random
 pygame.init()
 
 # creation de la fenetre + changement du titre + du logo
@@ -31,6 +31,10 @@ class Decoration():
     guirlande2 = pygame.image.load("decoration/guirlande2.png")
     cookie = pygame.image.load("decoration/cookie.png")
     renne = pygame.image.load("decoration/renne.png")
+    DECOallemagne = pygame.image.load("decoration/allemagneDECO.png")
+    DECOcasqueallemagne = pygame.image.load("decoration/casqueDECO.png")
+    DECOterreAllemagne = pygame.image.load("decoration/DECOguerreMondial.png")
+    DECOsoldatAllemagne = pygame.image.load("decoration/soldats.png")
 
 
 # charge toute les images de drapeaux
@@ -117,10 +121,10 @@ def Menu():
         screen.blit(Decoration.cookie, (675, 300))
 
         # affichage d'un renne
-        screen.blit(Decoration.renne, (380, 230))
+        screen.blit(Decoration.renne, (350, 230))
 
         # affichage du perenoel
-        screen.blit(Decoration.perenoel, (400, 235))
+        screen.blit(Decoration.perenoel, (370, 235))
 
 
 
@@ -178,15 +182,17 @@ def Drapeaux():
         Choose_reponse2 = police.render("votre reponse:", 1, (0, 0, 0))
         screen.blit(Choose_reponse1, (20, 140))
         screen.blit(Choose_reponse2, (20, 165))
-
-        # afficher le drapeaux test allemagne
-        screen.blit(DrapeauImage.allemagne, (330, 100))
-
+       
         # afficher les rectangle de reponse
         screen.blit(Decoration.boutonReponseJuste, rectBoutonrepJuste)
         screen.blit(Decoration.boutonReponse2, rectBoutonrep2)
         screen.blit(Decoration.boutonReponse3, rectBoutonrep3)
         screen.blit(Decoration.boutonReponse4, rectBoutonrep4)
+      
+      
+        # ALLEMAGNE
+        # afficher le drapeaux test allemagne
+        screen.blit(DrapeauImage.allemagne, (330, 100))
 
         # afficher les textes sur les rectangles
         police = pygame.font.SysFont("monospace", 20)
@@ -199,6 +205,11 @@ def Drapeaux():
         reponse_texte4 = police.render("Italie", 1, (0, 255, 255))
         screen.blit(reponse_texte4, (rectBoutonrep4.x + 23, rectBoutonrep4.y + 54))
 
+        # decoration de la fenetre
+        screen.blit(Decoration.DECOallemagne, (500, 350))
+        screen.blit(Decoration.DECOcasqueallemagne, (0, 450))
+        screen.blit(Decoration.DECOterreAllemagne, (230, 400))
+        screen.blit(Decoration.DECOsoldatAllemagne, (630, 460))
         
 
 
