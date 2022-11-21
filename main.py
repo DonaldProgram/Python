@@ -54,7 +54,10 @@ class Decoration():
     triste5 = pygame.image.load("decoration/triste5.png")
 
 
-
+# ajout de la variable score
+score = 19
+policeScore = pygame.font.SysFont("MONOSPACE", 35)
+texteScore = policeScore.render("SCORE:" + str(score), 1, (0, 0, 0))
 
 # charge toute les images de drapeaux
 class DrapeauImage():
@@ -174,6 +177,7 @@ rectBoutonrep4.y = 200
 
 # fonction qui fait tourner le quizz
 def Drapeaux():
+    screen.blit(texteScore, (630, 0))
     global fenetreDrapeau
     if fenetreDrapeau == True:
         # verifer si un des rectangle de reponses est cliquer
@@ -235,6 +239,7 @@ def Drapeaux():
 # creer la fenetre pour que si le joueur clique sur la bonne reponse sa affiche une nouvelle fenetre
 def REPjuste():
     screen.fill((0, 255, 255))
+    screen.blit(texteScore, (630, 0))
     screen.blit(Decoration.pouceJUSTE, (150, 90))
     screen.blit(Decoration.plus1point, (600, 0))
     screen.blit(Decoration.clinDoeil, (20, 0))
@@ -253,13 +258,14 @@ def REPjuste():
 # creer la fenetre pour que si le joueur clique sur la mauvaise reponse sa affiche une nouvelle fenetre
 def REPfausse():
     screen.fill((150, 0, 150))
+    screen.blit(texteScore, (630, 0))
     screen.blit(Decoration.pouceFAUX, (150, 50))
     screen.blit(Decoration.triste1, (250, 0))
     screen.blit(Decoration.triste2, (150, 180))
     screen.blit(Decoration.triste3, (70, 450))
     screen.blit(Decoration.triste4, (150, 400))
     screen.blit(Decoration.triste5, (660, 250))
-    screen.blit(Decoration.triste1, (700, 100))
+    screen.blit(Decoration.triste1, (700, 10))
     screen.blit(Decoration.triste2, (200, 700))
     screen.blit(Decoration.triste3, (740, 180))
     screen.blit(Decoration.triste4, (680, 350))
