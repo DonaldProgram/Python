@@ -238,7 +238,8 @@ def REPjuste():
     screen.blit(Decoration.ia, (85, 285))
     screen.blit(Decoration.illuminati, (360, 0))
     screen.blit(Decoration.muscle, (700, 200))
-    screen.blit(Decoration.prorammation, (200, 500))
+    screen.blit(Decoration.prorammation, (620, 460))
+    screen.blit(Decoration.serein, (650, 390))
     pygame.display.flip()
     time.sleep(3)
 
