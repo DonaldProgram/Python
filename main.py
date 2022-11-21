@@ -1,5 +1,5 @@
-# importation du module pygame et random + initialisation de tout ses modules
-import pygame, random
+# importation du module pygame et random et time + initialisation de tout ses modules
+import pygame, random, time
 pygame.init()
 
 # creation de la fenetre + changement du titre + du logo
@@ -35,6 +35,18 @@ class Decoration():
     DECOcasqueallemagne = pygame.image.load("decoration/casqueDECO.png")
     DECOterreAllemagne = pygame.image.load("decoration/DECOguerreMondial.png")
     DECOsoldatAllemagne = pygame.image.load("decoration/soldats.png")
+    pouceJUSTE = pygame.image.load("decoration/pouceJUSTE.png")
+    plus1point = pygame.image.load("decoration/plus1point.png")
+    clinDoeil = pygame.image.load("decoration/clin-doeil.png")
+    cool = pygame.image.load("decoration/cool.png")
+    fou = pygame.image.load("decoration/fou.png")
+    heureux = pygame.image.load("decoration/heureux.png")
+    ia = pygame.image.load("decoration/ia.png")
+    illuminati = pygame.image.load("decoration/illuminati.png")
+    muscle = pygame.image.load("decoration/muscle.png")
+    prorammation = pygame.image.load("decoration/programmation.png")
+    serein = pygame.image.load("decoration/serein.png")
+
 
 
 # charge toute les images de drapeaux
@@ -155,19 +167,20 @@ rectBoutonrep4.y = 200
 
 # fonction qui fait tourner le quizz
 def Drapeaux():
+    global fenetreDrapeau
     if fenetreDrapeau == True:
         # verifer si un des rectangle de reponses est cliquer
         pos = pygame.mouse.get_pos()
         if event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 1:
                 if rectBoutonrepJuste.collidepoint(pos):
-                    print("allemagne")
+                    REPjuste()
                 elif rectBoutonrep2.collidepoint(pos):
-                    print("USA")
+                    print("faux")
                 elif rectBoutonrep3.collidepoint(pos):
-                    print("Belgique")
+                    print("faux")
                 elif rectBoutonrep4.collidepoint(pos):
-                    print("Italie")
+                    print("faux")
 
         # variable servant a afficher le mots quizz
         police = pygame.font.SysFont("monospace", 60)
@@ -210,7 +223,16 @@ def Drapeaux():
         screen.blit(Decoration.DECOcasqueallemagne, (0, 450))
         screen.blit(Decoration.DECOterreAllemagne, (230, 400))
         screen.blit(Decoration.DECOsoldatAllemagne, (630, 460))
-        
+
+
+# creer la fenetre pour que si le joueur clique sur la bonne reponse sa affiche un pouce en l'air
+def REPjuste():
+    fenetreDrapeau = False
+    screen.fill((0, 255, 255))
+    screen.blit(Decoration.pouceJUSTE, (150, 90))
+    screen.blit(Decoration.plus1point, (600, 0))
+    pygame.display.flip()
+    time.sleep(2)
 
 
 
