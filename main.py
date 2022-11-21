@@ -46,6 +46,13 @@ class Decoration():
     muscle = pygame.image.load("decoration/muscle.png")
     prorammation = pygame.image.load("decoration/programmation.png")
     serein = pygame.image.load("decoration/serein.png")
+    pouceFAUX = pygame.image.load("decoration/pouceFAUX.png")
+    triste1 = pygame.image.load("decoration/triste1.png")
+    triste2 = pygame.image.load("decoration/triste2.png")
+    triste3 = pygame.image.load("decoration/triste3.png")
+    triste4 = pygame.image.load("decoration/triste4.png")
+    triste5 = pygame.image.load("decoration/triste5.png")
+
 
 
 
@@ -176,11 +183,11 @@ def Drapeaux():
                 if rectBoutonrepJuste.collidepoint(pos):
                     REPjuste()
                 elif rectBoutonrep2.collidepoint(pos):
-                    print("faux")
+                    REPfausse()
                 elif rectBoutonrep3.collidepoint(pos):
-                    print("faux")
+                    REPfausse()
                 elif rectBoutonrep4.collidepoint(pos):
-                    print("faux")
+                    REPfausse()
 
         # variable servant a afficher le mots quizz
         police = pygame.font.SysFont("monospace", 60)
@@ -225,9 +232,8 @@ def Drapeaux():
         screen.blit(Decoration.DECOsoldatAllemagne, (630, 460))
 
 
-# creer la fenetre pour que si le joueur clique sur la bonne reponse sa affiche un pouce en l'air
+# creer la fenetre pour que si le joueur clique sur la bonne reponse sa affiche une nouvelle fenetre
 def REPjuste():
-    fenetreDrapeau = False
     screen.fill((0, 255, 255))
     screen.blit(Decoration.pouceJUSTE, (150, 90))
     screen.blit(Decoration.plus1point, (600, 0))
@@ -240,8 +246,27 @@ def REPjuste():
     screen.blit(Decoration.muscle, (700, 200))
     screen.blit(Decoration.prorammation, (620, 460))
     screen.blit(Decoration.serein, (650, 390))
+    
     pygame.display.flip()
     time.sleep(3)
+
+# creer la fenetre pour que si le joueur clique sur la mauvaise reponse sa affiche une nouvelle fenetre
+def REPfausse():
+    screen.fill((150, 0, 150))
+    screen.blit(Decoration.pouceFAUX, (150, 50))
+    screen.blit(Decoration.triste1, (250, 0))
+    screen.blit(Decoration.triste2, (150, 180))
+    screen.blit(Decoration.triste3, (70, 450))
+    screen.blit(Decoration.triste4, (150, 400))
+    screen.blit(Decoration.triste5, (660, 250))
+    screen.blit(Decoration.triste1, (700, 100))
+    screen.blit(Decoration.triste2, (200, 700))
+    screen.blit(Decoration.triste3, (740, 180))
+    screen.blit(Decoration.triste4, (680, 350))
+    screen.blit(Decoration.triste5, (20, 0))
+    pygame.display.flip()
+    time.sleep(3)
+
 
 fenetreDrapeau = False
 # boucle du jeu
