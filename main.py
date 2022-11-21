@@ -231,12 +231,17 @@ def REPjuste():
     screen.fill((0, 255, 255))
     screen.blit(Decoration.pouceJUSTE, (150, 90))
     screen.blit(Decoration.plus1point, (600, 0))
+    screen.blit(Decoration.clinDoeil, (20, 0))
+    screen.blit(Decoration.cool, (120, 20))
+    screen.blit(Decoration.fou, (45, 150))
+    screen.blit(Decoration.heureux, (0, 250))
+    screen.blit(Decoration.ia, (85, 285))
+    screen.blit(Decoration.illuminati, (360, 0))
+    screen.blit(Decoration.muscle, (700, 200))
+    screen.blit(Decoration.prorammation, (200, 500))
     pygame.display.flip()
-    time.sleep(2)
+    time.sleep(3)
 
-
-
-# boucle de toute les fenetres après le menu
 fenetreDrapeau = False
 # boucle du jeu
 while running:
