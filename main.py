@@ -62,6 +62,28 @@ texteScore = policeScore.render("SCORE:" + str(score), 1, (0, 0, 0))
 # charge toute les images de drapeaux
 class DrapeauImage():
     allemagne = pygame.image.load("drapeau/allemagne.png")
+    anglais = pygame.image.load("drapeau/anglais.png")
+    australie = pygame.image.load("drapeau/australie.png")
+    bresil = pygame.image.load("drapeau/bresil.png")
+    canada = pygame.image.load("drapeau/canada.png")
+    chine = pygame.image.load("drapeau/chine.png")
+    danemark = pygame.image.load("drapeau/danemark.png")
+    espagne = pygame.image.load("drapeau/espagne.png")
+    france = pygame.image.load("drapeau/france.png")
+    UE = pygame.image.load("drapeau/UE.png")
+    USA = pygame.image.load("drapeau/USA.png")
+    italie = pygame.image.load("drapeau/italie.png")
+    japon = pygame.image.load("drapeau/japon.png")
+    maroc = pygame.image.load("drapeau/maroc.png")
+    norvege = pygame.image.load("drapeau/norvege.png")
+    pologne = pygame.image.load("drapeau/pologne.png")
+    portugal = pygame.image.load("drapeau/portugal.png")
+    russie = pygame.image.load("drapeau/russie/png")
+    senegale = pygame.image.load('drapeau/senegale.png')
+    suede = pygame.image.load("drapeau/suede.png")
+    suisse = pygame.image.load("drapeau/suisse.png")
+    tunisie = pygame.image.load("drapeau/tunisie.png")
+
 
 # variable running faisant tourner le jeu tant que la croix n'a pas ete pressé
 running = True
