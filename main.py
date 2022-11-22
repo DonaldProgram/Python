@@ -78,14 +78,18 @@ class DrapeauImage():
     norvege = pygame.image.load("drapeau/norvege.png")
     pologne = pygame.image.load("drapeau/pologne.png")
     portugal = pygame.image.load("drapeau/portugal.png")
-    russie = pygame.image.load("drapeau/russie/png")
+    russie = pygame.image.load("drapeau/russie.png")
     senegale = pygame.image.load('drapeau/senegale.png')
     suede = pygame.image.load("drapeau/suede.png")
     suisse = pygame.image.load("drapeau/suisse.png")
     tunisie = pygame.image.load("drapeau/tunisie.png")
     turquie = pygame.image.load("drapeau/turquie.png")
 
+# liste pour afficher les drapeaux a la suite
+numeroPAYS = 0
 listePAYS = [DrapeauImage.allemagne, DrapeauImage.anglais, DrapeauImage.australie, DrapeauImage.bresil, DrapeauImage.canada, DrapeauImage.chine, DrapeauImage.danemark, DrapeauImage.espagne, DrapeauImage.france, DrapeauImage.UE, DrapeauImage.USA, DrapeauImage.italie, DrapeauImage.japon, DrapeauImage.maroc, DrapeauImage.norvege, DrapeauImage.pologne, DrapeauImage.portugal, DrapeauImage.russie, DrapeauImage.senegale, DrapeauImage.suede, DrapeauImage.suisse, DrapeauImage.tunisie, DrapeauImage.turquie]
+
+
 
 # variable running faisant tourner le jeu tant que la croix n'a pas ete pressé
 running = True
@@ -201,7 +205,7 @@ rectBoutonrep4.y = 200
 
 # fonction qui fait tourner le quizz
 def Drapeaux():
-    global fenetreDrapeau, score, texteScore
+    global fenetreDrapeau, score, texteScore, numeroPAYS
     # affichage du score + mise a jour du score
     texteScore = policeScore.render("SCORE:" + str(score), 1, (0, 0, 0))
     screen.blit(texteScore, (630, 0))
@@ -240,9 +244,8 @@ def Drapeaux():
         screen.blit(Decoration.boutonReponse4, rectBoutonrep4)
       
       
-        # ALLEMAGNE
-        # afficher le drapeaux test allemagne
-        screen.blit(DrapeauImage.allemagne, (330, 100))
+        # afficher les drapeaux 
+        screen.blit(listePAYS[numeroPAYS], (330, 100))
 
         # afficher les textes sur les rectangles
         police = pygame.font.SysFont("monospace", 20)
@@ -264,7 +267,7 @@ def Drapeaux():
 
 # creer la fenetre pour que si le joueur clique sur la bonne reponse sa affiche une nouvelle fenetre
 def REPjuste():
-    global score
+    global score, numeroPAYS
     score += 1
     policeScore = pygame.font.SysFont("MONOSPACE", 35)
     texteScore = policeScore.render("SCORE:" + str(score), 1, (0, 0, 0))
@@ -281,12 +284,16 @@ def REPjuste():
     screen.blit(Decoration.muscle, (700, 200))
     screen.blit(Decoration.prorammation, (620, 460))
     screen.blit(Decoration.serein, (650, 390))
-    
+
     pygame.display.flip()
     time.sleep(3)
+    
+    numeroPAYS += 1
+    
 
 # creer la fenetre pour que si le joueur clique sur la mauvaise reponse sa affiche une nouvelle fenetre
 def REPfausse():
+    global numeroPAYS
     policeScore = pygame.font.SysFont("MONOSPACE", 35)
     texteScore = policeScore.render("SCORE:" + str(score), 1, (0, 0, 0))
     screen.fill((150, 0, 150))
@@ -305,6 +312,8 @@ def REPfausse():
 
     pygame.display.flip()
     time.sleep(3)
+
+    numeroPAYS += 1
 
 
 fenetreDrapeau = False
