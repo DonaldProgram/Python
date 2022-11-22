@@ -83,7 +83,9 @@ class DrapeauImage():
     suede = pygame.image.load("drapeau/suede.png")
     suisse = pygame.image.load("drapeau/suisse.png")
     tunisie = pygame.image.load("drapeau/tunisie.png")
+    turquie = pygame.image.load("drapeau/turquie.png")
 
+listePAYS = [DrapeauImage.allemagne, DrapeauImage.anglais, DrapeauImage.australie, DrapeauImage.bresil, DrapeauImage.canada, DrapeauImage.chine, DrapeauImage.danemark, DrapeauImage.espagne, DrapeauImage.france, DrapeauImage.UE, DrapeauImage.USA, DrapeauImage.italie, DrapeauImage.japon, DrapeauImage.maroc, DrapeauImage.norvege, DrapeauImage.pologne, DrapeauImage.portugal, DrapeauImage.russie, DrapeauImage.senegale, DrapeauImage.suede, DrapeauImage.suisse, DrapeauImage.tunisie, DrapeauImage.turquie]
 
 # variable running faisant tourner le jeu tant que la croix n'a pas ete pressé
 running = True
