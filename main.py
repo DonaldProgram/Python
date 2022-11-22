@@ -55,7 +55,7 @@ class Decoration():
 
 
 # ajout de la variable score
-score = 19
+score = 0
 policeScore = pygame.font.SysFont("MONOSPACE", 35)
 texteScore = policeScore.render("SCORE:" + str(score), 1, (0, 0, 0))
 
@@ -177,8 +177,10 @@ rectBoutonrep4.y = 200
 
 # fonction qui fait tourner le quizz
 def Drapeaux():
+    global fenetreDrapeau, score, texteScore
+    # affichage du score + mise a jour du score
+    texteScore = policeScore.render("SCORE:" + str(score), 1, (0, 0, 0))
     screen.blit(texteScore, (630, 0))
-    global fenetreDrapeau
     if fenetreDrapeau == True:
         # verifer si un des rectangle de reponses est cliquer
         pos = pygame.mouse.get_pos()
@@ -238,6 +240,10 @@ def Drapeaux():
 
 # creer la fenetre pour que si le joueur clique sur la bonne reponse sa affiche une nouvelle fenetre
 def REPjuste():
+    global score
+    score += 1
+    policeScore = pygame.font.SysFont("MONOSPACE", 35)
+    texteScore = policeScore.render("SCORE:" + str(score), 1, (0, 0, 0))
     screen.fill((0, 255, 255))
     screen.blit(texteScore, (630, 0))
     screen.blit(Decoration.pouceJUSTE, (150, 90))
@@ -257,6 +263,8 @@ def REPjuste():
 
 # creer la fenetre pour que si le joueur clique sur la mauvaise reponse sa affiche une nouvelle fenetre
 def REPfausse():
+    policeScore = pygame.font.SysFont("MONOSPACE", 35)
+    texteScore = policeScore.render("SCORE:" + str(score), 1, (0, 0, 0))
     screen.fill((150, 0, 150))
     screen.blit(texteScore, (630, 0))
     screen.blit(Decoration.pouceFAUX, (150, 50))
@@ -270,6 +278,7 @@ def REPfausse():
     screen.blit(Decoration.triste3, (740, 180))
     screen.blit(Decoration.triste4, (680, 350))
     screen.blit(Decoration.triste5, (20, 0))
+
     pygame.display.flip()
     time.sleep(3)
 
