@@ -89,7 +89,10 @@ class DrapeauImage():
 numeroPAYS = 0
 listePAYS = [DrapeauImage.allemagne, DrapeauImage.anglais, DrapeauImage.australie, DrapeauImage.bresil, DrapeauImage.canada, DrapeauImage.chine, DrapeauImage.danemark, DrapeauImage.espagne, DrapeauImage.france, DrapeauImage.UE, DrapeauImage.USA, DrapeauImage.italie, DrapeauImage.japon, DrapeauImage.maroc, DrapeauImage.norvege, DrapeauImage.pologne, DrapeauImage.portugal, DrapeauImage.russie, DrapeauImage.senegale, DrapeauImage.suede, DrapeauImage.suisse, DrapeauImage.tunisie, DrapeauImage.turquie]
 
-
+listeREPjuste = ["Allemagne", "Anglais", "Australie", "Bresil", "Canada", "Chine", "Danemark", "Espagne", "France", "Unions E", "Etats Unis", "Italie", "Japon", "Maroc", "Norvege", "Pologne", "Portugal", "Russie", "Senegale", "Suede", "Suisse", "Tunisie", "Turquie"]
+listeREPfaux1 = ["Italie", "Unions E", "Senegale", "Portugal", "Suede", "Japon", "Canada"]
+listeREPfaux2 = ["Etats-Unis", "Danemark", "Pologne", "Otan", "Norvege", "Taiwan", "Norvege"]
+listeREPfaux3 = ["Belgique", "Norvege", "Tunisie", "Chine", "Pologne", "Tunisie", "Suede"]
 
 # variable running faisant tourner le jeu tant que la croix n'a pas ete pressé
 running = True
@@ -205,10 +208,11 @@ rectBoutonrep4.y = 200
 
 # fonction qui fait tourner le quizz
 def Drapeaux():
-    global fenetreDrapeau, score, texteScore, numeroPAYS
+    global fenetreDrapeau, score, texteScore, numeroPAYS, rectBoutonrepJuste, rectBoutonrep2, rectBoutonrep3, rectBoutonrep4
     # affichage du score + mise a jour du score
     texteScore = policeScore.render("SCORE:" + str(score), 1, (0, 0, 0))
     screen.blit(texteScore, (630, 0))
+    
     if fenetreDrapeau == True:
         # verifer si un des rectangle de reponses est cliquer
         pos = pygame.mouse.get_pos()
@@ -243,13 +247,12 @@ def Drapeaux():
         screen.blit(Decoration.boutonReponse3, rectBoutonrep3)
         screen.blit(Decoration.boutonReponse4, rectBoutonrep4)
       
-      
         # afficher les drapeaux 
         screen.blit(listePAYS[numeroPAYS], (330, 100))
 
         # afficher les textes sur les rectangles
         police = pygame.font.SysFont("monospace", 20)
-        reponse_texte1 = police.render("Allemagne", 1, (0, 255, 255))
+        reponse_texte1 = police.render(listeREPjuste[numeroPAYS], 1, (0, 255, 255))
         screen.blit(reponse_texte1, (rectBoutonrepJuste.x+9, rectBoutonrepJuste.y + 54))
         reponse_texte2 = police.render("Etats-Unis", 1, (0, 255, 255))
         screen.blit(reponse_texte2, (rectBoutonrep2.x + 6, rectBoutonrep2.y + 54))
@@ -267,7 +270,7 @@ def Drapeaux():
 
 # creer la fenetre pour que si le joueur clique sur la bonne reponse sa affiche une nouvelle fenetre
 def REPjuste():
-    global score, numeroPAYS
+    global score, numeroPAYS, rectBoutonrepJuste, rectBoutonrep2, rectBoutonrep3, rectBoutonrep4
     score += 1
     policeScore = pygame.font.SysFont("MONOSPACE", 35)
     texteScore = policeScore.render("SCORE:" + str(score), 1, (0, 0, 0))
@@ -287,13 +290,49 @@ def REPjuste():
 
     pygame.display.flip()
     time.sleep(3)
-    
+
+    # rectangle des reponses + choix aleatoire de leurs emplacements
+    choix_reponse_bouton = [20, 170, 490, 640]
+
+    # choix aleatoire de leurs emplacement
+    rectBoutonrepJuste = Decoration.boutonReponseJuste.get_rect()
+    rectBoutonrepJuste.x = random.choice(choix_reponse_bouton)
+    choix_reponse_bouton.remove(rectBoutonrepJuste.x)
+    rectBoutonrepJuste.y = 200
+
+    rectBoutonrep2 = Decoration.boutonReponseJuste.get_rect()
+    rectBoutonrep2.x = random.choice(choix_reponse_bouton)
+    choix_reponse_bouton.remove(rectBoutonrep2.x)
+    rectBoutonrep2.y = 200
+
+    rectBoutonrep3 = Decoration.boutonReponseJuste.get_rect()
+    rectBoutonrep3.x = random.choice(choix_reponse_bouton)
+    choix_reponse_bouton.remove(rectBoutonrep3.x)
+    rectBoutonrep3.y = 200
+
+    rectBoutonrep4 = Decoration.boutonReponseJuste.get_rect()
+    rectBoutonrep4.x = random.choice(choix_reponse_bouton)
+    choix_reponse_bouton.remove(rectBoutonrep4.x)
+    rectBoutonrep4.y = 200    
+
+
+    # afficher les textes sur les rectangles
+    police = pygame.font.SysFont("monospace", 20)
+    reponse_texte1 = police.render(listeREPjuste[numeroPAYS], 1, (0, 255, 255))
+    screen.blit(reponse_texte1, (rectBoutonrepJuste.x+9, rectBoutonrepJuste.y + 54))
+    reponse_texte2 = police.render("Etats-Unis", 1, (0, 255, 255))
+    screen.blit(reponse_texte2, (rectBoutonrep2.x + 6, rectBoutonrep2.y + 54))
+    reponse_texte3 = police.render("Belgique", 1, (0, 255, 255))
+    screen.blit(reponse_texte3, (rectBoutonrep3.x + 15, rectBoutonrep3.y + 54))
+    reponse_texte4 = police.render("Italie", 1, (0, 255, 255))
+    screen.blit(reponse_texte4, (rectBoutonrep4.x + 23, rectBoutonrep4.y + 54))
+
     numeroPAYS += 1
     
 
 # creer la fenetre pour que si le joueur clique sur la mauvaise reponse sa affiche une nouvelle fenetre
 def REPfausse():
-    global numeroPAYS
+    global numeroPAYS, rectBoutonrepJuste, rectBoutonrep2, rectBoutonrep3, rectBoutonrep4
     policeScore = pygame.font.SysFont("MONOSPACE", 35)
     texteScore = policeScore.render("SCORE:" + str(score), 1, (0, 0, 0))
     screen.fill((150, 0, 150))
@@ -312,6 +351,41 @@ def REPfausse():
 
     pygame.display.flip()
     time.sleep(3)
+
+    # rectangle des reponses + choix aleatoire de leurs emplacements
+    choix_reponse_bouton = [20, 170, 490, 640]
+
+    # choix aleatoire de leurs emplacement
+    rectBoutonrepJuste = Decoration.boutonReponseJuste.get_rect()
+    rectBoutonrepJuste.x = random.choice(choix_reponse_bouton)
+    choix_reponse_bouton.remove(rectBoutonrepJuste.x)
+    rectBoutonrepJuste.y = 200
+
+    rectBoutonrep2 = Decoration.boutonReponseJuste.get_rect()
+    rectBoutonrep2.x = random.choice(choix_reponse_bouton)
+    choix_reponse_bouton.remove(rectBoutonrep2.x)
+    rectBoutonrep2.y = 200
+
+    rectBoutonrep3 = Decoration.boutonReponseJuste.get_rect()
+    rectBoutonrep3.x = random.choice(choix_reponse_bouton)
+    choix_reponse_bouton.remove(rectBoutonrep3.x)
+    rectBoutonrep3.y = 200
+
+    rectBoutonrep4 = Decoration.boutonReponseJuste.get_rect()
+    rectBoutonrep4.x = random.choice(choix_reponse_bouton)
+    choix_reponse_bouton.remove(rectBoutonrep4.x)
+    rectBoutonrep4.y = 200
+
+    # afficher les textes sur les rectangles
+    police = pygame.font.SysFont("monospace", 20)
+    reponse_texte1 = police.render(listeREPjuste[numeroPAYS], 1, (0, 255, 255))
+    screen.blit(reponse_texte1, (rectBoutonrepJuste.x+9, rectBoutonrepJuste.y + 54))
+    reponse_texte2 = police.render("Etats-Unis", 1, (0, 255, 255))
+    screen.blit(reponse_texte2, (rectBoutonrep2.x + 6, rectBoutonrep2.y + 54))
+    reponse_texte3 = police.render("Belgique", 1, (0, 255, 255))
+    screen.blit(reponse_texte3, (rectBoutonrep3.x + 15, rectBoutonrep3.y + 54))
+    reponse_texte4 = police.render("Italie", 1, (0, 255, 255))
+    screen.blit(reponse_texte4, (rectBoutonrep4.x + 23, rectBoutonrep4.y + 54))
 
     numeroPAYS += 1
 
