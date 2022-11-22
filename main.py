@@ -89,10 +89,10 @@ class DrapeauImage():
 numeroPAYS = 0
 listePAYS = [DrapeauImage.allemagne, DrapeauImage.anglais, DrapeauImage.australie, DrapeauImage.bresil, DrapeauImage.canada, DrapeauImage.chine, DrapeauImage.danemark, DrapeauImage.espagne, DrapeauImage.france, DrapeauImage.UE, DrapeauImage.USA, DrapeauImage.italie, DrapeauImage.japon, DrapeauImage.maroc, DrapeauImage.norvege, DrapeauImage.pologne, DrapeauImage.portugal, DrapeauImage.russie, DrapeauImage.senegale, DrapeauImage.suede, DrapeauImage.suisse, DrapeauImage.tunisie, DrapeauImage.turquie]
 
-listeREPjuste = ["Allemagne", "Anglais", "Australie", "Bresil", "Canada", "Chine", "Danemark", "Espagne", "France", "Unions E", "Etats Unis", "Italie", "Japon", "Maroc", "Norvege", "Pologne", "Portugal", "Russie", "Senegale", "Suede", "Suisse", "Tunisie", "Turquie"]
-listeREPfaux1 = ["Italie", "Unions E", "Senegale", "Portugal", "Suede", "Japon", "Canada"]
-listeREPfaux2 = ["Etats-Unis", "Danemark", "Pologne", "Otan", "Norvege", "Taiwan", "Norvege"]
-listeREPfaux3 = ["Belgique", "Norvege", "Tunisie", "Chine", "Pologne", "Tunisie", "Suede"]
+listeREPjuste = ["Allemagne", "Anglais", "Australie", "Bresil", "Canada", "Chine", "Danemark", "Espagne", "France", "Unions E", "Etats- U", "Italie", "Japon",    "Maroc",     "Norvege", "Pologne", "Portugal", "Russie", "Senegale", "Suede", "Suisse", "Tunisie", "Turquie"]
+listeREPfaux1 = ["Italie", "Unions E", "Senegale", "Portugal", "Suede", "Japon", "Canada", "France", "Danemark", "Etats-U", "Maroc",        "Bresil", "Palestine", "Moldavie", "Canada", "Belgique", "Bresil", "France", "Tanzanie", "Taîlande", "Norvege", "Maroc", "Japon"]
+listeREPfaux2 = ["Etats-U", "Danemark", "Pologne", "Otan", "Norvege", "Taiwan", "Norvege", "Russie", "Unions E", "Otan", "Chine",            "Canada", "Estonie", "Turquie",   "Otan", "Kazakstan", "Ukraine", "Suede", "Tchad", "Togo", "Japon", "Ukraine", "Viêtnam"]
+listeREPfaux3 = ["Belgique", "Norvege", "Etats-U", "Chine", "Pologne", "Tunisie", "Suede", "Anglais", "Portugal", "Japon", "Australie",    "Pakistan", "Chine", "Corée",     "Somalie", "Norvege", "Suriname", "Syrie",  "Tchéquie", "Ukraine", "Canada", " Vatican", "Yémen"]
 
 # variable running faisant tourner le jeu tant que la croix n'a pas ete pressé
 running = True
@@ -254,12 +254,12 @@ def Drapeaux():
         police = pygame.font.SysFont("monospace", 20)
         reponse_texte1 = police.render(listeREPjuste[numeroPAYS], 1, (0, 255, 255))
         screen.blit(reponse_texte1, (rectBoutonrepJuste.x+9, rectBoutonrepJuste.y + 54))
-        reponse_texte2 = police.render("Etats-Unis", 1, (0, 255, 255))
-        screen.blit(reponse_texte2, (rectBoutonrep2.x + 6, rectBoutonrep2.y + 54))
-        reponse_texte3 = police.render("Belgique", 1, (0, 255, 255))
-        screen.blit(reponse_texte3, (rectBoutonrep3.x + 15, rectBoutonrep3.y + 54))
-        reponse_texte4 = police.render("Italie", 1, (0, 255, 255))
-        screen.blit(reponse_texte4, (rectBoutonrep4.x + 23, rectBoutonrep4.y + 54))
+        reponse_texte2 = police.render(listeREPfaux1[numeroPAYS], 1, (0, 255, 255))
+        screen.blit(reponse_texte2, (rectBoutonrep2.x + 9, rectBoutonrep2.y + 54))
+        reponse_texte3 = police.render(listeREPfaux2[numeroPAYS], 1, (0, 255, 255))
+        screen.blit(reponse_texte3, (rectBoutonrep3.x + 9, rectBoutonrep3.y + 54))
+        reponse_texte4 = police.render(listeREPfaux3[numeroPAYS], 1, (0, 255, 255))
+        screen.blit(reponse_texte4, (rectBoutonrep4.x + 9, rectBoutonrep4.y + 54))
 
         # decoration de la fenetre
         screen.blit(Decoration.DECOallemagne, (500, 350))
