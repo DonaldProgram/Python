@@ -52,7 +52,9 @@ class Decoration():
     triste3 = pygame.image.load("decoration/triste3.png")
     triste4 = pygame.image.load("decoration/triste4.png")
     triste5 = pygame.image.load("decoration/triste5.png")
-
+    panneauFIN = pygame.image.load("decoration/panneauFIN.png")
+    globe = pygame.image.load("decoration/globe.png")
+    soutien = pygame.image.load("decoration/soutien.png")
 
 # ajout de la variable score
 score = 0
@@ -227,6 +229,8 @@ def Drapeaux():
                 elif rectBoutonrep4.collidepoint(pos):
                     REPfausse()
 
+        if numeroPAYS == 23:
+            fondFIN()
         # variable servant a afficher le mots quizz
         police = pygame.font.SysFont("monospace", 60)
         QUIZ_texte = police.render("QUIZZ", 1, (0, 0, 0))
@@ -262,11 +266,11 @@ def Drapeaux():
         screen.blit(reponse_texte4, (rectBoutonrep4.x + 9, rectBoutonrep4.y + 54))
 
         # decoration de la fenetre
-        screen.blit(Decoration.DECOallemagne, (500, 350))
         screen.blit(Decoration.DECOcasqueallemagne, (0, 450))
         screen.blit(Decoration.DECOterreAllemagne, (230, 400))
         screen.blit(Decoration.DECOsoldatAllemagne, (630, 460))
-
+        screen.blit(Decoration.soutien, (150, 500))
+        screen.blit(Decoration.globe, (500, 500))
 
 # creer la fenetre pour que si le joueur clique sur la bonne reponse sa affiche une nouvelle fenetre
 def REPjuste():
@@ -390,6 +394,18 @@ def REPfausse():
     numeroPAYS += 1
 
 
+def fondFIN():
+    policeScore = pygame.font.SysFont("monospace", 40)
+    texteScore = policeScore.render("Votre score est de " + str(score), 1 , (0, 0, 0))
+    screen.fill((0, 255, 255))
+    screen.blit(Decoration.panneauFIN, (150, 50))
+    screen.blit(texteScore, (0, 0))
+
+    pygame.display.flip()
+    time.sleep(4)
+    pygame.quit()
+
+
 fenetreDrapeau = False
 # boucle du jeu
 while running:
@@ -408,6 +424,8 @@ while running:
         pos = pygame.mouse.get_pos()
         Drapeaux()
         # appeler la fonction drapeau
+    if numeroPAYS == 23:
+        fondFIN()
 
     # mise a jour de l'ecran
     pygame.display.flip()
