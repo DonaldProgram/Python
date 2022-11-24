@@ -29,7 +29,7 @@ clic.set_volume(0.2)
 
 # variable running qui fait tourner la boucle du jeu
 running = True
-
+parametre = 0
 # Fonction du menu
 menu = True
 triangleMENUhei = 1
@@ -43,12 +43,13 @@ def Menu():
     if triangleMENUhei == 1:
         screen.blit(triangleMENU, (740, 405))
         if pressed[pygame.K_RETURN]:
-            print("entre")
+            clic.play()
+            # lance le jeu
     if triangleMENUhei == 0:
         screen.blit(triangleMENU, (650, 505))
         if pressed[pygame.K_RETURN]:
-            print("entre")
-
+            clic.play()
+            parametre = 1
     
     if pressed[pygame.K_UP]:
         triangleMENUhei = 1
@@ -74,6 +75,7 @@ while running:
 
     if menu == True:
         Menu()
-
+    else:
+        screen.fill((0, 255, 255))
     pygame.display.flip()
 
