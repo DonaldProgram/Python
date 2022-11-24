@@ -23,7 +23,7 @@ rectJoueur1 = pygame.Rect(15, 480, 25, 108)
 # fait la musique de fond
 music = pygame.mixer.music.load('music.mp3')
 pygame.mixer.music.play(-1)
-pygame.mixer.music.set_volume(0.15)
+pygame.mixer.music.set_volume(0.3)
 
 clic = pygame.mixer.Sound("clic.mp3")
 clic.set_volume(0.2)
@@ -70,7 +70,13 @@ def Menu():
 
 
 def Parametre():
+    global parametre, menu
     if parametre == 1:
+        pressed = pygame.key.get_pressed()
+        if pressed[pygame.K_ESCAPE]:
+            clic.play()
+            menu = True
+            parametre = 0
         police = pygame.font.SysFont("Monospace", 50)
         Mots_Parametre = police.render("Parametres", 1, (255, 0, 255))
 
@@ -129,6 +135,7 @@ while running:
         parametre = 1
     if parametre == 1:
         Parametre()
+
 
     pygame.display.flip()
 
