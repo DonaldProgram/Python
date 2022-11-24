@@ -4,6 +4,7 @@ pygame.init()
 
 # fenetre
 screen = pygame.display.set_mode((1915, 1080))
+pygame.display.set_caption("COLD-WAR")
 
 # image
 triangleMENU = pygame.image.load("triangleMENU.png")
@@ -51,7 +52,6 @@ def Menu():
             screen.blit(triangleMENU, (650, 505))
             if pressed[pygame.K_RETURN]:
                 clic.play()
-                Parametre()
                 parametre = 1
                 menu = False
 
@@ -70,13 +70,15 @@ def Menu():
 
 
 def Parametre():
-    screen.fill((0, 0, 0))
+    if parametre == 1:
+        police = pygame.font.SysFont("Monospace", 50)
+        Mots_Parametre = police.render("Parametre", 1, (255, 0, 0))
 
+        screen.fill((0, 0, 0))
 
-    screen.blit(Mots_Parametre, (0, 0))
+        screen.blit(Mots_Parametre, (800, 0))
 
-
-    pygame.display.flip()
+        pygame.display.flip()
 
 
 
@@ -90,6 +92,8 @@ while running:
 
     if menu == True:
         Menu()
+    if menu == False:
+        parametre = 1
     if parametre == 1:
         Parametre()
 
