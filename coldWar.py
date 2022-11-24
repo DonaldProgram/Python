@@ -18,8 +18,10 @@ Mots_Parametre = police.render("Parametres", 1, (255, 0, 0))
 
 # rectangle des joueurs
 rectJoueur1 = pygame.Rect(15, 480, 25, 108)
+rectJoueur2 = pygame.Rect(1800, 480, 25, 108)
 
 
+jeu = False
 # fait la musique de fond
 music = pygame.mixer.music.load('music.mp3')
 pygame.mixer.music.play(-1)
@@ -35,7 +37,7 @@ parametre = 0
 menu = True
 triangleMENUhei = 1
 def Menu():
-    global menu
+    global menu, jeu, parametre
     if menu == True:
         global triangleMENUhei
         # affiche le menu
@@ -47,12 +49,13 @@ def Menu():
             screen.blit(triangleMENU, (740, 405))
             if pressed[pygame.K_RETURN]:
                 clic.play()
-                # lance le jeu
+                jeu = True
+                menu = False
         if triangleMENUhei == 0:
             screen.blit(triangleMENU, (650, 505))
             if pressed[pygame.K_RETURN]:
                 clic.play()
-                parametre = 1
+                parametre = True
                 menu = False
 
 
@@ -125,6 +128,14 @@ def Parametre():
 
         pygame.display.flip()
 
+def Jeu():
+    global jeu, menu
+    if jeu == True:
+        screen.fill((0, 0, 0))
+
+        pygame.draw.rect(screen, (255, 0, 0), rectJoueur1)
+        pygame.draw.rect(screen, (0, 0, 255), rectJoueur2)
+        pygame.display.flip()
 
 
 # boucle du jeu
@@ -137,10 +148,10 @@ while running:
 
     if menu == True:
         Menu()
-    if menu == False:
-        parametre = 1
-    if parametre == 1:
+    if parametre == True:
         Parametre()
+    if jeu == True:
+        Jeu()    
 
 
     pygame.display.flip()
