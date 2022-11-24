@@ -18,7 +18,7 @@ Mots_Parametre = police.render("Parametres", 1, (255, 0, 0))
 
 # rectangle des joueurs
 rectJoueur1 = pygame.Rect(15, 480, 25, 108)
-rectJoueur2 = pygame.Rect(1800, 480, 25, 108)
+rectJoueur2 = pygame.Rect(1875, 480, 25, 108)
 
 
 jeu = False
