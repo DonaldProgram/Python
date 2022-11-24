@@ -1,5 +1,5 @@
 # jeu cold war
-import pygame
+import pygame, time
 pygame.init()
 
 # fenetre
@@ -128,7 +128,14 @@ def Parametre():
 
         pygame.display.flip()
 
+# compte a rebours du debut
+rebours = 3
+
 def Jeu():
+    global rebours
+
+        
+    
     global jeu, menu
     if jeu == True:
         screen.fill((0, 0, 0))
@@ -153,6 +160,16 @@ def Jeu():
                 rectJoueur2.y += 13
 
         pygame.display.flip()
+    
+    if rebours != -1:
+        police = pygame.font.SysFont("Monospace", 150)
+        CompteRebours = police.render(str(rebours), 1, (255, 255, 255))
+        clic.play()
+        screen.blit(CompteRebours, (880, 300))
+        pygame.display.flip()
+        time.sleep(1)
+        rebours -= 1
+        
 
 
 # boucle du jeu
