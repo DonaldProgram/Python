@@ -34,33 +34,48 @@ parametre = 0
 menu = True
 triangleMENUhei = 1
 def Menu():
-    global triangleMENUhei
-    # affiche le menu
-    pressed = pygame.key.get_pressed()
-    
+    global menu
+    if menu == True:
+        global triangleMENUhei
+        # affiche le menu
+        pressed = pygame.key.get_pressed()
+        
+        screen.fill((0, 0, 0))
+        
+        if triangleMENUhei == 1:
+            screen.blit(triangleMENU, (740, 405))
+            if pressed[pygame.K_RETURN]:
+                clic.play()
+                # lance le jeu
+        if triangleMENUhei == 0:
+            screen.blit(triangleMENU, (650, 505))
+            if pressed[pygame.K_RETURN]:
+                clic.play()
+                Parametre()
+                parametre = 1
+                menu = False
+
+
+        if pressed[pygame.K_UP]:
+            triangleMENUhei = 1
+
+        if pressed[pygame.K_DOWN]:
+            triangleMENUhei = 0
+
+
+        screen.blit(Mots_Menu, (835, 0))
+        screen.blit(Mots_start, (800, 400))
+        screen.blit(Mots_Parametre, (720, 500))
+        pygame.display.flip()
+
+
+def Parametre():
     screen.fill((0, 0, 0))
-    
-    if triangleMENUhei == 1:
-        screen.blit(triangleMENU, (740, 405))
-        if pressed[pygame.K_RETURN]:
-            clic.play()
-            # lance le jeu
-    if triangleMENUhei == 0:
-        screen.blit(triangleMENU, (650, 505))
-        if pressed[pygame.K_RETURN]:
-            clic.play()
-            parametre = 1
-    
-    if pressed[pygame.K_UP]:
-        triangleMENUhei = 1
-
-    if pressed[pygame.K_DOWN]:
-        triangleMENUhei = 0
 
 
-    screen.blit(Mots_Menu, (835, 0))
-    screen.blit(Mots_start, (800, 400))
-    screen.blit(Mots_Parametre, (720, 500))
+    screen.blit(Mots_Parametre, (0, 0))
+
+
     pygame.display.flip()
 
 
@@ -75,7 +90,8 @@ while running:
 
     if menu == True:
         Menu()
-    else:
-        screen.fill((0, 255, 255))
+    if parametre == 1:
+        Parametre()
+
     pygame.display.flip()
 
