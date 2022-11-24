@@ -135,6 +135,23 @@ def Jeu():
 
         pygame.draw.rect(screen, (255, 0, 0), rectJoueur1)
         pygame.draw.rect(screen, (0, 0, 255), rectJoueur2)
+        
+        pressed = pygame.key.get_pressed()
+        # deplacement joueur 1
+        if rectJoueur1.y > 0: # gere les collisions du joueur rouge en haut
+            if pressed[pygame.K_z]:
+                rectJoueur1.y -= 13
+        if rectJoueur1.y < 902: # gere les collision du joueur rouge en bas
+            if pressed[pygame.K_s]:
+                rectJoueur1.y += 13
+
+        if rectJoueur2.y > 0: # gere les collisions du joueur bleu en haut
+            if pressed[pygame.K_UP]:
+                rectJoueur2.y -= 13
+        if rectJoueur2.y < 902: # gere les collision du joueur bleu en bas
+            if pressed[pygame.K_DOWN]:
+                rectJoueur2.y += 13
+
         pygame.display.flip()
 
 
