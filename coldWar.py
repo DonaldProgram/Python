@@ -78,7 +78,12 @@ def Parametre():
             menu = True
             parametre = 0
         police = pygame.font.SysFont("Monospace", 50)
-        Mots_Parametre = police.render("Parametres", 1, (255, 0, 255))
+        Mots_Parametre = police.render("Parametres", 1, (255, 0, 0))
+
+        police = pygame.font.SysFont("Monospace", 25)
+        Mots_Echap = police.render("Echap pour aller au menu", 1, (255, 0, 0))
+
+        police = pygame.font.SysFont("Monospace", 50)
 
         TexteJoueur1_1 = police.render("JOUEUR 1", 1, (255, 0, 0))
         police = pygame.font.SysFont("Monospace", 30)
@@ -101,6 +106,7 @@ def Parametre():
         screen.fill((0, 0, 0))
 
         screen.blit(Mots_Parametre, (800, 0))
+        screen.blit(Mots_Echap, (0, 0))
         
         # joueur 1
         screen.blit(TexteJoueur1_1, (150, 250))
