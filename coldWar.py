@@ -20,6 +20,7 @@ Mots_Parametre = police.render("Parametres", 1, (255, 0, 0))
 rectJoueur1 = pygame.Rect(15, 480, 25, 108)
 rectJoueur2 = pygame.Rect(1875, 480, 25, 108)
 
+balleRouge = pygame.image.load("balleRouge.png")
 
 jeu = False
 # fait la musique de fond
@@ -130,9 +131,13 @@ def Parametre():
 
 # compte a rebours du debut
 rebours = 3
+tir = 0
+a = 0
+positionJoueurRougey = 0
+
 
 def Jeu():
-    global rebours
+    global rebours, tir, a, positionJoueurRougey
 
         
     
@@ -158,6 +163,24 @@ def Jeu():
         if rectJoueur2.y < 902: # gere les collision du joueur bleu en bas
             if pressed[pygame.K_DOWN]:
                 rectJoueur2.y += 13
+
+        pointBallx = rectJoueur1.x + 70
+        pointBally = rectJoueur1.y + 54
+
+        if tir == 0:
+            if pressed[pygame.K_SPACE]:
+                tir = 1
+                a = 0
+                positionJoueurRougey = rectJoueur1.y + 54
+                pointBallx = rectJoueur1.x + 20
+        
+        a += 25
+        if tir >= 1:
+            pointBallx += a
+            screen.blit(balleRouge, (pointBallx, positionJoueurRougey))
+        if pointBallx > 2000:
+            tir = 0
+            a = 0
 
         pygame.display.flip()
     
