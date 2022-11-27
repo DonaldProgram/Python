@@ -7,7 +7,7 @@ base_Donne = {
     "comment sa va"      : "BOT- Sa va :) Merci !",
     "pas appris"         : "BOT- Desoler je n'ai pas compris :(",
     "prenom_User"        : "BOT- Genial, j'aimerais beaucoup avoir un prenom comme le tien.",
-    "age_user"           : "BOT- C'est super comme age, moi aussi j'ai un age c'est 1 car je suis le 'NUMERO UNO'" 
+    "age_user"           : "BOT- C'est super comme age, moi aussi j'ai un age c'est 1 car je suis le 'NUMERO UNO'." 
              }
 
 
@@ -28,7 +28,7 @@ while True:
         reponse = 1
 
     # repond a comment sa va
-    if texteHUMAIN == "comment sa va" or texteHUMAIN == "comment sa va " or texteHUMAIN == "comment tu te sens" or texteHUMAIN == "comment tu te sens " or texteHUMAIN == "sa va" or texteHUMAIN == "sa va ":
+    if "comment" and "va" in texteHUMAIN or "comment" and "tu" and "sens" in texteHUMAIN or "sa va" in texteHUMAIN:
         print(base_Donne["comment sa va"])
         reponse = 1
 
@@ -41,7 +41,6 @@ while True:
     if "j'ai" and "ans" in texteHUMAIN:
         print(base_Donne["age_user"])
         reponse = 1
-
 
 
     if reponse == 0:
