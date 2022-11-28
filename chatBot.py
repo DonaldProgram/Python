@@ -15,7 +15,8 @@ while True:
     "prenom_User"        : "BOT- Genial, j'aimerais beaucoup avoir un prenom comme le tien.",
     "age_user"           : "BOT- C'est super comme age, moi aussi j'ai un age c'est 1 car je suis le 'NUMERO UNO'.",
     "maisonBOT"          : "BOT- Je vis dans une ville paisible aussi appelé ordinateur.",
-    "heure"         : "BOT- Il est " + datetime.now().strftime("%H:%M:%S")
+    "heure"              : "BOT- Il est " + datetime.now().strftime("%H:%M:%S") + ".",
+    "jour-mois"          : "BOT- Nous somme le " + datetime.now().strftime('%d-%m-%Y') + "."
              }
     print("")
     # Recupere ce que l'humain veut dire puis enleve les accents et les majuscules
@@ -25,13 +26,13 @@ while True:
 
     # repond a bonjour
     if reponse == 0:
-        if texteHUMAIN == "bonjour" or texteHUMAIN == "bonjour " or texteHUMAIN == "salut " or texteHUMAIN == "salut" or texteHUMAIN == "comment tu t'appele" or texteHUMAIN == "comment tu t'appele " or texteHUMAIN == "quel est ton nom" or texteHUMAIN == "quel est ton nom " or texteHUMAIN == "hello" or texteHUMAIN == "hello ":
+        if texteHUMAIN == "bonjour" or texteHUMAIN == "bonjour " or texteHUMAIN == "salut " or texteHUMAIN == "salut" or texteHUMAIN == "comment tu t'appele" or texteHUMAIN == "comment tu t'appele " or texteHUMAIN == "quel est ton nom" or texteHUMAIN == "quel est ton nom " or texteHUMAIN == "hello" or texteHUMAIN == "hello " or "qui es tu" in texteHUMAIN:
             print(base_Donne["presentation"])
             reponse = 1
 
     # repond a comment sa va
     if reponse == 0:
-        if "comment" and "va" in texteHUMAIN or "comment" and "tu" and "sens" in texteHUMAIN or "sa va" in texteHUMAIN:
+        if "comment" and "va" in texteHUMAIN or "comment" and "tu" and "sens" in texteHUMAIN or "sa va" in texteHUMAIN or "quelle est ton humeur" in texteHUMAIN:
             print(base_Donne["comment sa va"])
             reponse = 1
 
@@ -49,7 +50,7 @@ while True:
     
     # repond a ou tu habites
     if reponse == 0:
-        if "ou tu habite" in texteHUMAIN or "ou vis tu" in texteHUMAIN or "ou habite tu" in texteHUMAIN or "habite tu" in texteHUMAIN:
+        if "ou tu habite" in texteHUMAIN or "ou vis tu" in texteHUMAIN or "ou habite tu" in texteHUMAIN or "habite tu" in texteHUMAIN or "ou est ce que tu habites" in texteHUMAIN:
             print(base_Donne["maisonBOT"])
             reponse = 1
 
@@ -58,6 +59,14 @@ while True:
         if "quelle heure" in texteHUMAIN or "a tu l'heure" in texteHUMAIN or "heure" in texteHUMAIN:
             print(base_Donne["heure"])
             reponse = 1
+
+    # repond a quelle jour
+    if reponse == 0:
+        if "quelle jour" in texteHUMAIN:
+            print(base_Donne["jour-mois"])
+            reponse = 1
+
+
 
 
 
