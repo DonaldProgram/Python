@@ -74,7 +74,7 @@ while True:
     if reponse == 0:
         if texteHUMAIN in base_Donne:
             print(base_Donne[texteHUMAIN])
-            reponse = 1
+            
 
     # demande ce que le joueur aurais repondu
     if reponse == 0:
