@@ -24,29 +24,34 @@ while True:
     texteHUMAIN = texteHUMAINremake.lower()
 
     # repond a bonjour
-    if texteHUMAIN == "bonjour" or texteHUMAIN == "bonjour " or texteHUMAIN == "salut " or texteHUMAIN == "salut" or texteHUMAIN == "comment tu t'appele" or texteHUMAIN == "comment tu t'appele " or texteHUMAIN == "quel est ton nom" or texteHUMAIN == "quel est ton nom " or texteHUMAIN == "hello" or texteHUMAIN == "hello ":
-        print(base_Donne["presentation"])
-        reponse = 1
+    if reponse == 0:
+        if texteHUMAIN == "bonjour" or texteHUMAIN == "bonjour " or texteHUMAIN == "salut " or texteHUMAIN == "salut" or texteHUMAIN == "comment tu t'appele" or texteHUMAIN == "comment tu t'appele " or texteHUMAIN == "quel est ton nom" or texteHUMAIN == "quel est ton nom " or texteHUMAIN == "hello" or texteHUMAIN == "hello ":
+            print(base_Donne["presentation"])
+            reponse = 1
 
     # repond a comment sa va
-    if "comment" and "va" in texteHUMAIN or "comment" and "tu" and "sens" in texteHUMAIN or "sa va" in texteHUMAIN:
-        print(base_Donne["comment sa va"])
-        reponse = 1
+    if reponse == 0:
+        if "comment" and "va" in texteHUMAIN or "comment" and "tu" and "sens" in texteHUMAIN or "sa va" in texteHUMAIN:
+            print(base_Donne["comment sa va"])
+            reponse = 1
 
     # repond a je m'appele ... de l'utilisateur
-    if "je m'appele" in texteHUMAIN or "mon prenom est" in texteHUMAIN or "je suis" in texteHUMAIN or "mon nom est" in texteHUMAIN:
-        print(base_Donne["prenom_User"])
-        reponse = 1
+    if reponse == 0:
+        if "je m'appele" in texteHUMAIN or "mon prenom est" in texteHUMAIN or "je suis" in texteHUMAIN or "mon nom est" in texteHUMAIN:
+            print(base_Donne["prenom_User"])
+            reponse = 1
 
     # repond a mon age est ...
-    if "j'ai" and "ans" in texteHUMAIN or "mon age est" in texteHUMAIN or 'je vais avoir' and "ans" in texteHUMAIN or "j'ai eu" and "ans" in texteHUMAIN:
-        print(base_Donne["age_user"])
-        reponse = 1
+    if reponse == 0:
+        if "j'ai" and "ans" in texteHUMAIN or "mon age est" in texteHUMAIN or 'je vais avoir' and "ans" in texteHUMAIN or "j'ai eu" and "ans" in texteHUMAIN:
+            print(base_Donne["age_user"])
+            reponse = 1
     
     # repond a ou tu habites
-    if "ou tu habite" in texteHUMAIN or "ou vis tu" in texteHUMAIN or "ou habite tu" in texteHUMAIN or "habite tu" in texteHUMAIN:
-        print(base_Donne["maisonBOT"])
-        reponse = 1
+    if reponse == 0:
+        if "ou tu habite" in texteHUMAIN or "ou vis tu" in texteHUMAIN or "ou habite tu" in texteHUMAIN or "habite tu" in texteHUMAIN:
+            print(base_Donne["maisonBOT"])
+            reponse = 1
 
 
     if reponse == 0:
