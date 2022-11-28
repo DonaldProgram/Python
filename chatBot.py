@@ -7,7 +7,8 @@ base_Donne = {
     "comment sa va"      : "BOT- Sa va :) Merci !",
     "pas appris"         : "BOT- Desoler je n'ai pas compris :(",
     "prenom_User"        : "BOT- Genial, j'aimerais beaucoup avoir un prenom comme le tien.",
-    "age_user"           : "BOT- C'est super comme age, moi aussi j'ai un age c'est 1 car je suis le 'NUMERO UNO'." 
+    "age_user"           : "BOT- C'est super comme age, moi aussi j'ai un age c'est 1 car je suis le 'NUMERO UNO'.",
+    "maisonBOT"          : "BOT- Je vis dans une ville paisible aussi appelé ordinateur." 
              }
 
 
@@ -38,8 +39,13 @@ while True:
         reponse = 1
 
     # repond a mon age est ...
-    if "j'ai" and "ans" in texteHUMAIN:
+    if "j'ai" and "ans" in texteHUMAIN or "mon age est" in texteHUMAIN or 'je vais avoir' and "ans" in texteHUMAIN or "j'ai eu" and "ans" in texteHUMAIN:
         print(base_Donne["age_user"])
+        reponse = 1
+    
+    # repond a ou tu habites
+    if "ou tu habite" in texteHUMAIN or "ou vis tu" in texteHUMAIN or "ou habite tu" in texteHUMAIN or "habite tu" in texteHUMAIN:
+        print(base_Donne["maisonBOT"])
         reponse = 1
 
 
