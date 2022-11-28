@@ -68,9 +68,9 @@ while True:
         print("BOT- Qu'auriez vous repondu(e) a ma place ?, pour que je puisse l'ajouter à ma base de donné.")
         ajoutBaseDonne = input("BOT- Si vous ne savez pas vous pouvez me le dire (je ne sais pas) : ")
         ajoutBaseDonneRemake = unidecode.unidecode(ajoutBaseDonne)
-        ajoutBaseDonne = ajoutBaseDonneRemake.lower()
+        ajoutBaseDonneRemake2 = ajoutBaseDonneRemake.lower()
 
-        if ajoutBaseDonne == "je ne sais pas" or ajoutBaseDonne == "je ne sais pas " or ajoutBaseDonne == "aucune idee":
+        if ajoutBaseDonneRemake2 == "je ne sais pas" or ajoutBaseDonneRemake2 == "je ne sais pas " or ajoutBaseDonneRemake2 == "aucune idee":
             print("BOT- Ce n'est pas grave moi non plus je n'ai pas reussis a repondre.")
         else:
             print("")
