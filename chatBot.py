@@ -1,22 +1,22 @@
 # chatBot
 import unidecode
-
-# base dans laquelle le bot va chercher la reponse
-base_Donne = {
-    "presentation"       : "BOT- Bonjour, je m'appele BOT. Je suis heureux de vous rencontrez.",
-    "comment sa va"      : "BOT- Sa va :) Merci !",
-    "pas appris"         : "BOT- Desoler je n'ai pas compris :(",
-    "prenom_User"        : "BOT- Genial, j'aimerais beaucoup avoir un prenom comme le tien.",
-    "age_user"           : "BOT- C'est super comme age, moi aussi j'ai un age c'est 1 car je suis le 'NUMERO UNO'.",
-    "maisonBOT"          : "BOT- Je vis dans une ville paisible aussi appelé ordinateur." 
-             }
-
+from datetime import *
 
 reponse = 0
 
 print("Ne repond pas si trop de faute d'orthographe et ne pas mettre de point ou de virgule")
 
 while True:
+    # base de donne dans laquelle le bot va chercher les reponses
+    base_Donne = {
+    "presentation"       : "BOT- Bonjour, je m'appele BOT. Je suis heureux de vous rencontrez.",
+    "comment sa va"      : "BOT- Sa va :) Merci !",
+    "pas appris"         : "BOT- Desoler je n'ai pas compris :(",
+    "prenom_User"        : "BOT- Genial, j'aimerais beaucoup avoir un prenom comme le tien.",
+    "age_user"           : "BOT- C'est super comme age, moi aussi j'ai un age c'est 1 car je suis le 'NUMERO UNO'.",
+    "maisonBOT"          : "BOT- Je vis dans une ville paisible aussi appelé ordinateur.",
+    "heure"         : "BOT- Il est " + datetime.now().strftime("%H:%M:%S")
+             }
     print("")
     # Recupere ce que l'humain veut dire puis enleve les accents et les majuscules
     texteHUMAIN = input("VOUS- ")
@@ -37,7 +37,7 @@ while True:
 
     # repond a je m'appele ... de l'utilisateur
     if reponse == 0:
-        if "je m'appele" in texteHUMAIN or "mon prenom est" in texteHUMAIN or "je suis" in texteHUMAIN or "mon nom est" in texteHUMAIN:
+        if "je m'appele" in texteHUMAIN or "mon prenom est" in texteHUMAIN or "mon nom est" in texteHUMAIN:
             print(base_Donne["prenom_User"])
             reponse = 1
 
@@ -53,13 +53,19 @@ while True:
             print(base_Donne["maisonBOT"])
             reponse = 1
 
+    # repond a heure
+    if reponse == 0:
+        if "quelle heure" in texteHUMAIN or "a tu l'heure" in texteHUMAIN or "heure" in texteHUMAIN:
+            print(base_Donne["heure"])
+            reponse = 1
 
+
+
+    # cherche dans la base de donne
     if reponse == 0:
         if texteHUMAIN in base_Donne:
             print(base_Donne[texteHUMAIN])
             reponse = 1
-
-
 
     # demande ce que le joueur aurais repondu
     if reponse == 0:
