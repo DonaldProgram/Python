@@ -9,7 +9,7 @@ pygame.display.set_caption("La Légendes d'Eldoria")
 
 
 
-animation_speed = 75 # miliseconde
+animation_speed = 100 # miliseconde
 
 
 
