@@ -8,6 +8,75 @@ pygame.display.set_caption("La Légendes d'Eldoria")
 
 
 
+
+animation_speed = 75 # miliseconde
+
+
+
+
+# animation moulin
+moulin_sprite_sheet = pygame.image.load("Sprite/EffetVisuel/Moulin.png")
+
+MoulinBig = pygame.transform.scale(moulin_sprite_sheet, (moulin_sprite_sheet.get_width()*2, moulin_sprite_sheet.get_height()*2))
+
+Moulin_co1 = pygame.Rect(0, 0,  128, 128)
+Moulin1 = MoulinBig.subsurface(Moulin_co1)
+
+Moulin_co2 = pygame.Rect(128, 0, 128, 128)
+Moulin2 = MoulinBig.subsurface(Moulin_co2)
+
+Moulin_co3 = pygame.Rect(256, 0, 128, 128)
+Moulin3 = MoulinBig.subsurface(Moulin_co3)
+
+Moulin_co4 = pygame.Rect(384, 0, 128, 128)
+Moulin4 = MoulinBig.subsurface(Moulin_co4)
+
+MoulinMove = [Moulin1, Moulin2, Moulin3, Moulin4]
+
+Moulin_choice = -1
+
+def Moulin():
+    global Moulin_choice
+    Moulin_choice += 1
+    screen.blit(MoulinMove[Moulin_choice], (-43 , 620))
+
+    if Moulin_choice == 3:
+        Moulin_choice = 0
+#...
+
+
+
+# animation feu de camps
+feuDeCamps_sprite_sheet = pygame.image.load("Sprite/DecorationSol/feuDeCamps.png")
+
+feuDeCamps_co1 = pygame.Rect(0, 0,  32, 32)
+feuDeCamps1 = feuDeCamps_sprite_sheet.subsurface(feuDeCamps_co1)
+
+feuDeCamps_co2 = pygame.Rect(32, 0, 32, 32)
+feuDeCamps2 = feuDeCamps_sprite_sheet.subsurface(feuDeCamps_co2)
+
+feuDeCamps_co3 = pygame.Rect(64, 0, 32, 32)
+feuDeCamps3 = feuDeCamps_sprite_sheet.subsurface(feuDeCamps_co3)
+
+feuDeCamps_co4 = pygame.Rect(96, 0, 32, 32)
+feuDeCamps4 = feuDeCamps_sprite_sheet.subsurface(feuDeCamps_co4)
+
+feuDeCamps_move = [feuDeCamps1, feuDeCamps2, feuDeCamps3, feuDeCamps4]
+
+feuDeCamps_choice = -1
+
+def FeuCamps():
+    global feuDeCamps_choice
+    feuDeCamps_choice += 1
+    screen.blit(feuDeCamps_move[feuDeCamps_choice], (500 , 500))
+
+    if feuDeCamps_choice == 3:
+        feuDeCamps_choice = 0
+#...
+
+
+
+
 # creer le Menu
 police = pygame.font.SysFont('Comic Sans MS', 60, True, False)
 titre = police.render("La Légende d'Eldoria", True, (255, 255, 0))
@@ -29,12 +98,16 @@ def MenuDepart():
 
     screen.blit(bouton, (700, 300))
     screen.blit(texteStart, (820, 490))
-    
+
+    Moulin()
+    FeuCamps()
     if rectBoutonStart.collidepoint(pos) and pygame.mouse.get_pressed()[0]:
         Menu = 0
 
     pygame.display.flip()
 #...
+
+
 
 
 
@@ -62,12 +135,16 @@ def TexteDebut():
 
         if rectBouton2.collidepoint(pos) and pygame.mouse.get_pressed()[0]:
             screen.fill((255, 255, 255))
-            page = 3
+            page = 3 
+    
+
 
     pygame.display.flip()
-
-
 #...
+
+
+
+
 
 
 # creer la gameloop
@@ -85,5 +162,8 @@ while running:
         MenuDepart()
     if Menu == 0 and page == 1 or page == 2:
         TexteDebut()
+
+    pygame.time.wait(animation_speed)
+
 
 pygame.quit()
