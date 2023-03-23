@@ -70,7 +70,7 @@ fumee6 = fumee_sprite_sheet.subsurface(fumee_co6)
 fumee_move = [fumee1, fumee2, fumee3, fumee4, fumee5, fumee6]
 
 fumee_choice = -1
-coordonne_fumee_y = 450
+coordonne_fumee_y = 475
 
 time_wait_fumee = 0
 
@@ -79,15 +79,19 @@ def fumee():
 
     time_wait_fumee += clock.tick()
 
-    if time_wait_fumee > 1000:
+    if time_wait_fumee > 400:
         fumee_choice += 1
-        screen.blit(fumee_move[feuDeCamps_choice], (500, coordonne_fumee_y))
-        coordonne_fumee_y -= 15
+        screen.blit(fumee_move[fumee_choice], (500, coordonne_fumee_y))
+        coordonne_fumee_y -= 1
 
-        if fumee_choice == 5:
+        if fumee_choice == 5:            
             fumee_choice = -1
-            coordonne_fumee_y = 450
+            coordonne_fumee_y = 475
+        
         time_wait_fumee = 0
+
+    coordonne_fumee_y -= 1
+
 #...
 
 
