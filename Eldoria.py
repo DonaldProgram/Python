@@ -9,8 +9,8 @@ pygame.display.set_caption("La Légendes d'Eldoria")
 
 
 
-animation_speed = 100 # miliseconde
-
+animation_speed = 120 # miliseconde
+clock = pygame.time.Clock()
 
 
 
@@ -38,11 +38,59 @@ Moulin_choice = -1
 def Moulin():
     global Moulin_choice
     Moulin_choice += 1
-    screen.blit(MoulinMove[Moulin_choice], (-43 , 620))
+    screen.blit(MoulinMove[Moulin_choice], (-46 , 620))
 
     if Moulin_choice == 3:
-        Moulin_choice = 0
+        Moulin_choice = -1
 #...
+
+
+
+# animer la fumer
+fumee_sprite_sheet = pygame.image.load("Sprite/EffetVisuel/fumée.png")
+
+fumee_co1 = pygame.Rect(0, 0, 32, 32)
+fumee1 = fumee_sprite_sheet.subsurface(fumee_co1)
+
+fumee_co2 = pygame.Rect(32, 0, 32, 32)
+fumee2 = fumee_sprite_sheet.subsurface(fumee_co2)
+
+fumee_co3 = pygame.Rect(64, 0, 32, 32)
+fumee3 = fumee_sprite_sheet.subsurface(fumee_co3)
+
+fumee_co4 = pygame.Rect(96, 0, 32, 32)
+fumee4 = fumee_sprite_sheet.subsurface(fumee_co4)
+
+fumee_co5 = pygame.Rect(128, 0, 32, 32)
+fumee5 = fumee_sprite_sheet.subsurface(fumee_co5)
+
+fumee_co6 = pygame.Rect(160, 0, 32, 32)
+fumee6 = fumee_sprite_sheet.subsurface(fumee_co6)
+
+fumee_move = [fumee1, fumee2, fumee3, fumee4, fumee5, fumee6]
+
+fumee_choice = -1
+coordonne_fumee_y = 450
+
+time_wait_fumee = 0
+
+def fumee():    
+    global fumee_choice, coordonne_fumee_y, time_wait_fumee
+
+    time_wait_fumee += clock.tick()
+
+    if time_wait_fumee > 1000:
+        fumee_choice += 1
+        screen.blit(fumee_move[feuDeCamps_choice], (500, coordonne_fumee_y))
+        coordonne_fumee_y -= 15
+
+        if fumee_choice == 5:
+            fumee_choice = -1
+            coordonne_fumee_y = 450
+        time_wait_fumee = 0
+#...
+
+
 
 
 
@@ -68,11 +116,12 @@ feuDeCamps_choice = -1
 def FeuCamps():
     global feuDeCamps_choice
     feuDeCamps_choice += 1
-    screen.blit(feuDeCamps_move[feuDeCamps_choice], (500 , 500))
+    screen.blit(feuDeCamps_move[feuDeCamps_choice], (500, 500))
 
     if feuDeCamps_choice == 3:
-        feuDeCamps_choice = 0
+        feuDeCamps_choice = -1
 #...
+
 
 
 
@@ -101,6 +150,8 @@ def MenuDepart():
 
     Moulin()
     FeuCamps()
+    fumee()
+
     if rectBoutonStart.collidepoint(pos) and pygame.mouse.get_pressed()[0]:
         Menu = 0
 
@@ -141,6 +192,9 @@ def TexteDebut():
 
     pygame.display.flip()
 #...
+
+
+
 
 
 
