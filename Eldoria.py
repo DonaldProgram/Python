@@ -35,10 +35,15 @@ MoulinMove = [Moulin1, Moulin2, Moulin3, Moulin4]
 
 Moulin_choice = -1
 
+# liste des position pour le moulin
+position_moulins = [(-46, 620)]
+
 def Moulin():
     global Moulin_choice
+    for pos_moulin in position_moulins:
+        screen.blit(MoulinMove[Moulin_choice], pos_moulin)
+    
     Moulin_choice += 1
-    screen.blit(MoulinMove[Moulin_choice], (-46 , 620))
 
     if Moulin_choice == 3:
         Moulin_choice = -1
@@ -82,7 +87,6 @@ def fumee():
     if time_wait_fumee > 400:
         fumee_choice += 1
         screen.blit(fumee_move[fumee_choice], (500, coordonne_fumee_y))
-        coordonne_fumee_y -= 1
 
         if fumee_choice == 5:            
             fumee_choice = -1
@@ -90,7 +94,7 @@ def fumee():
         
         time_wait_fumee = 0
 
-    coordonne_fumee_y -= 1
+    coordonne_fumee_y -= 2
 
 #...
 
@@ -161,7 +165,6 @@ def MenuDepart():
 
     pygame.display.flip()
 #...
-
 
 
 
