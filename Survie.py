@@ -12,15 +12,12 @@ pygame.display.set_caption("JEUX")
 
 
 
-
-
 # import des images du jeu
 arbreGROS = pygame.image.load("sprite/arbre/3.png")
 #...
+# ok 
 
-
-Placé = False
-
+liste = []
 
 # boucle du jeu
 running = True
@@ -47,13 +44,12 @@ while running:
     posY = pos[1] - 15
     if event.type == pygame.MOUSEBUTTONDOWN:
         if event.button == 1:
-            Placé = True
-    if Placé == False:
-        screen.blit(arbreGROS, (posX, posY))
-        pos1 = posX
-        pos2 = posY
+            liste.append(posX)
+            liste.append(posY)
+    if len(liste) > 0:
+        screen.blit(arbreGROS, (liste[0], liste[1]))  
     else:
-        screen.blit(arbreGROS, (pos1, pos2))
+        screen.blit(arbreGROS, (posX, posY))
     #...
 
 
