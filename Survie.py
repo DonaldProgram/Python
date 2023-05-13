@@ -19,9 +19,7 @@ arbreGROS = pygame.image.load("sprite/arbre/3.png")
 #...
 
 
-
-
-
+Placé = False
 
 
 # boucle du jeu
@@ -32,11 +30,10 @@ while running:
         if event.type == pygame.QUIT:
             running = False
     #...
+
     # recuperer la position de la souris
     pos = pygame.mouse.get_pos()
     #...
-
-
 
     # mettre l'arriere plan en vert
     screen.fill((73, 255, 0))
@@ -44,11 +41,21 @@ while running:
 
 
 
+
     # test afficher l'arbreGROS
-    x = pos[0] - 15
-    y = pos[1] - 15
-    screen.blit(arbreGROS, (x, y))
+    posX = pos[0] - 15
+    posY = pos[1] - 15
+    if event.type == pygame.MOUSEBUTTONDOWN:
+        if event.button == 1:
+            Placé = True
+    if Placé == False:
+        screen.blit(arbreGROS, (posX, posY))
+        pos1 = posX
+        pos2 = posY
+    else:
+        screen.blit(arbreGROS, (pos1, pos2))
     #...
+
 
 
 
