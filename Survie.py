@@ -16,8 +16,12 @@ pygame.display.set_caption("JEUX")
 
 # import des images du jeu
 arbreGROS = pygame.image.load("sprite/arbre/3.png")
+boutonSHOP = pygame.image.load("sprite/boutonSHOP.png")
 #...
 
+# definir les rectangles des differante image dont on a besoin
+boutonSHOPrect = pygame.Rect(0, 0, 119, 51)
+#...
 
 
 
@@ -62,6 +66,56 @@ def MoveArbre3():
 
 
 
+# definir la fonction pour pourvoir entrer dans le magasin
+# variable qui sert a savoir si le bouton pour entrer dans le magasin
+CliqueMagasin = False
+#...
+def Magasin():
+    global CliqueMagasin
+    # afficher le bouton pour entrer dans le shop
+    if CliqueMagasin == False:
+        screen.blit(boutonSHOP, (0, 0))
+    #...
+
+    # verifier si le bouton pour entrer dans le magasin est pressé
+    if event.type == pygame.MOUSEBUTTONDOWN:
+        if event.button == 1 and boutonSHOPrect.collidepoint(pos):
+            CliqueMagasin = True
+    #...
+#...
+
+
+
+
+
+
+# fonction gerant les fonction qui doivent etre appelé lors de la partie
+def Game():
+    # gerer les fonctions qui sont appelé lorsque l'on se trouve sur la carte
+    # mettre la couleur d'arriere plan de la carte
+    if CliqueMagasin == False:
+        screen.fill((73, 255, 0))
+    #...
+
+        # appelé la fonction pour placé les arbres 3
+        MoveArbre3()
+        #...
+    #...
+
+    # gerer ce qui se passe lorsque l'on se trouve dans le magasin
+    # verifier que le bouton du magasin n'a pas été cliquer et si cliqué entrer dans magasin
+    Magasin()
+    #...
+    # mettre la couleur d'arriere plan du magasin
+    if CliqueMagasin == True:
+        screen.fill((255, 255, 255))
+    #...
+    #...
+#...
+
+
+
+
 
 
 # definir le nombre de fps du jeu
@@ -81,19 +135,9 @@ while running:
     pos = pygame.mouse.get_pos()
     #...
 
-    # mettre l'arriere plan en vert
-    screen.fill((73, 255, 0))
+    # appelé la fonction qui gere tous ce qui se passe dans le jeu
+    Game()
     #...
-
-
-
-
-
-    MoveArbre3()
-
-
-
-
 
 
     # mettre a jour l'ecran
