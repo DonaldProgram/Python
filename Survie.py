@@ -17,6 +17,7 @@ pygame.display.set_caption("JEUX")
 # import des images du jeu
 arbreGROS = pygame.image.load("sprite/arbre/3.png")
 boutonSHOP = pygame.image.load("sprite/boutonSHOP.png")
+MenuMagasin = pygame.image.load("sprite/Magasin.png")
 #...
 
 # definir les rectangles des differante image dont on a besoin
@@ -82,6 +83,11 @@ def Magasin():
         if event.button == 1 and boutonSHOPrect.collidepoint(pos):
             CliqueMagasin = True
     #...
+
+    # afficher le menu du magasin
+    if CliqueMagasin == True:
+        screen.blit(MenuMagasin, (0, 0))
+    #...
 #...
 
 
@@ -105,11 +111,6 @@ def Game():
     # gerer ce qui se passe lorsque l'on se trouve dans le magasin
     # verifier que le bouton du magasin n'a pas été cliquer et si cliqué entrer dans magasin
     Magasin()
-    #...
-    # mettre la couleur d'arriere plan du magasin
-    if CliqueMagasin == True:
-        screen.fill((255, 255, 255))
-    #...
     #...
 #...
 
