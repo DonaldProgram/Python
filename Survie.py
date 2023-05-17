@@ -32,6 +32,10 @@ boutonSHOPrect = pygame.Rect(0, 0, 119, 51)
 rectArbre1 = pygame.Rect(110, 475, 81, 132)
 rectArbre2 = pygame.Rect(125, 358, 69, 114)
 rectArbre3 = pygame.Rect(112, 260, 84, 96)
+rectArbre4 = pygame.Rect(108, 610, 81, 117)
+rectArbre5 = pygame.Rect(110, 728, 78, 114)
+rectArbre6 = pygame.Rect(125, 844, 45, 66)
+rectArbre7 = pygame.Rect(133, 915, 30, 129)
 #...
 
 
@@ -91,6 +95,14 @@ def MoveObjet():
         screen.blit(arbre2, (position_mouse_x, position_mouse_y))
     if choixMagasin == 'arbre3':
         screen.blit(arbre3, (position_mouse_x, position_mouse_y))
+    if choixMagasin == 'arbre4':
+        screen.blit(arbre4, (position_mouse_x, position_mouse_y))
+    if choixMagasin == 'arbre5':
+        screen.blit(arbre5, (position_mouse_x, position_mouse_y))
+    if choixMagasin == 'arbre6':
+        screen.blit(arbre6, (position_mouse_x, position_mouse_y))
+    if choixMagasin == 'arbre7':
+        screen.blit(arbre7, (position_mouse_x, position_mouse_y))
     #...
 #...
 
@@ -132,6 +144,18 @@ def Magasin():
                 CliqueMagasin = False
             if rectArbre3.collidepoint(pos):
                 choixMagasin = 'arbre3'
+                CliqueMagasin = False
+            if rectArbre4.collidepoint(pos):
+                choixMagasin = 'arbre4'
+                CliqueMagasin = False
+            if rectArbre5.collidepoint(pos):
+                choixMagasin = 'arbre5'
+                CliqueMagasin = False
+            if rectArbre6.collidepoint(pos):
+                choixMagasin = 'arbre6'
+                CliqueMagasin = False
+            if rectArbre7.collidepoint(pos):
+                choixMagasin = 'arbre7'
                 CliqueMagasin = False
     #...
 #...
