@@ -19,6 +19,8 @@ fleche_choix = font.render('->', True, (255, 0, 0))
 # ...
 
 
+
+
 # variable choix permettant de sélectionner les différents textes
 choix = 1
 # ...
@@ -59,6 +61,7 @@ def Menu(pressed):
 
     # ...
 # ...
+
 
 
 
