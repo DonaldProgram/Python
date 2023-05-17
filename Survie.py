@@ -54,8 +54,8 @@ def MoveObjet():
     global COOarbre1, COOarbre2,COOarbre3, COOarbre4, COOarbre5, COOarbre6, COOarbre7, choixMagasin
     
     # recuperer la position de la souris
-    position_mouse_x = pos[0] - 15
-    position_mouse_y = pos[1] - 15
+    position_mouse_x = pos[0]
+    position_mouse_y = pos[1]
     #...
     # voir si le bouton gauche de la souris est pressé
     if event.type == pygame.MOUSEBUTTONDOWN:
@@ -201,13 +201,13 @@ def Game():
         screen.fill((73, 255, 0))
     #...
 
-        # appelé la fonction pour placé les arbres 3
+        # appelé la fonction pour placé les objet
         MoveObjet()
         #...
     #...
 
     # gerer ce qui se passe lorsque l'on se trouve dans le magasin
-    # verifier que le bouton du magasin n'a pas été cliquer et si cliqué entrer dans magasin
+    
     Magasin()
     #...
 #...
@@ -243,6 +243,6 @@ while running:
     pygame.display.flip()
     #...
     # nombre de fps
-    clock.tick(1000)
+    clock.tick(60)
     #...
 
