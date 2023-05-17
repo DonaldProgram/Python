@@ -66,6 +66,14 @@ def MoveObjet():
                 COOarbre2.append((position_mouse_x, position_mouse_y))
             if choixMagasin == 'arbre3':
                 COOarbre3.append((position_mouse_x, position_mouse_y))
+            if choixMagasin == 'arbre4':
+                COOarbre4.append((position_mouse_x, position_mouse_y))
+            if choixMagasin == 'arbre5':
+                COOarbre5.append((position_mouse_x, position_mouse_y))
+            if choixMagasin == 'arbre6':
+                COOarbre6.append((position_mouse_x, position_mouse_y))
+            if choixMagasin == 'arbre7':
+                COOarbre7.append((position_mouse_x, position_mouse_y))
 
     #...
 
@@ -85,6 +93,26 @@ def MoveObjet():
         COOarbre3 = sorted(COOarbre3, key=lambda x: x[1])
         for positionArbre3 in COOarbre3:
             screen.blit(arbre3, positionArbre3)  
+
+    if len(COOarbre4) > 0:
+        COOarbre4 = sorted(COOarbre4, key=lambda x: x[1])
+        for positionArbre4 in COOarbre4:
+            screen.blit(arbre4, positionArbre4)  
+
+    if len(COOarbre5) > 0:
+        COOarbre5 = sorted(COOarbre5, key=lambda x: x[1])
+        for positionArbre5 in COOarbre5:
+            screen.blit(arbre5, positionArbre5)  
+
+    if len(COOarbre6) > 0:
+        COOarbre6 = sorted(COOarbre6, key=lambda x: x[1])
+        for positionArbre6 in COOarbre6:
+            screen.blit(arbre6, positionArbre6)  
+
+    if len(COOarbre7) > 0:
+        COOarbre7 = sorted(COOarbre7, key=lambda x: x[1])
+        for positionArbre7 in COOarbre7:
+            screen.blit(arbre7, positionArbre7)  
     #...
 
     
