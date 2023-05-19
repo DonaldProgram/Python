@@ -30,8 +30,9 @@ delay = 200
 #...
 
 # fonction pour gérer le menu
+jouer = False
 def Menu(pressed):
-    global texte_jouer, texte_miroir, texte_parametre, choix, last_change
+    global texte_jouer, texte_miroir, texte_parametre, choix, last_change, jouer
 
     # afficher la flèche du choix
     if choix == 1:
@@ -59,8 +60,35 @@ def Menu(pressed):
             choix -= 1
             last_change = pygame.time.get_ticks()
 
+    # verifier si la touche entré est pressé
+    if pressed[pygame.K_RETURN] and choix == 1:
+        jouer = True
     # ...
+    #...
 # ...
+
+# fonction qui gere le choix entre 1c1 ou 1cBOT
+def ChoixPartie():
+    ...
+    # verifier si le bouton choix est cliqué
+    #... 
+#...
+
+
+
+# fonction gerant les differante fonctions a appelé lors du 
+def Game():
+    # appeler la fonction menu au debut de la partie
+    if jouer == False:
+        Menu(pressed)
+    #...
+
+    # appeler la fonction du choix de la partie
+    if jouer == True:
+        ChoixPartie()
+    #...
+
+#...
 
 
 
@@ -69,7 +97,6 @@ def Menu(pressed):
 # variable last_change qui sert a savoir le temps ecoulé depuis un certain moment
 last_change = pygame.time.get_ticks()
 #...
-
 # boucle du jeu
 running = True
 while running:
@@ -88,10 +115,10 @@ while running:
 
 
 
-    # appeler la fonction du menu
-    Menu(pressed)
+    # appeler la fonction Game
+    Game()
     # ...
-
+        
 
 
 
