@@ -19,20 +19,19 @@ fleche_choix = font.render('->', True, (255, 0, 0))
 # ...
 
 
-
-
 # variable choixMenu permettant de sélectionner les différents textes
 choixMenu = 1
 # ...
 
-# definir une variable delay pour patientez un peu
+# definir une variable delay pour patienter un peu
 delay = 200
+delay_reclick = 1000  # Temps d'attente en millisecondes avant de pouvoir recliquer
 #...
 
 # fonction pour gérer le menu
 choixOnglet = 'MenuMenu'
 def Menu(pressed):
-    global texte_jouer, texte_miroir, texte_parametre, choixMenu, last_change, choixOnglet
+    global texte_jouer, texte_miroir, texte_parametre, choixMenu, last_change, choixOnglet, last_click_time
 
     # afficher la flèche du choixMenu
     if choixMenu == 1:
@@ -62,14 +61,14 @@ def Menu(pressed):
 
     # verifier si la touche entré est pressé
     if pressed[pygame.K_RETURN] and choixMenu == 1:
+        current_time = pygame.time.get_ticks()
+        if current_time - last_click_time < delay_reclick:
+            return
         choixOnglet = 'MenuJouer'
+        last_click_time = current_time
     # ...
     #...
 # ...
-
-
-
-
 
 
 # fonction qui gere le choixMenu entre 1c1 ou 1cBOT
@@ -83,8 +82,8 @@ fleche_choix2 = font2.render('->', True, (255, 0, 0))
 
 choix_modes = 0
 
-def ChoixPartie():    
-    global choixPartie, texte_1c1, texte_jouer, last_change
+def ChoixPartie(pressed):    
+    global choixPartie, texte_1c1, texte_jouer, last_change, choixOnglet, last_click_time
     # afficher les boutons du choixMenu entré 1c1 ou 1cBOT
     screen.blit(texte_jouer2, ((1920 - texte_jouer2.get_width()) / 2, 15))
     screen.blit(texte_1c1, ((1920 - texte_1c1.get_width()) / 2, 350))
@@ -108,10 +107,15 @@ def ChoixPartie():
         screen.blit(fleche_choix2, (670, 450))
     #...
 
-    # verifier si la touche entré est pressé
-    if pressed[pygame.K_RETURN] and choix == 1:
+    # vérifier si la touche Entrée est pressée
+    if pressed[pygame.K_RETURN] and choixPartie == 1:
+        current_time = pygame.time.get_ticks()
+        if current_time - last_click_time < delay_reclick:
+            return
         choixOnglet = 'MenuChoixPartie'
-    # ...
+        last_click_time = current_time
+    #...
+
 
 #...
 
@@ -126,6 +130,7 @@ y2 = 540-joueur.get_height()
 
 def v1():
     # afficher les deux joueur
+    screen.fill((0, 0, 0))
     screen.blit(joueur, (15, y1))
     screen.blit(joueur, (1882, y2))
     #... 
@@ -144,7 +149,7 @@ def Game():
 
     # appeler la fonction du choixMenu de la partie
     elif choixOnglet == 'MenuJouer':
-        ChoixPartie()
+        ChoixPartie(pressed)
     #...
 
     elif choixOnglet == 'MenuChoixPartie':
@@ -158,6 +163,7 @@ def Game():
 
 # variable last_change qui sert a savoir le temps ecoulé depuis un certain moment
 last_change = pygame.time.get_ticks()
+last_click_time = 0
 #...
 # boucle du jeu
 running = True
