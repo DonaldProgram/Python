@@ -71,6 +71,10 @@ def Menu(pressed):
 # ...
 
 
+
+
+
+
 # fonction qui gere le choixMenu entre 1c1 ou 1cBOT
 choixPartie = 1
 font2 = pygame.font.SysFont('Courier New', 107)
@@ -121,6 +125,9 @@ def ChoixPartie(pressed):
 
 
 
+
+
+
 # fonction gerant le 1c1
 joueur = pygame.Surface((22, 130))
 joueur.fill((255, 255, 255))
@@ -128,7 +135,9 @@ joueur.fill((255, 255, 255))
 y1 = 540-joueur.get_height()
 y2 = 540-joueur.get_height()
 
-def v1():
+def v1(pressed):
+    
+
     # afficher les deux joueur
     screen.fill((0, 0, 0))
     screen.blit(joueur, (15, y1))
@@ -153,7 +162,7 @@ def Game():
     #...
 
     elif choixOnglet == 'MenuChoixPartie':
-        v1()
+        v1(pressed)
 #...
 
 
