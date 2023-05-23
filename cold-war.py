@@ -136,10 +136,26 @@ y1 = 540-joueur.get_height()
 y2 = 540-joueur.get_height()
 
 def v1(pressed):
-    
+    global y1, y2
 
+    # gerer les touches pressé par le joueur gauche (1)
+    if y1 > 0:
+        if pressed[pygame.K_z]:
+            y1 -= 7
+    if y1 < 1080 - joueur.get_height():
+        if pressed[pygame.K_s]:
+            y1 += 7
+    #...
+
+    # gerer les touches pressé par le joueur droit (2)
+    if y2 > 0:
+        if pressed[pygame.K_UP]:
+            y2 -= 7
+    if y2 < 1080 - joueur.get_height():
+        if pressed[pygame.K_DOWN]:
+            y2 += 7
+    #...
     # afficher les deux joueur
-    screen.fill((0, 0, 0))
     screen.blit(joueur, (15, y1))
     screen.blit(joueur, (1882, y2))
     #... 
@@ -170,10 +186,16 @@ def Game():
 
 
 
+
+
+
+
 # variable last_change qui sert a savoir le temps ecoulé depuis un certain moment
 last_change = pygame.time.get_ticks()
 last_click_time = 0
 #...
+
+
 # boucle du jeu
 running = True
 while running:
@@ -192,10 +214,14 @@ while running:
 
 
 
+
+
     # appeler la fonction Game
     Game()
     # ...
         
+
+
 
 
 
