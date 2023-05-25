@@ -138,13 +138,21 @@ y2 = 540-joueur.get_height()
 def v1(pressed):
     global y1, y2
 
+
     # gerer les touches pressé par le joueur gauche (1)
+    # mouvement du joueur gauche (1)
     if y1 > 0:
         if pressed[pygame.K_z]:
             y1 -= 7
     if y1 < 1080 - joueur.get_height():
         if pressed[pygame.K_s]:
             y1 += 7
+    #...
+
+    # gerer le tir du joueur gauche (1)
+    if pressed[pygame.K_SPACE]:
+        ... 
+    #...
     #...
 
     # gerer les touches pressé par le joueur droit (2)
@@ -159,6 +167,7 @@ def v1(pressed):
     screen.blit(joueur, (15, y1))
     screen.blit(joueur, (1882, y2))
     #... 
+
 #...
 
 
