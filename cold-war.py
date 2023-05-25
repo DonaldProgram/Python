@@ -135,8 +135,10 @@ joueur.fill((255, 255, 255))
 y1 = 540-joueur.get_height()
 y2 = 540-joueur.get_height()
 
+cooBalle1 = []
+
 def v1(pressed):
-    global y1, y2
+    global y1, y2, cooBalle1
 
 
     # gerer les touches pressé par le joueur gauche (1)
@@ -151,7 +153,7 @@ def v1(pressed):
 
     # gerer le tir du joueur gauche (1)
     if pressed[pygame.K_SPACE]:
-        ... 
+        cooBalle1.append((25, y1 + joueur.get_height()/2))
     #...
     #...
 
@@ -167,6 +169,13 @@ def v1(pressed):
     screen.blit(joueur, (15, y1))
     screen.blit(joueur, (1882, y2))
     #... 
+
+
+    # afficher les balles du joueur gauche (1)
+    for cooballe1 in range(len(cooBalle1)):
+        cooBalle1[cooballe1] = (cooBalle1[cooballe1][0]+5, cooBalle1[cooballe1][1])
+        pygame.draw.circle(screen, (255, 255, 255), (cooBalle1[cooballe1]), 10)
+    #...
 
 #...
 
