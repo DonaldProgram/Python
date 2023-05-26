@@ -136,6 +136,7 @@ y1 = 540-joueur.get_height()
 y2 = 540-joueur.get_height()
 
 cooBalle1 = []
+cooBalle2 = []
 
 def v1(pressed):
     global y1, y2, cooBalle1
@@ -155,6 +156,10 @@ def v1(pressed):
     if pressed[pygame.K_SPACE]:
         cooBalle1.append((25, y1 + joueur.get_height()/2))
     #...
+
+    # gerer le tir du joueur droit (2)
+    if pressed[pygame.K_RETURN]:
+        cooBalle2.append((1872, y2 + joueur.get_height()/2))
     #...
 
     # gerer les touches pressé par le joueur droit (2)
@@ -175,6 +180,12 @@ def v1(pressed):
     for cooballe1 in range(len(cooBalle1)):
         cooBalle1[cooballe1] = (cooBalle1[cooballe1][0]+5, cooBalle1[cooballe1][1])
         pygame.draw.circle(screen, (255, 255, 255), (cooBalle1[cooballe1]), 10)
+    #...
+
+    # afficher les balles du joueur droit (2)
+    for cooballe2 in range(len(cooBalle2)):
+        cooBalle2[cooballe2] = (cooBalle2[cooballe2][0]-5, cooBalle2[cooballe2][1])
+        pygame.draw.circle(screen, (255, 255, 255), (cooBalle2[cooballe2]), 10)
     #...
 
 #...
