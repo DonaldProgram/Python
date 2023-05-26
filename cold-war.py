@@ -176,6 +176,18 @@ def v1(pressed):
     #... 
 
 
+    # retirer les balles qui sont en dehors de l'ecran
+    for update_balle1 in range(len(cooBalle1)):
+        if cooBalle1[update_balle1-1][0] >= 1950:
+            del cooBalle1[update_balle1-1]
+
+    for update_balle2 in range(len(cooBalle2)):
+        if cooBalle2[update_balle2-1][0] >= 1950:
+            del cooBalle2[update_balle2-1]
+    #...
+    
+    
+    
     # afficher les balles du joueur gauche (1)
     for cooballe1 in range(len(cooBalle1)):
         cooBalle1[cooballe1] = (cooBalle1[cooballe1][0]+5, cooBalle1[cooballe1][1])
