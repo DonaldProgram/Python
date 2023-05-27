@@ -138,13 +138,20 @@ y2 = 540-joueur.get_height()
 cooBalle1 = []
 cooBalle2 = []
 
+# var pour le temps d'attente entre chaque tir
 delay_balle = 140
 
 last_balle_time1 = 0
 last_balle_time2 = 0
+#...
+
+# var pour les chargeurs des joueurs
+chargeur1 = 30
+chargeur2 = 30
+#...
 
 def v1(pressed):
-    global y1, y2, cooBalle1, last_balle_time1, last_balle_time2
+    global y1, y2, cooBalle1, last_balle_time1, last_balle_time2, chargeur1, chargeur2
 
 
     # gerer les touches pressé par le joueur gauche (1)
@@ -160,9 +167,11 @@ def v1(pressed):
 
     current_time = pygame.time.get_ticks()
     # gerer le tir du joueur gauche (1)
-    if pressed[pygame.K_SPACE] and current_time - last_balle_time1 >= delay_balle:
-        cooBalle1.append((25, y1 + joueur.get_height()/2))
-        last_balle_time1 = current_time
+    if chargeur1 > 0:
+        if pressed[pygame.K_SPACE] and current_time - last_balle_time1 >= delay_balle:
+            cooBalle1.append((25, y1 + joueur.get_height()/2))
+            last_balle_time1 = current_time
+            chargeur1 -= 1
     #...
 
 
