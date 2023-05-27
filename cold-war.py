@@ -146,8 +146,8 @@ last_balle_time2 = 0
 #...
 
 # var pour les chargeurs des joueurs
-chargeur1 = 30
-chargeur2 = 30
+chargeur1 = 10
+chargeur2 = 10
 #...
 
 def v1(pressed):
@@ -176,9 +176,11 @@ def v1(pressed):
 
 
     # gerer le tir du joueur droit (2)
-    if pressed[pygame.K_RETURN] and current_time - last_balle_time2 >= delay_balle:
-        cooBalle2.append((1872, y2 + joueur.get_height()/2))
-        last_balle_time2 = current_time
+    if chargeur2 > 0:
+        if pressed[pygame.K_RETURN] and current_time - last_balle_time2 >= delay_balle:
+            cooBalle2.append((1872, y2 + joueur.get_height()/2))
+            last_balle_time2 = current_time
+            chargeur2 -= 1
     #...
 
     # gerer les touches pressé par le joueur droit (2)
@@ -209,13 +211,13 @@ def v1(pressed):
     
     # afficher les balles du joueur gauche (1)
     for cooballe1 in range(len(cooBalle1)):
-        cooBalle1[cooballe1] = (cooBalle1[cooballe1][0] + 5, cooBalle1[cooballe1][1])
+        cooBalle1[cooballe1] = (cooBalle1[cooballe1][0] + 10, cooBalle1[cooballe1][1])
         pygame.draw.circle(screen, (255, 255, 255), (cooBalle1[cooballe1]), 12)
     #...
 
     # afficher les balles du joueur droit (2)
     for cooballe2 in range(len(cooBalle2)):
-        cooBalle2[cooballe2] = (cooBalle2[cooballe2][0] - 5, cooBalle2[cooballe2][1])
+        cooBalle2[cooballe2] = (cooBalle2[cooballe2][0] - 10, cooBalle2[cooballe2][1])
         pygame.draw.circle(screen, (255, 255, 255), (cooBalle2[cooballe2]), 12)
     #...
 
@@ -290,7 +292,7 @@ while running:
     pygame.display.flip()
     #...
 
-
+    clock.tick(60)
 # ...
 
 pygame.quit()
