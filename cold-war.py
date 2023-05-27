@@ -151,7 +151,7 @@ chargeur2 = 10
 #...
 
 def v1(pressed):
-    global y1, y2, cooBalle1, last_balle_time1, last_balle_time2, chargeur1, chargeur2
+    global y1, y2, last_balle_time1, last_balle_time2, chargeur1, chargeur2
 
 
     # gerer les touches pressé par le joueur gauche (1)
@@ -221,6 +221,21 @@ def v1(pressed):
         pygame.draw.circle(screen, (255, 255, 255), (cooBalle2[cooballe2]), 12)
     #...
 
+
+    # remettre les chargeurs a 10
+    if chargeur1 == 0 and chargeur2 == 0:
+        chargeur1 = 10
+        chargeur2 = 10
+    #...
+
+
+    # afficher la taille des chargeurs
+    font = pygame.font.SysFont(None, 30)
+    text1 = font.render("Chargeur 1: " + str(chargeur1), True, (255, 255, 255))
+    text2 = font.render("Chargeur 2: " + str(chargeur2), True, (255, 255, 255))
+    screen.blit(text1, (50, 20))
+    screen.blit(text2, (1730, 20))
+    #...
 #...
 
 
