@@ -158,10 +158,10 @@ def v1(pressed):
     # mouvement du joueur gauche (1)
     if y1 > 0:
         if pressed[pygame.K_z]:
-            y1 -= 7
+            y1 -= 14
     if y1 < 1080 - joueur.get_height():
         if pressed[pygame.K_s]:
-            y1 += 7
+            y1 += 14
     #...
 
 
@@ -186,10 +186,10 @@ def v1(pressed):
     # gerer les touches pressé par le joueur droit (2)
     if y2 > 0:
         if pressed[pygame.K_UP]:
-            y2 -= 7
+            y2 -= 14
     if y2 < 1080 - joueur.get_height():
         if pressed[pygame.K_DOWN]:
-            y2 += 7
+            y2 += 14
     #...
     # afficher les deux joueur
     screen.blit(joueur, (15, y1))
@@ -211,13 +211,13 @@ def v1(pressed):
     
     # afficher les balles du joueur gauche (1)
     for cooballe1 in range(len(cooBalle1)):
-        cooBalle1[cooballe1] = (cooBalle1[cooballe1][0] + 10, cooBalle1[cooballe1][1])
+        cooBalle1[cooballe1] = (cooBalle1[cooballe1][0] + 12, cooBalle1[cooballe1][1])
         pygame.draw.circle(screen, (255, 255, 255), (cooBalle1[cooballe1]), 12)
     #...
 
     # afficher les balles du joueur droit (2)
     for cooballe2 in range(len(cooBalle2)):
-        cooBalle2[cooballe2] = (cooBalle2[cooballe2][0] - 10, cooBalle2[cooballe2][1])
+        cooBalle2[cooballe2] = (cooBalle2[cooballe2][0] - 12, cooBalle2[cooballe2][1])
         pygame.draw.circle(screen, (255, 255, 255), (cooBalle2[cooballe2]), 12)
     #...
 
