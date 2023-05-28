@@ -149,9 +149,9 @@ last_balle_time2 = 0
 chargeur1 = 10
 chargeur2 = 10
 #...
-
+point = 0
 def v1(pressed):
-    global y1, y2, last_balle_time1, last_balle_time2, chargeur1, chargeur2
+    global y1, y2, last_balle_time1, last_balle_time2, chargeur1, chargeur2, point
 
 
     # gerer les touches pressé par le joueur gauche (1)
@@ -211,6 +211,10 @@ def v1(pressed):
     
     # afficher les balles du joueur gauche (1)
     for cooballe1 in range(len(cooBalle1)):
+        if cooBalle1[cooballe1][0] >= 1882 and cooBalle1[cooballe1][1] >= y2 and cooBalle1[cooballe1][1] <= y2+joueur.get_height():
+            point += 1
+            del cooBalle1[cooballe1]
+            break
         cooBalle1[cooballe1] = (cooBalle1[cooballe1][0] + 12, cooBalle1[cooballe1][1])
         pygame.draw.circle(screen, (255, 255, 255), (cooBalle1[cooballe1]), 12)
     #...
@@ -233,8 +237,10 @@ def v1(pressed):
     font = pygame.font.SysFont(None, 30)
     text1 = font.render("Chargeur 1: " + str(chargeur1), True, (255, 255, 255))
     text2 = font.render("Chargeur 2: " + str(chargeur2), True, (255, 255, 255))
+    text3 = font.render("Point: " + str(point), True, (255, 255, 255))
     screen.blit(text1, (50, 20))
     screen.blit(text2, (1730, 20))
+    screen.blit(text3, (500, 0))
     #...
 #...
 
