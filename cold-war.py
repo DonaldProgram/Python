@@ -212,18 +212,28 @@ def v1(pressed):
     # afficher les balles du joueur gauche (1)
     for cooballe1 in range(len(cooBalle1)):
         if cooBalle1[cooballe1][0] >= 1882 and cooBalle1[cooballe1][1] >= y2 and cooBalle1[cooballe1][1] <= y2+joueur.get_height():
+            # si le joueur 2 est touché par les balles 1
             point += 1
             del cooBalle1[cooballe1]
             break
+            #...
         cooBalle1[cooballe1] = (cooBalle1[cooballe1][0] + 12, cooBalle1[cooballe1][1])
         pygame.draw.circle(screen, (255, 255, 255), (cooBalle1[cooballe1]), 12)
     #...
 
+
     # afficher les balles du joueur droit (2)
     for cooballe2 in range(len(cooBalle2)):
+        if cooBalle2[cooballe2][0] <= 15 and cooBalle2[cooballe2][1] >= y1 and cooBalle2[cooballe2][1] <= y1+joueur.get_height():
+            # si le joueur 2 est touché par les balles 1
+            point += 1
+            del cooBalle2[cooballe2]
+            break
+            #...
         cooBalle2[cooballe2] = (cooBalle2[cooballe2][0] - 12, cooBalle2[cooballe2][1])
         pygame.draw.circle(screen, (255, 255, 255), (cooBalle2[cooballe2]), 12)
     #...
+
 
 
     # remettre les chargeurs a 10
