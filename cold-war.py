@@ -222,7 +222,7 @@ def v1(pressed):
     
     # afficher les balles du joueur gauche (1)
     for cooballe1 in range(len(cooBalle1)):
-        if cooBalle1[cooballe1][0] >= 1882 and cooBalle1[cooballe1][1] >= y2 and cooBalle1[cooballe1][1] <= y2+joueur1.get_height():
+        if cooBalle1[cooballe1][0] >= 1870 and cooBalle1[cooballe1][1] >= y2 and cooBalle1[cooballe1][1] <= y2+joueur1.get_height():
             # si le joueur2 2 est touché par les balles 1
             point += 1
             del cooBalle1[cooballe1]
@@ -235,7 +235,7 @@ def v1(pressed):
 
     # afficher les balles du joueur droit (2)
     for cooballe2 in range(len(cooBalle2)):
-        if cooBalle2[cooballe2][0] <= 16 and cooBalle2[cooballe2][1] >= y1 and cooBalle2[cooballe2][1] <= y1+joueur2.get_height():
+        if cooBalle2[cooballe2][0] <= 50 and cooBalle2[cooballe2][1] >= y1 and cooBalle2[cooballe2][1] <= y1+joueur2.get_height():
             # si le joueur 2 est touché par les balles 1
             point += 1
             del cooBalle2[cooballe2]
