@@ -205,11 +205,11 @@ def v1(pressed):
     balles_a_supprimer2 = []
 
     for update_balle1 in range(len(cooBalle1)):
-        if cooBalle1[update_balle1][0] >= 1950:
+        if cooBalle1[update_balle1][0] >= 1874:
             balles_a_supprimer1.append(update_balle1)
 
     for update_balle2 in range(len(cooBalle2)):
-        if cooBalle2[update_balle2][0] <= -15:
+        if cooBalle2[update_balle2][0] <= 47:
             balles_a_supprimer2.append(update_balle2)
 
     for balle_index in balles_a_supprimer1:
