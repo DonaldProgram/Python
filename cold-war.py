@@ -152,6 +152,15 @@ last_balle_time2 = 0
 chargeur1 = 10
 chargeur2 = 10
 #...
+
+# gerer l'affichage des petites flash lorsque un joueur est touché
+flashJoueur1 = pygame.Surface((1920, 1080), pygame.SRCALPHA)
+flashJoueur1.fill((0, 0, 255, 110))
+
+flashJoueur2 = pygame.Surface((1920, 1080), pygame.SRCALPHA)
+flashJoueur2.fill((255, 0, 0, 110))
+#...
+
 point = 0
 def v1(pressed):
     global y1, y2, last_balle_time1, last_balle_time2, chargeur1, chargeur2, point
@@ -226,6 +235,7 @@ def v1(pressed):
             # si le joueur2 2 est touché par les balles 1
             point += 1
             del cooBalle1[cooballe1]
+            screen.blit(flashJoueur1, (0, 0))
             break
             #...
         cooBalle1[cooballe1] = (cooBalle1[cooballe1][0] + 12, cooBalle1[cooballe1][1])
@@ -239,6 +249,7 @@ def v1(pressed):
             # si le joueur 2 est touché par les balles 1
             point += 1
             del cooBalle2[cooballe2]
+            screen.blit(flashJoueur2, (0, 0))
             break
             #...
         cooBalle2[cooballe2] = (cooBalle2[cooballe2][0] - 12, cooBalle2[cooballe2][1])
