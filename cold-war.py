@@ -209,7 +209,7 @@ def v1(pressed):
             balles_a_supprimer1.append(update_balle1)
 
     for update_balle2 in range(len(cooBalle2)):
-        if cooBalle2[update_balle2][0] <= 15:
+        if cooBalle2[update_balle2][0] <= -15:
             balles_a_supprimer2.append(update_balle2)
 
     for balle_index in balles_a_supprimer1:
@@ -235,7 +235,7 @@ def v1(pressed):
 
     # afficher les balles du joueur droit (2)
     for cooballe2 in range(len(cooBalle2)):
-        if cooBalle2[cooballe2][0] <= 15 and cooBalle2[cooballe2][1] >= y1 and cooBalle2[cooballe2][1] <= y1+joueur2.get_height():
+        if cooBalle2[cooballe2][0] <= 16 and cooBalle2[cooballe2][1] >= y1 and cooBalle2[cooballe2][1] <= y1+joueur2.get_height():
             # si le joueur 2 est touché par les balles 1
             point += 1
             del cooBalle2[cooballe2]
