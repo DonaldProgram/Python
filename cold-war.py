@@ -230,15 +230,7 @@ def v1():
     # lancer le 1v1
     if v1lancer == True:
         pressed = pygame.key.get_pressed()
-        # gerer les touches pressé par le joueur gauche (1)
-        # mouvement du joueur gauche (1)
-        if y1 > 0:
-            if pressed[pygame.K_z]:
-                y1 -= 14
-        if y1 < 1080 - joueur1.get_height():
-            if pressed[pygame.K_s]:
-                y1 += 14
-        #...
+
 
 
         # gerer le tir du joueur gauche (1)
@@ -258,13 +250,22 @@ def v1():
                 chargeur2 -= 1
         #...
 
+        # gerer les touches pressé par le joueur gauche (1)
+        if y1 > 0:
+            if pressed[pygame.K_z]:
+                y1 -= 25
+        if y1 < 1080 - joueur1.get_height():
+            if pressed[pygame.K_s]:
+                y1 += 25
+        #...
+
         # gerer les touches pressé par le joueur droit (2)
         if y2 > 0:
             if pressed[pygame.K_UP]:
-                y2 -= 14
+                y2 -= 25
         if y2 < 1080 - joueur2.get_height():
             if pressed[pygame.K_DOWN]:
-                y2 += 14
+                y2 += 25
         #...
         # afficher les deux joueur
         screen.blit(joueur1, (15, y1))
@@ -298,10 +299,9 @@ def v1():
                 # si le joueur2 2 est touché par les balles 1
                 point += 1
                 del cooBalle1[cooballe1]
-                screen.blit(flashJoueur1, (0, 0))
                 break
                 #...
-            cooBalle1[cooballe1] = (cooBalle1[cooballe1][0] + 12, cooBalle1[cooballe1][1])
+            cooBalle1[cooballe1] = (cooBalle1[cooballe1][0] + 16, cooBalle1[cooballe1][1])
             pygame.draw.circle(screen, (0, 0, 255), (cooBalle1[cooballe1]), 12)
         #...
 
@@ -312,10 +312,9 @@ def v1():
                 # si le joueur 2 est touché par les balles 1
                 point += 1
                 del cooBalle2[cooballe2]
-                screen.blit(flashJoueur2, (0, 0))
                 break
                 #...
-            cooBalle2[cooballe2] = (cooBalle2[cooballe2][0] - 12, cooBalle2[cooballe2][1])
+            cooBalle2[cooballe2] = (cooBalle2[cooballe2][0] - 16, cooBalle2[cooballe2][1])
             pygame.draw.circle(screen, (255, 0, 0), (cooBalle2[cooballe2]), 12)
         #...
 
@@ -325,6 +324,17 @@ def v1():
         if chargeur1 == 0 and chargeur2 == 0:
             chargeur1 = 10
             chargeur2 = 10
+        #...
+
+
+        # afficher les flashs si les joueurs sont touché
+        for cooballe1 in range(len(cooBalle1)):
+            if cooBalle1[cooballe1][0] >= 1870 and cooBalle1[cooballe1][0] <= 1894 and cooBalle1[cooballe1][1] >= y2 - 12 and cooBalle1[cooballe1][1] <= y2+joueur1.get_height() + 12:
+                screen.blit(flashJoueur1, (0, 0))
+
+        for cooballe2 in range(len(cooBalle2)):
+            if cooBalle2[cooballe2][0] <= 50 and cooBalle2[cooballe2][0] >= 38 and cooBalle2[cooballe2][1] >= y1 - 12 and cooBalle2[cooballe2][1] <= y1+joueur2.get_height() + 12:
+                screen.blit(flashJoueur2, (0, 0))
         #...
 
 
@@ -407,7 +417,7 @@ while running:
     pygame.display.flip()
     #...
 
-    clock.tick(60)
+    clock.tick(40)
 # ...
 
 pygame.quit()
