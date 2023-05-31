@@ -160,7 +160,7 @@ flashJoueur1 = pygame.Surface((1920, 1080), pygame.SRCALPHA)
 flashJoueur1.fill((0, 0, 255, 110))
 
 flashJoueur2 = pygame.Surface((1920, 1080), pygame.SRCALPHA)
-flashJoueur2.fill((255, 0, 0, 110))
+flashJoueur2.fill((255, 0, 0, 140))
 #...
 
 v1lancer = False
