@@ -30,8 +30,9 @@ delay_reclick = 1000  # Temps d'attente en millisecondes avant de pouvoir recliq
 
 # fonction pour gérer le menu
 choixOnglet = 'MenuMenu'
-def Menu(pressed):
+def Menu():
     global texte_jouer, texte_miroir, texte_parametre, choixMenu, last_change, choixOnglet, last_click_time
+    pressed = pygame.key.get_pressed()
 
     # afficher la flèche du choixMenu
     if choixMenu == 1:
@@ -86,8 +87,9 @@ fleche_choix2 = font2.render('->', True, (255, 0, 0))
 
 choix_modes = 0
 
-def ChoixPartie(pressed):    
+def ChoixPartie():    
     global choixPartie, texte_1c1, texte_jouer, last_change, choixOnglet, last_click_time
+    pressed = pygame.key.get_pressed()
     # afficher les boutons du choixMenu entré 1c1 ou 1cBOT
     screen.blit(texte_jouer2, ((1920 - texte_jouer2.get_width()) / 2, 15))
     screen.blit(texte_1c1, ((1920 - texte_1c1.get_width()) / 2, 350))
@@ -164,7 +166,7 @@ flashJoueur2.fill((255, 0, 0, 110))
 v1lancer = False
 
 point = 0
-def v1(pressed):
+def v1():
     global y1, y2, last_balle_time1, last_balle_time2, chargeur1, chargeur2, point, v1lancer
     current_time = pygame.time.get_ticks()
 
@@ -175,9 +177,12 @@ def v1(pressed):
         pygame.display.flip()
         #... 
         pygame.time.wait(3000)
+        pygame.event.pump()
+        pressed = pygame.key.get_pressed()
         v1lancer = True
 
     if v1lancer == True:
+        pressed = pygame.key.get_pressed()
         # gerer les touches pressé par le joueur gauche (1)
         # mouvement du joueur gauche (1)
         if y1 > 0:
@@ -295,16 +300,16 @@ def Game():
     
     # appeler la fonction menu au debut de la partie
     if choixOnglet == 'MenuMenu':
-        Menu(pressed)
+        Menu()
     #...
 
     # appeler la fonction du choixMenu de la partie
     elif choixOnglet == 'MenuJouer':
-        ChoixPartie(pressed)
+        ChoixPartie()
     #...
 
     elif choixOnglet == 'MenuChoixPartie':
-        v1(pressed)
+        v1()
         
 
 #...
@@ -333,7 +338,6 @@ while running:
             running = False
 
 
-    pressed = pygame.key.get_pressed()
 
     # arriere plan en noir
     screen.fill((0, 0, 0))
