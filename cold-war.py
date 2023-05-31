@@ -170,17 +170,55 @@ def v1():
     global y1, y2, last_balle_time1, last_balle_time2, chargeur1, chargeur2, point, v1lancer
     current_time = pygame.time.get_ticks()
 
+    # gerer le temps d'attente avant le 1v1
     if v1lancer == False:
-        # afficher les deux joueur
+        # afficher les deux joueur lors du temps d'attente
         screen.blit(joueur1, (15, y1))
         screen.blit(joueur2, (1882, y2))
         pygame.display.flip()
         #... 
-        pygame.time.wait(3000)
-        pygame.event.pump()
-        pressed = pygame.key.get_pressed()
-        v1lancer = True
 
+        # afficher le compteur lors du temps d'attente
+        # compteur 3
+        pygame.time.wait(1000)
+        font = pygame.font.SysFont(None, 100)
+        text1 = font.render("3", True, (255, 255, 255))
+        screen.blit(text1, (500, 500))
+        screen.blit(joueur1, (15, y1))
+        screen.blit(joueur2, (1882, y2))
+        pygame.display.flip()
+        #...
+
+        # compteur 2
+        pygame.time.wait(1000)
+        text1 = font.render("2", True, (255, 255, 255))
+        screen.fill((0, 0, 0))
+        screen.blit(text1, (500, 500))
+        screen.blit(joueur1, (15, y1))
+        screen.blit(joueur2, (1882, y2))
+        pygame.display.flip()  
+        #...
+
+        # compteur 1
+        pygame.time.wait(1000)
+        text1 = font.render("1", True, (255, 255, 255))
+        screen.fill((0, 0, 0))
+        screen.blit(text1, (500, 500))
+        screen.blit(joueur1, (15, y1))
+        screen.blit(joueur2, (1882, y2))
+        pygame.display.flip()
+        pygame.time.wait(1000)
+        #...
+
+
+        pygame.event.pump()
+        v1lancer = True
+    #...
+
+
+
+
+    # lancer le 1v1
     if v1lancer == True:
         pressed = pygame.key.get_pressed()
         # gerer les touches pressé par le joueur gauche (1)
@@ -291,6 +329,7 @@ def v1():
         screen.blit(text3, (500, 0))
         #...
     #...
+#...
 
 
 
@@ -304,7 +343,7 @@ def Game():
     #...
 
     # appeler la fonction du choixMenu de la partie
-    elif choixOnglet == 'MenuJouer':
+    elif choixOnglet == 'MenuJouer': 
         ChoixPartie()
     #...
 
