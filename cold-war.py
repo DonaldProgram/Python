@@ -161,120 +161,131 @@ flashJoueur2 = pygame.Surface((1920, 1080), pygame.SRCALPHA)
 flashJoueur2.fill((255, 0, 0, 110))
 #...
 
+v1lancer = False
+
 point = 0
 def v1(pressed):
-    global y1, y2, last_balle_time1, last_balle_time2, chargeur1, chargeur2, point
-
-
-    # gerer les touches pressé par le joueur gauche (1)
-    # mouvement du joueur gauche (1)
-    if y1 > 0:
-        if pressed[pygame.K_z]:
-            y1 -= 14
-    if y1 < 1080 - joueur1.get_height():
-        if pressed[pygame.K_s]:
-            y1 += 14
-    #...
-
-
+    global y1, y2, last_balle_time1, last_balle_time2, chargeur1, chargeur2, point, v1lancer
     current_time = pygame.time.get_ticks()
-    # gerer le tir du joueur gauche (1)
-    if chargeur1 > 0:
-        if pressed[pygame.K_SPACE] and current_time - last_balle_time1 >= delay_balle:
-            cooBalle1.append((25, y1 + joueur1.get_height()/2))
-            last_balle_time1 = current_time
-            chargeur1 -= 1
-    #...
+
+    if v1lancer == False:
+        # afficher les deux joueur
+        screen.blit(joueur1, (15, y1))
+        screen.blit(joueur2, (1882, y2))
+        pygame.display.flip()
+        #... 
+        pygame.time.wait(3000)
+        v1lancer = True
+
+    if v1lancer == True:
+        # gerer les touches pressé par le joueur gauche (1)
+        # mouvement du joueur gauche (1)
+        if y1 > 0:
+            if pressed[pygame.K_z]:
+                y1 -= 14
+        if y1 < 1080 - joueur1.get_height():
+            if pressed[pygame.K_s]:
+                y1 += 14
+        #...
 
 
-    # gerer le tir du joueur droit (2)
-    if chargeur2 > 0:
-        if pressed[pygame.K_RETURN] and current_time - last_balle_time2 >= delay_balle:
-            cooBalle2.append((1872, y2 + joueur2.get_height()/2))
-            last_balle_time2 = current_time
-            chargeur2 -= 1
-    #...
-
-    # gerer les touches pressé par le joueur droit (2)
-    if y2 > 0:
-        if pressed[pygame.K_UP]:
-            y2 -= 14
-    if y2 < 1080 - joueur2.get_height():
-        if pressed[pygame.K_DOWN]:
-            y2 += 14
-    #...
-    # afficher les deux joueur
-    screen.blit(joueur1, (15, y1))
-    screen.blit(joueur2, (1882, y2))
-    #... 
+        # gerer le tir du joueur gauche (1)
+        if chargeur1 > 0:
+            if pressed[pygame.K_SPACE] and current_time - last_balle_time1 >= delay_balle:
+                cooBalle1.append((25, y1 + joueur1.get_height()/2))
+                last_balle_time1 = current_time
+                chargeur1 -= 1
+        #...
 
 
-# retirer les balles qui sont en dehors de l'écran
-    balles_a_supprimer1 = []
-    balles_a_supprimer2 = []
+        # gerer le tir du joueur droit (2)
+        if chargeur2 > 0:
+            if pressed[pygame.K_RETURN] and current_time - last_balle_time2 >= delay_balle:
+                cooBalle2.append((1872, y2 + joueur2.get_height()/2))
+                last_balle_time2 = current_time
+                chargeur2 -= 1
+        #...
 
-    for update_balle1 in range(len(cooBalle1)):
-        if cooBalle1[update_balle1][0] >= 1874:
-            balles_a_supprimer1.append(update_balle1)
+        # gerer les touches pressé par le joueur droit (2)
+        if y2 > 0:
+            if pressed[pygame.K_UP]:
+                y2 -= 14
+        if y2 < 1080 - joueur2.get_height():
+            if pressed[pygame.K_DOWN]:
+                y2 += 14
+        #...
+        # afficher les deux joueur
+        screen.blit(joueur1, (15, y1))
+        screen.blit(joueur2, (1882, y2))
+        #... 
 
-    for update_balle2 in range(len(cooBalle2)):
-        if cooBalle2[update_balle2][0] <= 47:
-            balles_a_supprimer2.append(update_balle2)
 
-    for balle_index in balles_a_supprimer1:
-        del cooBalle1[balle_index]
+    # retirer les balles qui sont en dehors de l'écran
+        balles_a_supprimer1 = []
+        balles_a_supprimer2 = []
 
-    for balle_index in balles_a_supprimer2:
-        del cooBalle2[balle_index]
-    # ...
+        for update_balle1 in range(len(cooBalle1)):
+            if cooBalle1[update_balle1][0] >= 1874:
+                balles_a_supprimer1.append(update_balle1)
+
+        for update_balle2 in range(len(cooBalle2)):
+            if cooBalle2[update_balle2][0] <= 47:
+                balles_a_supprimer2.append(update_balle2)
+
+        for balle_index in balles_a_supprimer1:
+            del cooBalle1[balle_index]
+
+        for balle_index in balles_a_supprimer2:
+            del cooBalle2[balle_index]
+        # ...
+            
         
-    
-    # afficher les balles du joueur gauche (1)
-    for cooballe1 in range(len(cooBalle1)):
-        if cooBalle1[cooballe1][0] >= 1870 and cooBalle1[cooballe1][1] >= y2 and cooBalle1[cooballe1][1] <= y2+joueur1.get_height():
-            # si le joueur2 2 est touché par les balles 1
-            point += 1
-            del cooBalle1[cooballe1]
-            screen.blit(flashJoueur1, (0, 0))
-            break
-            #...
-        cooBalle1[cooballe1] = (cooBalle1[cooballe1][0] + 12, cooBalle1[cooballe1][1])
-        pygame.draw.circle(screen, (0, 0, 255), (cooBalle1[cooballe1]), 12)
+        # afficher les balles du joueur gauche (1)
+        for cooballe1 in range(len(cooBalle1)):
+            if cooBalle1[cooballe1][0] >= 1870 and cooBalle1[cooballe1][1] >= y2 and cooBalle1[cooballe1][1] <= y2+joueur1.get_height():
+                # si le joueur2 2 est touché par les balles 1
+                point += 1
+                del cooBalle1[cooballe1]
+                screen.blit(flashJoueur1, (0, 0))
+                break
+                #...
+            cooBalle1[cooballe1] = (cooBalle1[cooballe1][0] + 12, cooBalle1[cooballe1][1])
+            pygame.draw.circle(screen, (0, 0, 255), (cooBalle1[cooballe1]), 12)
+        #...
+
+
+        # afficher les balles du joueur droit (2)
+        for cooballe2 in range(len(cooBalle2)):
+            if cooBalle2[cooballe2][0] <= 50 and cooBalle2[cooballe2][1] >= y1 and cooBalle2[cooballe2][1] <= y1+joueur2.get_height():
+                # si le joueur 2 est touché par les balles 1
+                point += 1
+                del cooBalle2[cooballe2]
+                screen.blit(flashJoueur2, (0, 0))
+                break
+                #...
+            cooBalle2[cooballe2] = (cooBalle2[cooballe2][0] - 12, cooBalle2[cooballe2][1])
+            pygame.draw.circle(screen, (255, 0, 0), (cooBalle2[cooballe2]), 12)
+        #...
+
+
+
+        # remettre les chargeurs a 10
+        if chargeur1 == 0 and chargeur2 == 0:
+            chargeur1 = 10
+            chargeur2 = 10
+        #...
+
+
+        # afficher la taille des chargeurs
+        font = pygame.font.SysFont(None, 30)
+        text1 = font.render("Chargeur 1: " + str(chargeur1), True, (255, 255, 255))
+        text2 = font.render("Chargeur 2: " + str(chargeur2), True, (255, 255, 255))
+        text3 = font.render("Point: " + str(point), True, (255, 255, 255))
+        screen.blit(text1, (50, 20))
+        screen.blit(text2, (1730, 20))
+        screen.blit(text3, (500, 0))
+        #...
     #...
-
-
-    # afficher les balles du joueur droit (2)
-    for cooballe2 in range(len(cooBalle2)):
-        if cooBalle2[cooballe2][0] <= 50 and cooBalle2[cooballe2][1] >= y1 and cooBalle2[cooballe2][1] <= y1+joueur2.get_height():
-            # si le joueur 2 est touché par les balles 1
-            point += 1
-            del cooBalle2[cooballe2]
-            screen.blit(flashJoueur2, (0, 0))
-            break
-            #...
-        cooBalle2[cooballe2] = (cooBalle2[cooballe2][0] - 12, cooBalle2[cooballe2][1])
-        pygame.draw.circle(screen, (255, 0, 0), (cooBalle2[cooballe2]), 12)
-    #...
-
-
-
-    # remettre les chargeurs a 10
-    if chargeur1 == 0 and chargeur2 == 0:
-        chargeur1 = 10
-        chargeur2 = 10
-    #...
-
-
-    # afficher la taille des chargeurs
-    font = pygame.font.SysFont(None, 30)
-    text1 = font.render("Chargeur 1: " + str(chargeur1), True, (255, 255, 255))
-    text2 = font.render("Chargeur 2: " + str(chargeur2), True, (255, 255, 255))
-    text3 = font.render("Point: " + str(point), True, (255, 255, 255))
-    screen.blit(text1, (50, 20))
-    screen.blit(text2, (1730, 20))
-    screen.blit(text3, (500, 0))
-    #...
-#...
 
 
 
@@ -294,6 +305,8 @@ def Game():
 
     elif choixOnglet == 'MenuChoixPartie':
         v1(pressed)
+        
+
 #...
 
 
