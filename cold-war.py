@@ -180,10 +180,9 @@ def v1():
 
         # afficher le compteur lors du temps d'attente
         # compteur 3
-        pygame.time.wait(1000)
-        font = pygame.font.SysFont(None, 100)
+        font = pygame.font.SysFont(None, 200)
         text1 = font.render("3", True, (255, 255, 255))
-        screen.blit(text1, (500, 500))
+        screen.blit(text1, ((1920-text1.get_width())/2, (1080-text1.get_height())/2-300))
         screen.blit(joueur1, (15, y1))
         screen.blit(joueur2, (1882, y2))
         pygame.display.flip()
@@ -193,7 +192,7 @@ def v1():
         pygame.time.wait(1000)
         text1 = font.render("2", True, (255, 255, 255))
         screen.fill((0, 0, 0))
-        screen.blit(text1, (500, 500))
+        screen.blit(text1, ((1920-text1.get_width())/2, (1080-text1.get_height())/2-300))
         screen.blit(joueur1, (15, y1))
         screen.blit(joueur2, (1882, y2))
         pygame.display.flip()  
@@ -203,7 +202,17 @@ def v1():
         pygame.time.wait(1000)
         text1 = font.render("1", True, (255, 255, 255))
         screen.fill((0, 0, 0))
-        screen.blit(text1, (500, 500))
+        screen.blit(text1, ((1920-text1.get_width())/2, (1080-text1.get_height())/2-300))
+        screen.blit(joueur1, (15, y1))
+        screen.blit(joueur2, (1882, y2))
+        pygame.display.flip()
+        pygame.time.wait(1000)
+        #...
+
+        # goooo
+        text1 = font.render("GO !!", True, (255, 255, 255))
+        screen.fill((0, 0, 0))
+        screen.blit(text1, ((1920-text1.get_width())/2, (1080-text1.get_height())/2-300))
         screen.blit(joueur1, (15, y1))
         screen.blit(joueur2, (1882, y2))
         pygame.display.flip()
