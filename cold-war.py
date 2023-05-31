@@ -116,7 +116,7 @@ def ChoixPartie():
     # vérifier si la touche Entrée est pressée
     if pressed[pygame.K_RETURN] and choixPartie == 1:
         current_time = pygame.time.get_ticks()
-        if current_time - last_click_time < delay_reclick:
+        if current_time - last_click_time < delay_reclick-300:
             return
         choixOnglet = 'MenuChoixPartie'
         last_click_time = current_time
