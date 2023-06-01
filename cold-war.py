@@ -12,7 +12,12 @@ son_shoot = pygame.mixer.Sound('song_shoot.wav')
 son_touch = pygame.mixer.Sound('song_touch.wav')
 son_musique = pygame.mixer.Sound("musique.wav")
 
-son_musique.set_volume(0.5)
+son_musique.set_volume(0.3)
+#...
+
+# creer des canaux pour pouvoir mettre plusieur son a la fois
+canal_son_shoot = pygame.mixer.Channel(1)
+canal_son_touch = pygame.mixer.Channel(2)
 #...
 
 
@@ -250,7 +255,7 @@ def v1():
                 cooBalle1.append((25, y1 + joueur1.get_height()/2))
                 last_balle_time1 = current_time
                 chargeur1 -= 1
-                son_shoot.play()
+                canal_son_shoot.play(son_shoot)
         #...
 
 
@@ -260,7 +265,7 @@ def v1():
                 cooBalle2.append((1872, y2 + joueur2.get_height()/2))
                 last_balle_time2 = current_time
                 chargeur2 -= 1
-                son_shoot.play()
+                canal_son_shoot.play(son_shoot)
         #...
 
         # gerer les touches pressé par le joueur gauche (1)
@@ -343,11 +348,11 @@ def v1():
         # afficher les flashs si les joueurs sont touché
         for cooballe1 in range(len(cooBalle1)):
             if cooBalle1[cooballe1][0] >= 1870 and cooBalle1[cooballe1][0] <= 1894 and cooBalle1[cooballe1][1] >= y2 - 12 and cooBalle1[cooballe1][1] <= y2+joueur1.get_height() + 12:
-                son_touch.play()
+                canal_son_touch.play(son_touch)
 
         for cooballe2 in range(len(cooBalle2)):
             if cooBalle2[cooballe2][0] <= 50 and cooBalle2[cooballe2][0] >= 38 and cooBalle2[cooballe2][1] >= y1 - 12 and cooBalle2[cooballe2][1] <= y1+joueur2.get_height() + 12:
-                son_touch.play()
+                canal_son_touch.play(son_touch)
         #...
 
 
