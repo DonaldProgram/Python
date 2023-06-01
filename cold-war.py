@@ -364,7 +364,7 @@ def v1():
         text_chargeur1 = font.render("Chargeur 1: " + str(chargeur1), True, (255, 255, 255))
         text_chargeur2 = font.render("Chargeur 2: " + str(chargeur2), True, (255, 255, 255))
         font = pygame.font.SysFont(None, 100)
-        text_point_joueur1 = font.render(str(point_joueur_1) + "  |  " + str(point_joueur_2), True, (255, 255, 255))
+        text_point_joueur1 = font.render(str(point_joueur_1)    + "  |  " + str(point_joueur_2), True, (255, 0, 0))
 
         screen.blit(text_chargeur1, (50, 20))
         screen.blit(text_chargeur2, (1730, 20))
