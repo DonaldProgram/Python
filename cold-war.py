@@ -8,7 +8,8 @@ pygame.display.set_caption('COLD-WAR')
 
 
 # importer les son
-explosion = pygame.mixer.Sound('explosion.mp3')
+son_shoot = pygame.mixer.Sound('song_shoot.wav')
+son_touch = pygame.mixer.Sound('song_touch.wav')
 #...
 
 # définir les différents textes à afficher
@@ -243,6 +244,7 @@ def v1():
                 cooBalle1.append((25, y1 + joueur1.get_height()/2))
                 last_balle_time1 = current_time
                 chargeur1 -= 1
+                son_shoot.play()
         #...
 
 
@@ -252,6 +254,7 @@ def v1():
                 cooBalle2.append((1872, y2 + joueur2.get_height()/2))
                 last_balle_time2 = current_time
                 chargeur2 -= 1
+                son_shoot.play()
         #...
 
         # gerer les touches pressé par le joueur gauche (1)
@@ -334,11 +337,11 @@ def v1():
         # afficher les flashs si les joueurs sont touché
         for cooballe1 in range(len(cooBalle1)):
             if cooBalle1[cooballe1][0] >= 1870 and cooBalle1[cooballe1][0] <= 1894 and cooBalle1[cooballe1][1] >= y2 - 12 and cooBalle1[cooballe1][1] <= y2+joueur1.get_height() + 12:
-                explosion.play()
+                son_touch.play()
 
         for cooballe2 in range(len(cooBalle2)):
             if cooBalle2[cooballe2][0] <= 50 and cooBalle2[cooballe2][0] >= 38 and cooBalle2[cooballe2][1] >= y1 - 12 and cooBalle2[cooballe2][1] <= y1+joueur2.get_height() + 12:
-                explosion.play()
+                son_touch.play()
         #...
 
 
@@ -359,7 +362,6 @@ def v1():
 
 # fonction gerant les differante fonctions a appelé lors du 
 def Game():
-    
     # appeler la fonction menu au debut de la partie
     if choixOnglet == 'MenuMenu':
         Menu()
