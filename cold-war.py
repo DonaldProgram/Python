@@ -7,6 +7,10 @@ pygame.display.set_caption('COLD-WAR')
 # ...
 
 
+# importer les son
+explosion = pygame.mixer.Sound('explosion.wav')
+#...
+
 # définir les différents textes à afficher
 font = pygame.font.SysFont('Courier New', 90)
 texte_titre = font.render('COLD-WAR', True, (255, 0, 0))
@@ -330,11 +334,11 @@ def v1():
         # afficher les flashs si les joueurs sont touché
         for cooballe1 in range(len(cooBalle1)):
             if cooBalle1[cooballe1][0] >= 1870 and cooBalle1[cooballe1][0] <= 1894 and cooBalle1[cooballe1][1] >= y2 - 12 and cooBalle1[cooballe1][1] <= y2+joueur1.get_height() + 12:
-                screen.blit(flashJoueur1, (0, 0))
+                explosion.play()
 
         for cooballe2 in range(len(cooBalle2)):
             if cooBalle2[cooballe2][0] <= 50 and cooBalle2[cooballe2][0] >= 38 and cooBalle2[cooballe2][1] >= y1 - 12 and cooBalle2[cooballe2][1] <= y1+joueur2.get_height() + 12:
-                screen.blit(flashJoueur2, (0, 0))
+                explosion.play()
         #...
 
 
