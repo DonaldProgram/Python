@@ -179,9 +179,11 @@ flashJoueur2.fill((255, 0, 0, 140))
 
 v1lancer = False
 
-point = 0
+point_joueur_1 = 0
+point_joueur_2 = 0
+
 def v1():
-    global y1, y2, last_balle_time1, last_balle_time2, chargeur1, chargeur2, point, v1lancer
+    global y1, y2, last_balle_time1, last_balle_time2, chargeur1, chargeur2, point_joueur_1, point_joueur_2, v1lancer
     current_time = pygame.time.get_ticks()
 
 
@@ -235,8 +237,9 @@ def v1():
         pygame.time.wait(1000)
         #...
 
-        pressed = pygame.key.get_pressed()
+
         pygame.event.pump()
+        pressed = pygame.key.get_pressed()
         v1lancer = True
     #...
 
@@ -315,7 +318,7 @@ def v1():
         for cooballe1 in range(len(cooBalle1)):
             if cooBalle1[cooballe1][0] >= 1870 and cooBalle1[cooballe1][0] <= 1894 and cooBalle1[cooballe1][1] >= y2 - 12 and cooBalle1[cooballe1][1] <= y2+joueur1.get_height() + 12:
                 # si le joueur2 2 est touché par les balles 1
-                point += 1
+                point_joueur_1 += 1
                 del cooBalle1[cooballe1]
                 break
                 #...
@@ -328,7 +331,7 @@ def v1():
         for cooballe2 in range(len(cooBalle2)):
             if cooBalle2[cooballe2][0] <= 50 and cooBalle2[cooballe2][0] >= 38 and cooBalle2[cooballe2][1] >= y1 - 12 and cooBalle2[cooballe2][1] <= y1+joueur2.get_height() + 12:
                 # si le joueur 2 est touché par les balles 1
-                point += 1
+                point_joueur_2 += 1
                 del cooBalle2[cooballe2]
                 break
                 #...
@@ -358,12 +361,14 @@ def v1():
 
         # afficher la taille des chargeurs
         font = pygame.font.SysFont(None, 30)
-        text1 = font.render("Chargeur 1: " + str(chargeur1), True, (255, 255, 255))
-        text2 = font.render("Chargeur 2: " + str(chargeur2), True, (255, 255, 255))
-        text3 = font.render("Point: " + str(point), True, (255, 255, 255))
-        screen.blit(text1, (50, 20))
-        screen.blit(text2, (1730, 20))
-        screen.blit(text3, (500, 0))
+        text_chargeur1 = font.render("Chargeur 1: " + str(chargeur1), True, (255, 255, 255))
+        text_chargeur2 = font.render("Chargeur 2: " + str(chargeur2), True, (255, 255, 255))
+        font = pygame.font.SysFont(None, 100)
+        text_point_joueur1 = font.render(str(point_joueur_1) + "  |  " + str(point_joueur_2), True, (255, 255, 255))
+
+        screen.blit(text_chargeur1, (50, 20))
+        screen.blit(text_chargeur2, (1730, 20))
+        screen.blit(text_point_joueur1, ((1920-text_point_joueur1.get_width())/2, 0))
         #...
     #...
 #...
