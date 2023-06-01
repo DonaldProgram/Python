@@ -10,7 +10,11 @@ pygame.display.set_caption('COLD-WAR')
 # importer les son
 son_shoot = pygame.mixer.Sound('song_shoot.wav')
 son_touch = pygame.mixer.Sound('song_touch.wav')
+son_musique = pygame.mixer.Sound("musique.wav")
+
+son_musique.set_volume(0.5)
 #...
+
 
 # définir les différents textes à afficher
 font = pygame.font.SysFont('Courier New', 90)
@@ -174,6 +178,8 @@ point = 0
 def v1():
     global y1, y2, last_balle_time1, last_balle_time2, chargeur1, chargeur2, point, v1lancer
     current_time = pygame.time.get_ticks()
+
+
 
     # gerer le temps d'attente avant le 1v1
     if v1lancer == False:
@@ -358,10 +364,13 @@ def v1():
 #...
 
 
-
+# jouer la musique
+son_musique.play(-1)
+#...
 
 # fonction gerant les differante fonctions a appelé lors du 
 def Game():
+
     # appeler la fonction menu au debut de la partie
     if choixOnglet == 'MenuMenu':
         Menu()
@@ -397,9 +406,11 @@ clock = pygame.time.Clock()
 # boucle du jeu
 running = True
 while running:
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+
 
 
 
