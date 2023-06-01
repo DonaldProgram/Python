@@ -224,7 +224,7 @@ def v1():
         pygame.time.wait(1000)
         #...
 
-
+        pressed = pygame.key.get_pressed()
         pygame.event.pump()
         v1lancer = True
     #...
@@ -260,19 +260,19 @@ def v1():
         # gerer les touches pressé par le joueur gauche (1)
         if y1 > 0:
             if pressed[pygame.K_z]:
-                y1 -= 25
+                y1 -= 21
         if y1 < 1080 - joueur1.get_height():
             if pressed[pygame.K_s]:
-                y1 += 25
+                y1 += 21
         #...
 
         # gerer les touches pressé par le joueur droit (2)
         if y2 > 0:
             if pressed[pygame.K_UP]:
-                y2 -= 25
+                y2 -= 21
         if y2 < 1080 - joueur2.get_height():
             if pressed[pygame.K_DOWN]:
-                y2 += 25
+                y2 += 21
         #...
         # afficher les deux joueur
         screen.blit(joueur1, (15, y1))
@@ -423,7 +423,7 @@ while running:
     pygame.display.flip()
     #...
 
-    clock.tick(40)
+    clock.tick(48)
 # ...
 
 pygame.quit()
