@@ -352,7 +352,9 @@ def v1():
                 #...
             
             # si le joueur gauche touche un bonus
-            
+            for bonuss in range(len(bonus)):
+                if cooBalle1[cooballe1][0] >= bonus[bonuss][0] - 40 and cooBalle1[cooballe1][0] <= bonus[bonuss][0] + 40 and cooBalle1[cooballe1][1] <= bonus[bonuss][1] + 40 and cooBalle1[cooballe1][1] >= bonus[bonuss][1] - 40:
+                    del bonus[bonuss]
             #...
 
             cooBalle1[cooballe1] = (cooBalle1[cooballe1][0] + 16, cooBalle1[cooballe1][1])
