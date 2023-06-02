@@ -1,4 +1,4 @@
-import pygame
+import pygame, random
 pygame.init()
 
 # création de la fenêtre
@@ -135,8 +135,36 @@ def ChoixPartie():
         choixOnglet = 'MenuChoixPartie'
         last_click_time = current_time
     #...
+#...
 
 
+
+
+# fonction qui gere les bonus
+# liste pour gerer les differant bonus qui doivent etre afficher
+bonus = []
+#...
+
+current_time = 0
+
+def Bonus():
+    global current_time
+
+    temps_ecoule = pygame.time.get_ticks()-current_time 
+
+    # gerer si un bonus dois s'afficher
+    if len(bonus) < 10:
+        if temps_ecoule >= 12000:
+            # ajouter des coordonné aleatoire au spawn de la balle bonus
+            bonus.append((random.randint(200, 1700), random.randint(100, 900)))
+            #...
+            current_time = pygame.time.get_ticks()
+    #...
+
+    # afficher les bonus
+    for bonuss in range(len(bonus)):
+        pygame.draw.circle(screen, (0, 255, 0), (bonus[bonuss]), 40)
+    #...
 #...
 
 
@@ -251,7 +279,7 @@ def v1():
         pressed = pygame.key.get_pressed()
 
 
-
+        Bonus()
         # gerer le tir du joueur gauche (1)
         if chargeur1 > 0:
             if pressed[pygame.K_SPACE] and current_time - last_balle_time1 >= delay_balle:
@@ -322,6 +350,11 @@ def v1():
                 del cooBalle1[cooballe1]
                 break
                 #...
+            
+            # si le joueur gauche touche un bonus
+            
+            #...
+
             cooBalle1[cooballe1] = (cooBalle1[cooballe1][0] + 16, cooBalle1[cooballe1][1])
             pygame.draw.circle(screen, (0, 0, 255), (cooBalle1[cooballe1]), 12)
         #...
