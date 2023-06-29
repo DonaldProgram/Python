@@ -11,8 +11,6 @@ pygame.display.set_caption("MarsLife")
 
 
 # FONCTION DU MENU GO MARS
-
-
 # creer le vaisseau qui permet de cliquer dans le menu
 vaisseau = pygame.Rect(150, 150, 20, 15)
 #...
@@ -23,8 +21,16 @@ Titre = font.render("MarsLife", 1, (255, 255, 255))
 Help = font.render("Go to MARS", 1, (255, 255, 255))
 #...
 
+# creer les rects des textes du menu
+rectGOTOMARS = Help.get_rect()
+rectGOTOMARS.x = (1000-Help.get_width())/2
+rectGOTOMARS.y = (800-Help.get_height())/2-100
+#...
+
 def GoMars():
     global Titre
+    
+    
     # gerer les touches presser
     pressed = pygame.key.get_pressed()
     
@@ -47,10 +53,10 @@ def GoMars():
     
     
     # verifier si le vaisseau touche le texte du Menu "GO TO MARS"
-    if vaisseau.x >= (1000-Help.get_width())/2-20 and vaisseau.x <= (1000-Help.get_width())/2-20 + Help.get_width() + 20:
-        Titre = font.render("MarsLife2", 1, (255, 255, 255))
+    if rectGOTOMARS.colliderect(vaisseau):
+        Help = font.render("-> Go to MARS <-", 1, (255, 255, 255))
     else:
-        Titre = font.render("MarsLife", 1, (255, 255, 255))
+        Help = font.render("Go to MARS", 1, (255, 255, 255))
     #...
     
         
@@ -65,7 +71,7 @@ def GoMars():
     #...
     
     
-    # afficher le joueur
+    # afficher le vaisseau
     pygame.draw.rect(screen, (255, 255, 255), vaisseau)
     #...
 #...
