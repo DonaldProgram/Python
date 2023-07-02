@@ -54,10 +54,17 @@ def move_vaisseau():
 # FONCTION DU MENU START
 # creer les textes a afficher sur le Menu
 font = pygame.font.SysFont('monospace', 50)
+font2 = pygame.font.SysFont('monospace', 20)
 
 TexteTitreMenu = font.render("SYSTEME SOL-AIR", 1, (255, 255, 255))
 texteLancerJeu = font.render("Explorer L'Infinie", 1, (255, 255, 255))
 textInfoJeu = font.render("Info", 1, (255, 255, 255))
+
+textFlecheHaut = font2.render("↑", 1, (255, 255, 255))
+textFlecheBas = font2.render("↓", 1, (255, 255, 255))
+textFlecheGauche = font2.render("←", 1, (255, 255, 255))
+textFlecheDroite = font2.render("→", 1, (255, 255, 255))
+textFlecheSpace = font2.render("Press Space", 1, (255, 255, 255))
 #...
 
 # creer les rects des textes du menu
@@ -85,14 +92,16 @@ def MenuStartGame():
         # verifier si le vaisseau touche des textes du menu
         # verifier si le vaisseau touche le texte du Menu "SYSTEME SOL-AIR"
         if RectLancerJeu.colliderect(vaisseau):
+            screen.blit(textFlecheSpace, ((1000-textFlecheSpace.get_width())/2, 200))
             texteLancerJeu = font.render("-> EXPLORER L'INFINIE <-", 1, (255, 255, 255))
             if pressed[pygame.K_SPACE]:
-                phase = 'lancerJeu'
+                phase = 'EnvoieressourceTerreMars'
         else:
             texteLancerJeu = font.render("Explorer L'Infinie", 1, (255, 255, 255))
         #...
         
         if rectINFO.colliderect(vaisseau):
+            screen.blit(textFlecheSpace, ((1000-textFlecheSpace.get_width())/2, 200))
             textInfoJeu = font.render("-> INFO <-", 1, (255, 255, 255))            
             if pressed[pygame.K_SPACE]:
                 phase = 'info jeu'
@@ -105,6 +114,13 @@ def MenuStartGame():
         screen.blit(TexteTitreMenu, ((1000-TexteTitreMenu.get_width())/2, (800-TexteTitreMenu.get_height())/2-300))
         screen.blit(texteLancerJeu, ((1000-texteLancerJeu.get_width())/2, (800-texteLancerJeu.get_height())/2-50))
         screen.blit(textInfoJeu, ((1000-textInfoJeu.get_width())/2, (800-textInfoJeu.get_height())/2 + 25))    
+        
+        # afficher les touches a utiliser pour deplacer le vaisseau
+        screen.blit(textFlecheHaut, (63, 730))
+        screen.blit(textFlecheBas, (63, 760))
+        screen.blit(textFlecheGauche, (40, 745))
+        screen.blit(textFlecheDroite, (86, 745))
+        #...
     #...
 #...
 
@@ -115,9 +131,6 @@ def MenuStartGame():
 
 # fonction du menu INFO
 # definir les variables des textes a afficher sur le menu INFO
-font = pygame.font.SysFont('monospace', 50)
-font2 = pygame.font.SysFont('monospace', 20)
-
 TitreInfo = font.render("INFO", 1, (255, 255, 255))
 TexteQUITTERinfo = font.render("Quit", 1, (255, 255, 255))
 
@@ -147,6 +160,7 @@ def InfoJeu():
         
         # verifier si le vaisseau QUIT le menu info
         if rectQUITinfo.colliderect(vaisseau):
+            screen.blit(textFlecheSpace, ((1000-textFlecheSpace.get_width())/2, 40))
             TexteQUITTERinfo = font.render("QUIT", 1, (255, 255, 255))
             if pressed[pygame.K_SPACE]:
                 phase = 'MenuLancerJeu'
@@ -177,6 +191,27 @@ def InfoJeu():
 
 
 
+# definir la fonction pour gerer le decollage de la fusée vers Terre -> Mars
+# variable servant a gerer l'espace restant dans la fusée
+FuseeEnvoieTerreMars = 20
+#...
+
+# creer les rects de choix
+rectChoixRessourceTerreMars = pygame.Rect(0, 0, 80, 80)
+#...
+
+def EnvoieRessourceTerreMars():
+    if phase == 'EnvoieressourceTerreMars':
+        pygame.draw.rect(screen, (255, 255, 255), rectChoixRessourceTerreMars)
+#...
+        
+        
+        
+
+
+
+
+
 
 # gerer le nombre de fps
 clock = pygame.time.Clock()
@@ -197,11 +232,12 @@ while running:
     #...
         
     
-    
+     
     
     # appeler toute les fonctions du jeu
     MenuStartGame()
     InfoJeu()
+    EnvoieRessourceTerreMars()
     #...
     
     
