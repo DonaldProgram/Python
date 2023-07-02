@@ -12,6 +12,8 @@ phase = 'MenuLancerJeu'
 #...
 
 
+
+
 # fonction pour gerer le vaisseau
 # creer le vaisseau 
 vaisseau = pygame.Rect(150, 150, 20, 15)
@@ -39,6 +41,7 @@ def move_vaisseau():
     pygame.draw.rect(screen, (255, 255, 255), vaisseau)
     #...
 #...
+
 
 
 
@@ -75,11 +78,11 @@ def MenuStartGame():
         #...
 
         # verifier si le vaisseau touche des textes du menu
-        # verifier si le vaisseau touche le texte du Menu "GO TO MARS"
+        # verifier si le vaisseau touche le texte du Menu "SYSTEME SOL-AIR"
         if RectLancerJeu.colliderect(vaisseau):
             texteLancerJeu = font.render("-> EXPLORER L'INFINIE <-", 1, (255, 255, 255))
             if pressed[pygame.K_SPACE]:
-                phase = 'explication'
+                phase = 'lancerJeu'
         else:
             texteLancerJeu = font.render("Explorer L'Infinie", 1, (255, 255, 255))
         #...
@@ -97,7 +100,7 @@ def MenuStartGame():
         screen.blit(TexteTitreMenu, ((1000-TexteTitreMenu.get_width())/2, (800-TexteTitreMenu.get_height())/2-300))
         screen.blit(texteLancerJeu, ((1000-texteLancerJeu.get_width())/2, (800-texteLancerJeu.get_height())/2-50))
         screen.blit(textInfoJeu, ((1000-textInfoJeu.get_width())/2, (800-textInfoJeu.get_height())/2 + 25))    
-        #...
+    #...
 #...
 
 
@@ -111,7 +114,7 @@ font = pygame.font.SysFont('monospace', 50)
 font2 = pygame.font.SysFont('monospace', 20)
 
 TitreInfo = font.render("INFO", 1, (255, 255, 255))
-TexteQUITTERinfo = font.render("QUIT", 1, (255, 255, 255))
+TexteQUITTERinfo = font.render("Quit", 1, (255, 255, 255))
 
 TexteInfo1 = font2.render("Vous partez de la Terre en direction de Mars.", 1, (255, 255, 255))
 TexteInfo2 = font2.render("Vous devez rendre Mars habitable et accueillir des Humains.", 1, (255, 255, 255))
@@ -123,10 +126,30 @@ TexteInfo6_2 = font2.render("vous souhaitez emportez dans la fusée qui vous emm
 TexteInfo7 = font2.render("Bonne chance !", 1, (255, 255, 255))
 #...
 
+# creer le rect du texte 'quit'
+rectQUITinfo = TexteQUITTERinfo.get_rect()
+#...
+
+
 def InfoJeu():
+    global phase
+    
     # verifier si la fenetre de l'info du jeu doit etre afficher
     if phase == 'info jeu':
+        # gerer le vaisseau
         move_vaisseau()
+        #...
+        
+        # verifier si le vaisseau QUIT le menu info
+        if rectQUITinfo.colliderect(vaisseau):
+            TexteQUITTERinfo = font.render("QUIT", 1, (255, 255, 255))
+            if pressed[pygame.K_SPACE]:
+                phase = 'MenuLancerJeu'
+        else:
+            TexteQUITTERinfo = font.render("Quit", 1, (255, 255, 255))
+        #...
+
+
         # afficher les textes sur le menu info
         screen.blit(TitreInfo, ((1000-TitreInfo.get_width())/2, (800-TitreInfo.get_height())/2-300))
         
@@ -139,7 +162,8 @@ def InfoJeu():
         screen.blit(TexteInfo6_2, ((1000-TexteInfo6_2.get_width())/2, (800-TexteInfo6_2.get_height())/2+75))
         screen.blit(TexteInfo7, ((1000-TexteInfo7.get_width())/2, (800-TexteInfo7.get_height())/2+125))
         
-        screen.blit(TexteQUITTERinfo, ((1000-TexteQUITTERinfo.get_width())/2-425, (800-TexteQUITTERinfo.get_height())/2-375))
+        
+        screen.blit(TexteQUITTERinfo, (0, 0))
         #...
     #... 
 #...
