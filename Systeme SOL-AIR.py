@@ -18,22 +18,27 @@ phase = 'MenuLancerJeu'
 # creer le vaisseau 
 vaisseau = pygame.Rect(150, 150, 20, 15)
 #...
+
+#variable pour gerer la vitesse du vaisseau
+vaisseau_speed = 5
+#...
+
 def move_vaisseau():
     # deplacer le vaisseau    
     if pressed[pygame.K_UP] and vaisseau.y >= vaisseau.height/2:
-        vaisseau.y -= 5
+        vaisseau.y -= vaisseau_speed
         vaisseau.width, vaisseau.height = 15, 20
         
     elif pressed[pygame.K_DOWN] and vaisseau.y <= 800-vaisseau.height*1.5:
-        vaisseau.y += 5
+        vaisseau.y += vaisseau_speed
         vaisseau.width, vaisseau.height = 15, 20
         
     elif pressed[pygame.K_LEFT] and vaisseau.x >= vaisseau.width/2:
-        vaisseau.x -= 5
+        vaisseau.x -= vaisseau_speed
         vaisseau.width, vaisseau.height = 20, 15
         
     elif pressed[pygame.K_RIGHT] and vaisseau.x <= 1000-vaisseau.width-10:
-        vaisseau.x += 5
+        vaisseau.x += vaisseau_speed
         vaisseau.width, vaisseau.height = 20, 15
     #...
     
