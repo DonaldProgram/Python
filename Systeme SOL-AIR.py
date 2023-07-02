@@ -1,4 +1,4 @@
-import pygame
+import pygame, random
 pygame.init()
 
 
@@ -7,8 +7,38 @@ screen = pygame.display.set_mode((1000, 800))
 pygame.display.set_caption("SOL-AIR")
 #
 
+# changer l'icone de la fenetre
+icon = pygame.image.load("icon.jpg")
+pygame.display.set_icon(icon)
+#...
+
 # variable pour savoir quel menu doit etre afficher 
 phase = 'MenuLancerJeu'
+#...
+
+
+# fonction pour afficher des etoile a l'ecran
+# liste pour gerer les coordonnée des etoile a afficher
+liste_etoile = []
+#...
+
+
+# boucle pour ajouter toute les etoile a la liste
+for a in range(0, 500):
+    if random.randint(0, 2) == 0:
+        etoile_x = random.randint(0, 1000)
+        etoile_y = random.randint(0, 1000)
+        liste_etoile.append((etoile_x, etoile_y))
+#...
+
+# creer le point representant l'etoile
+font = pygame.font.SysFont('monospace', 10)
+Etoile = font.render('.', 1, (255, 255, 255))
+#...
+
+def afficher_etoile():
+    for a in range(len(liste_etoile)):
+        screen.blit(Etoile, liste_etoile[a])   
 #...
 
 
@@ -51,20 +81,39 @@ def move_vaisseau():
 
 
 
-# FONCTION DU MENU START
-# creer les textes a afficher sur le Menu
-font = pygame.font.SysFont('monospace', 50)
-font2 = pygame.font.SysFont('monospace', 20)
 
-TexteTitreMenu = font.render("SYSTEME SOL-AIR", 1, (255, 255, 255))
-texteLancerJeu = font.render("Explorer L'Infinie", 1, (255, 255, 255))
-textInfoJeu = font.render("Info", 1, (255, 255, 255))
+
+# fonction pour afficher le tuto pour deplacer le vaisseau
+font2 = pygame.font.SysFont('monospace', 20)
 
 textFlecheHaut = font2.render("↑", 1, (255, 255, 255))
 textFlecheBas = font2.render("↓", 1, (255, 255, 255))
 textFlecheGauche = font2.render("←", 1, (255, 255, 255))
 textFlecheDroite = font2.render("→", 1, (255, 255, 255))
 textFlecheSpace = font2.render("Press Space", 1, (255, 255, 255))
+
+def afficher_fleche_tuto_vaisseau():
+    # afficher les touches a utiliser pour deplacer le vaisseau
+    screen.blit(textFlecheHaut, (40, 730))
+    screen.blit(textFlecheBas, (40, 760))
+    screen.blit(textFlecheGauche, (23, 745))
+    screen.blit(textFlecheDroite, (57, 745))
+    #...
+#...
+
+
+
+
+
+
+
+# FONCTION DU MENU START
+# creer les textes a afficher sur le Menu
+font = pygame.font.SysFont('monospace', 50)
+
+TexteTitreMenu = font.render("SYSTEME SOL-AIR", 1, (255, 255, 255))
+texteLancerJeu = font.render("Explorer L'Infinie", 1, (255, 255, 255))
+textInfoJeu = font.render("Info", 1, (255, 255, 255))
 #...
 
 # creer les rects des textes du menu
@@ -89,6 +138,10 @@ def MenuStartGame():
         move_vaisseau()
         #...
 
+        # afficher le tuto pour deplacer le vaisseau
+        afficher_fleche_tuto_vaisseau()
+        #...
+        
         # verifier si le vaisseau touche des textes du menu
         # verifier si le vaisseau touche le texte du Menu "SYSTEME SOL-AIR"
         if RectLancerJeu.colliderect(vaisseau):
@@ -114,13 +167,6 @@ def MenuStartGame():
         screen.blit(TexteTitreMenu, ((1000-TexteTitreMenu.get_width())/2, (800-TexteTitreMenu.get_height())/2-300))
         screen.blit(texteLancerJeu, ((1000-texteLancerJeu.get_width())/2, (800-texteLancerJeu.get_height())/2-50))
         screen.blit(textInfoJeu, ((1000-textInfoJeu.get_width())/2, (800-textInfoJeu.get_height())/2 + 25))    
-        
-        # afficher les touches a utiliser pour deplacer le vaisseau
-        screen.blit(textFlecheHaut, (63, 730))
-        screen.blit(textFlecheBas, (63, 760))
-        screen.blit(textFlecheGauche, (40, 745))
-        screen.blit(textFlecheDroite, (86, 745))
-        #...
     #...
 #...
 
@@ -156,6 +202,10 @@ def InfoJeu():
     if phase == 'info jeu':
         # gerer le vaisseau
         move_vaisseau()
+        #...
+        
+        # afficher le tuto pour deplacer le vaisseau
+        afficher_fleche_tuto_vaisseau()
         #...
         
         # verifier si le vaisseau QUIT le menu info
@@ -194,15 +244,28 @@ def InfoJeu():
 # definir la fonction pour gerer le decollage de la fusée vers Terre -> Mars
 # variable servant a gerer l'espace restant dans la fusée
 FuseeEnvoieTerreMars = 20
+TexteFuseeEnvoieTerreMars = font2.render(f"Espace libre : {FuseeEnvoieTerreMars}", 1, (255, 255, 255))
 #...
 
 # creer les rects de choix
-rectChoixRessourceTerreMars = pygame.Rect(0, 0, 80, 80)
+rectChoixRessourceTerreMars = pygame.Rect(50, 50, 30, 30)
 #...
 
 def EnvoieRessourceTerreMars():
     if phase == 'EnvoieressourceTerreMars':
+        
+        # fonction pour gerer le vaisseau
+        move_vaisseau()
+        #...
+        
+        # remettre a jour le texte avec l'espace libre
+        TexteFuseeEnvoieTerreMars = font2.render(f"Espace libre : {FuseeEnvoieTerreMars}", 1, (255, 255, 255))
+        #...
+        
+        
+        # afficher les rects pour le choix des objets a emportez
         pygame.draw.rect(screen, (255, 255, 255), rectChoixRessourceTerreMars)
+        #...    
 #...
         
         
@@ -240,6 +303,9 @@ while running:
     EnvoieRessourceTerreMars()
     #...
     
+    # afficher les etoiles a l'ecran
+    afficher_etoile()
+    #...
     
     
     
