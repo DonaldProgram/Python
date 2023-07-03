@@ -193,7 +193,8 @@ TexteInfo4 = font2.render("- Vous pouvez vous aidez de Jupiter pour avoir du gaz
 TexteInfo5 = font2.render("- Vous pouvez vous aidez de Neptune pour avoir de l'eau.", 1, (255, 255, 255))
 TexteInfo6_1 = font2.render("N'oubliez pas de bien choisir le mode que", 1, (255, 255, 255))
 TexteInfo6_2 = font2.render("vous voulez (changement de difficulté.)", 1, (255, 255, 255))
-TexteInfo7 = font2.render("Bonne chance !", 1, (255, 255, 255))
+TexteInfo7 = font2.render("La monnaie des étoiles et le AC ou AstroCredit.", 1, (255, 255, 255))
+TexteInfo8 = font2.render("Bonne chance !", 1, (255, 255, 255))
 #...
 
 # creer le rect du texte 'quit'
@@ -236,6 +237,7 @@ def InfoJeu():
         screen.blit(TexteInfo6_1, ((1000-TexteInfo6_1.get_width())/2, (800-TexteInfo6_1.get_height())/2+50))
         screen.blit(TexteInfo6_2, ((1000-TexteInfo6_2.get_width())/2, (800-TexteInfo6_2.get_height())/2+75))
         screen.blit(TexteInfo7, ((1000-TexteInfo7.get_width())/2, (800-TexteInfo7.get_height())/2+125))
+        screen.blit(TexteInfo8, ((1000-TexteInfo8.get_width())/2, (800-TexteInfo8.get_height())/2+200))
         
         
         screen.blit(TexteQUITTERinfo, (0, 0))
