@@ -154,7 +154,7 @@ def MenuStartGame():
             screen.blit(textFlecheSpace, ((1000-textFlecheSpace.get_width())/2, 200))
             texteLancerJeu = font.render("-> EXPLORER L'INFINIE <-", 1, (255, 255, 255))
             if pressed[pygame.K_SPACE]:
-                phase = 'EnvoieressourceTerreMars'
+                phase = 'ChoixDifficulté'
         else:
             texteLancerJeu = font.render("Explorer L'Infinie", 1, (255, 255, 255))
         #...
@@ -257,15 +257,21 @@ TexteFuseeEnvoieTerreMars = font2.render(f"Espace libre : {FuseeEnvoieTerreMars}
 
 # variable servant a gerer les texte des modes de jeu
 TexteModeFacile = font3.render("Easy", 1, (255, 255, 255))
-InfoModeFacile = font2.render("+5.000.000 AC", 1, (255, 255, 255))
+InfoModeFacile1 = font2.render("+ 5 000 000 AC", 1, (255, 255, 255))
+InfoModeFacile2 = font2.render("+ 10 000 AC toutes les secondes", 1, (255, 255, 255))
+InfoModeFacile3 = font2.render("+ Objets déjà construit sur Mars", 1, (255, 255, 255))
+InfoModeFacile4 = font2.render("+ Energie illimité", 1, (255, 255, 255))
+InfoModeFacile5 = font2.render("+ Aucun impact de météorite", 1, (255, 255, 255))
+InfoModeFacile6 = font2.render("+ Aucun impact d'astéorïde", 1, (255, 255, 255))
+
+TexteModeNormal = font3.render("Normal", 1, (255, 255, 255))
+InfoModeNormal1 = font2.render("+ 3 000 000 AC", 1, (255, 255, 255))
+InfoModeNormal2 = font2.render("+ 6 000 AC toutes les secondes", 1, (255, 255, 255))
+InfoModeNormal3 = font2.render("+ Aucun impact d'astéroïde", 1, (255, 255, 255))
 #...
 
-# creer les rects de choix
-rectChoixRessourceTerreMars = pygame.Rect(50, 50, 30, 30)
-#...
-
-def EnvoieRessourceTerreMars():
-    if phase == 'EnvoieressourceTerreMars':
+def ChoixDifficulté():
+    if phase == 'ChoixDifficulté':
         
         # fonction pour gerer le vaisseau
         move_vaisseau()
@@ -276,12 +282,23 @@ def EnvoieRessourceTerreMars():
         #...
         
         # afficher les textes a l'ecran
+        # mode easy
         screen.blit(TexteModeFacile, (80, 50))
-        screen.blit(InfoModeFacile, (75, 100))
+        screen.blit(InfoModeFacile1, (60, 100))
+        screen.blit(InfoModeFacile2, (60, 130))
+        screen.blit(InfoModeFacile3, (60, 160))
+        screen.blit(InfoModeFacile4, (60, 190))
+        screen.blit(InfoModeFacile5, (60, 220))
+        screen.blit(InfoModeFacile6, (60, 250))
         #...
         
-        # afficher les rects pour le choix des objets a emportez
-        #...    
+        # mode normal
+        screen.blit(TexteModeNormal, (550, 50))
+        screen.blit(InfoModeNormal1, (530, 100))
+        screen.blit(InfoModeNormal2, (530, 130))
+        screen.blit(InfoModeNormal3, (530, 160))
+        #...
+        #...
 #...
         
         
@@ -316,7 +333,7 @@ while running:
     # appeler toute les fonctions du jeu
     MenuStartGame()
     InfoJeu()
-    EnvoieRessourceTerreMars()
+    ChoixDifficulté()
     #...
     
     # afficher les etoiles a l'ecran
