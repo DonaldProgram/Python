@@ -26,6 +26,9 @@ font4 = pygame.font.SysFont('monospace', 10)
 #...
 
 
+def BoutonBack():
+    ...
+
 
 # fonction pour afficher des etoile a l'ecran
 # liste pour gerer les coordonnée des etoile a afficher
@@ -184,7 +187,7 @@ def MenuStartGame():
 # fonction du menu INFO
 # definir les variables des textes a afficher sur le menu INFO
 TitreInfo = font.render("INFO", 1, (255, 255, 255))
-TexteQUITTERinfo = font.render("Quit", 1, (255, 255, 255))
+TexteQUITTERinfo = font.render("←", 1, (255, 255, 255))
 
 TexteInfo1 = font2.render("Vous partez de la Terre en direction de Mars.", 1, (255, 255, 255))
 TexteInfo2 = font2.render("Vous devez rendre Mars habitable et accueillir des Humains.", 1, (255, 255, 255))
@@ -217,11 +220,11 @@ def InfoJeu():
         # verifier si le vaisseau QUIT le menu info
         if rectQUITinfo.colliderect(vaisseau):
             screen.blit(textFlecheSpace, ((1000-textFlecheSpace.get_width())/2, 40))
-            TexteQUITTERinfo = font.render("QUIT", 1, (255, 255, 255))
+            TexteQUITTERinfo = font.render("←", 1, (255, 255, 255))
             if pressed[pygame.K_SPACE]:
                 phase = 'MenuLancerJeu'
         else:
-            TexteQUITTERinfo = font.render("Quit", 1, (255, 255, 255))
+            TexteQUITTERinfo = font.render("←", 1, (255, 255, 255))
         #...
 
 
@@ -239,7 +242,7 @@ def InfoJeu():
         screen.blit(TexteInfo8, ((1000-TexteInfo8.get_width())/2, (800-TexteInfo8.get_height())/2+200))
         
         
-        screen.blit(TexteQUITTERinfo, (0, 0))
+        screen.blit(TexteQUITTERinfo, (30, 0))
         #...
     #... 
 #...
@@ -273,6 +276,9 @@ TexteModeHard = font3.render("Hard", 1, (255, 255, 255))
 InfoModeHard1 = font2.render("+ 1 000 000 AC", 1, (255, 255, 255))
 InfoModeHard2 = font2.render("+ 2 000 AC toutes les secondes", 1, (255, 255, 255))
 InfoModeHard3 = font2.render("+ Maladie en plus", 1, (255, 255, 255))
+
+TexteModeCreatif = font3.render("Creatif", 1, (255, 255, 255))
+InfoModeCreatif1 = font2.render("+ ∞ AC", 1, (255, 255, 255)) 
 #...
 
 # rects des textes de difficulté
@@ -287,6 +293,10 @@ rectTexteNormal.y = 50
 rectTexteHard = TexteModeHard.get_rect()
 rectTexteHard.x = 80
 rectTexteHard.y = 400
+
+rectTexteCreatif = TexteModeCreatif.get_rect()
+rectTexteCreatif.x = 550
+rectTexteCreatif.y = 400
 #...
 
 # variable pour connaitre le mode choisi
@@ -294,7 +304,7 @@ ChoixMode = None
 #...
 
 def ChoixDifficulté():
-    global phase, ChoixMode, TexteModeFacile,  TexteModeNormal, TexteModeHard
+    global phase, ChoixMode, TexteModeFacile,  TexteModeNormal, TexteModeHard, TexteModeCreatif
     if phase == 'ChoixDifficulté':
     
         # fonction pour gerer le vaisseau
@@ -333,6 +343,11 @@ def ChoixDifficulté():
         screen.blit(InfoModeHard3, (60, 510))
         #...
         
+        # mode creatif
+        screen.blit(TexteModeCreatif, (550, 400))
+        screen.blit(InfoModeCreatif1, (530, 450))
+        #...
+        
        # si le vaisseau choisi le texte easy
         if rectTexteFacile.colliderect(vaisseau):     
             if pressed[pygame.K_SPACE]:
@@ -354,18 +369,33 @@ def ChoixDifficulté():
                 TexteModeHard = font3.render("→ HARD ←", 1, (255, 255, 255))
         #... 
         
+        # si le vaisseau choisi le texte creatif
+        if rectTexteCreatif.colliderect(vaisseau):             
+            if pressed[pygame.K_SPACE]:
+                ChoixMode = "Creatif"
+                TexteModeCreatif = font3.render("→ Creatif ←", 1, (255, 255, 255))
+        #... 
+        
         # remettre les texte par defaut si il ne sont pas selectionné
         if ChoixMode == "Facile":
                 TexteModeNormal = font3.render("Normal", 1, (255, 255, 255))  
                 TexteModeHard = font3.render("Hard", 1, (255, 255, 255))
+                TexteModeCreatif = font3.render("Creatif", 1, (255, 255, 255))
                        
         if ChoixMode == "Normal":
                 TexteModeFacile = font3.render("Easy", 1, (255, 255, 255))   
                 TexteModeHard = font3.render("Hard", 1, (255, 255, 255))    
-
+                TexteModeCreatif = font3.render("Creatif", 1, (255, 255, 255))
+                
         if ChoixMode == "Hard": 
             TexteModeFacile = font3.render("Easy", 1, (255, 255, 255))   
             TexteModeNormal = font3.render("Normal", 1, (255, 255, 255))  
+            TexteModeCreatif = font3.render("Creatif", 1, (255, 255, 255))
+        
+        if ChoixMode == "Creatif":
+            TexteModeFacile = font3.render("Easy", 1, (255, 255, 255))   
+            TexteModeNormal = font3.render("Normal", 1, (255, 255, 255))
+            TexteModeHard = font3.render("Hard", 1, (255, 255, 255))    
         #...
         #...
 #...
