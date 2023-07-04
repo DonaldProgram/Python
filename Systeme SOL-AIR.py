@@ -337,12 +337,11 @@ def ChoixDifficulté():
         # fonction pour gerer le vaisseau
         move_vaisseau()
         #...
-        
-        # remettre a jour le texte avec l'espace libre
-        TexteFuseeEnvoieTerreMars = font2.render(f"Espace libre : {FuseeEnvoieTerreMars}", 1, (255, 255, 255))
+            
+        # afficher la fleche pour quitter le menu
+        BoutonBack("MenuLancerJeu")
         #...
         
-
         
         # afficher les textes a l'ecran
         # mode easy
