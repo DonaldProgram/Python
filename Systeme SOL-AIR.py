@@ -26,8 +26,44 @@ font4 = pygame.font.SysFont('monospace', 10)
 #...
 
 
-def BoutonBack():
-    ...
+
+
+
+
+
+# fonction pour afficher le bouton de retour
+# creer la fleche pour quitter
+TexteQUITTER = font.render("←", 1, (255, 255, 255))
+#...
+
+# creer le rect du texte 'quit'
+rectQUIT = TexteQUITTER.get_rect()
+rectQUIT.x = 30
+rectQUIT.y = 0
+#...
+
+def BoutonBack(phases):
+    global phase, TexteQUITTER
+    # verifier si le vaisseau QUIT le menu info
+    if rectQUIT.colliderect(vaisseau):
+        screen.blit(textFlecheSpace, ((1000-textFlecheSpace.get_width())/2, 40))
+        TexteQUITTER = font.render("←", 1, (255, 255, 255))
+        if pressed[pygame.K_SPACE]:
+            phase = phases
+        else:
+            TexteQUITTER = font.render("←", 1, (255, 255, 255))
+    #...
+    
+    # afficher la fleche
+    screen.blit(TexteQUITTER, (30, 0))
+    #...
+#...
+
+
+
+
+
+
 
 
 # fonction pour afficher des etoile a l'ecran
@@ -52,6 +88,9 @@ def afficher_etoile():
     for a in range(len(liste_etoile)):
         screen.blit(Etoile, liste_etoile[a])   
 #...
+
+
+
 
 
 
@@ -88,6 +127,7 @@ def move_vaisseau():
     pygame.draw.rect(screen, (255, 255, 255), vaisseau)
     #...
 #...
+
 
 
 
@@ -184,10 +224,11 @@ def MenuStartGame():
 
 
 
+
+
 # fonction du menu INFO
 # definir les variables des textes a afficher sur le menu INFO
 TitreInfo = font.render("INFO", 1, (255, 255, 255))
-TexteQUITTERinfo = font.render("←", 1, (255, 255, 255))
 
 TexteInfo1 = font2.render("Vous partez de la Terre en direction de Mars.", 1, (255, 255, 255))
 TexteInfo2 = font2.render("Vous devez rendre Mars habitable et accueillir des Humains.", 1, (255, 255, 255))
@@ -198,10 +239,6 @@ TexteInfo6_1 = font2.render("N'oubliez pas de bien choisir le mode que", 1, (255
 TexteInfo6_2 = font2.render("vous voulez (changement de difficulté.)", 1, (255, 255, 255))
 TexteInfo7 = font2.render("La monnaie des étoiles et le AC ou AstroCredit.", 1, (255, 255, 255))
 TexteInfo8 = font2.render("Bonne chance !", 1, (255, 255, 255))
-#...
-
-# creer le rect du texte 'quit'
-rectQUITinfo = TexteQUITTERinfo.get_rect()
 #...
 
 
@@ -217,15 +254,10 @@ def InfoJeu():
         afficher_fleche_tuto_vaisseau()
         #...
         
-        # verifier si le vaisseau QUIT le menu info
-        if rectQUITinfo.colliderect(vaisseau):
-            screen.blit(textFlecheSpace, ((1000-textFlecheSpace.get_width())/2, 40))
-            TexteQUITTERinfo = font.render("←", 1, (255, 255, 255))
-            if pressed[pygame.K_SPACE]:
-                phase = 'MenuLancerJeu'
-        else:
-            TexteQUITTERinfo = font.render("←", 1, (255, 255, 255))
+        # afficher le bouton de retour
+        BoutonBack('MenuLancerJeu')
         #...
+
 
 
         # afficher les textes sur le menu info
@@ -240,9 +272,6 @@ def InfoJeu():
         screen.blit(TexteInfo6_2, ((1000-TexteInfo6_2.get_width())/2, (800-TexteInfo6_2.get_height())/2+75))
         screen.blit(TexteInfo7, ((1000-TexteInfo7.get_width())/2, (800-TexteInfo7.get_height())/2+125))
         screen.blit(TexteInfo8, ((1000-TexteInfo8.get_width())/2, (800-TexteInfo8.get_height())/2+200))
-        
-        
-        screen.blit(TexteQUITTERinfo, (30, 0))
         #...
     #... 
 #...
@@ -251,12 +280,10 @@ def InfoJeu():
 
 
 
-# definir la fonction pour gerer le decollage de la fusée vers Terre -> Mars
-# variable servant a gerer l'espace restant dans la fusée
-FuseeEnvoieTerreMars = 20
-TexteFuseeEnvoieTerreMars = font2.render(f"Espace libre : {FuseeEnvoieTerreMars}", 1, (255, 255, 255))
-#...
 
+
+
+# definir la fonction pour gerer le decollage de la fusée vers Terre -> Mars
 # variable servant a gerer les texte des modes de jeu
 TexteModeFacile = font3.render("Easy", 1, (255, 255, 255))
 InfoModeFacile1 = font2.render("+ 5 000 000 AC", 1, (255, 255, 255))
