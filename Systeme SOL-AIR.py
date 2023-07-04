@@ -204,7 +204,6 @@ rectQUITinfo = TexteQUITTERinfo.get_rect()
 
 def InfoJeu():
     global phase
-    
     # verifier si la fenetre de l'info du jeu doit etre afficher
     if phase == 'info jeu':
         # gerer le vaisseau
@@ -263,16 +262,41 @@ InfoModeFacile3 = font2.render("+ Objets déjà construit sur Mars", 1, (255, 25
 InfoModeFacile4 = font2.render("+ Energie illimité", 1, (255, 255, 255))
 InfoModeFacile5 = font2.render("+ Aucun impact de météorite", 1, (255, 255, 255))
 InfoModeFacile6 = font2.render("+ Aucun impact d'astéorïde", 1, (255, 255, 255))
+InfoModeFacile7 = font2.render("+ Aucune maladie", 1, (255, 255, 255))
 
 TexteModeNormal = font3.render("Normal", 1, (255, 255, 255))
 InfoModeNormal1 = font2.render("+ 3 000 000 AC", 1, (255, 255, 255))
 InfoModeNormal2 = font2.render("+ 6 000 AC toutes les secondes", 1, (255, 255, 255))
 InfoModeNormal3 = font2.render("+ Aucun impact d'astéroïde", 1, (255, 255, 255))
+
+TexteModeHard = font3.render("Hard", 1, (255, 255, 255))
+InfoModeHard1 = font2.render("+ 1 000 000 AC", 1, (255, 255, 255))
+InfoModeHard2 = font2.render("+ 2 000 AC toutes les secondes", 1, (255, 255, 255))
+InfoModeHard3 = font2.render("+ Maladie en plus", 1, (255, 255, 255))
+#...
+
+# rects des textes de difficulté
+rectTexteFacile = TexteModeFacile.get_rect()
+rectTexteFacile.x = 80
+rectTexteFacile.y = 50
+
+rectTexteNormal = TexteModeNormal.get_rect()
+rectTexteNormal.x = 550
+rectTexteNormal.y = 50
+
+rectTexteHard = TexteModeHard.get_rect()
+rectTexteHard.x = 80
+rectTexteHard.y = 400
+#...
+
+# variable pour connaitre le mode choisi
+ChoixMode = None
 #...
 
 def ChoixDifficulté():
+    global phase, ChoixMode, TexteModeFacile,  TexteModeNormal, TexteModeHard
     if phase == 'ChoixDifficulté':
-        
+    
         # fonction pour gerer le vaisseau
         move_vaisseau()
         #...
@@ -280,6 +304,8 @@ def ChoixDifficulté():
         # remettre a jour le texte avec l'espace libre
         TexteFuseeEnvoieTerreMars = font2.render(f"Espace libre : {FuseeEnvoieTerreMars}", 1, (255, 255, 255))
         #...
+        
+
         
         # afficher les textes a l'ecran
         # mode easy
@@ -290,6 +316,7 @@ def ChoixDifficulté():
         screen.blit(InfoModeFacile4, (60, 190))
         screen.blit(InfoModeFacile5, (60, 220))
         screen.blit(InfoModeFacile6, (60, 250))
+        screen.blit(InfoModeFacile7, (60, 280))
         #...
         
         # mode normal
@@ -297,6 +324,48 @@ def ChoixDifficulté():
         screen.blit(InfoModeNormal1, (530, 100))
         screen.blit(InfoModeNormal2, (530, 130))
         screen.blit(InfoModeNormal3, (530, 160))
+        #...
+        
+        # mode hard
+        screen.blit(TexteModeHard, (80, 400))
+        screen.blit(InfoModeHard1, (60, 450))
+        screen.blit(InfoModeHard2, (60, 480))
+        screen.blit(InfoModeHard3, (60, 510))
+        #...
+        
+       # si le vaisseau choisi le texte easy
+        if rectTexteFacile.colliderect(vaisseau):     
+            if pressed[pygame.K_SPACE]:
+                ChoixMode = "Facile"
+                TexteModeFacile = font3.render("→ EASY ←", 1, (255, 255, 255))
+        #... 
+        
+        # si le vaisseau choisi le texte easy
+        if rectTexteNormal.colliderect(vaisseau):             
+            if pressed[pygame.K_SPACE]:
+                ChoixMode = "Normal"
+                TexteModeNormal = font3.render("→ NORMAL ←", 1, (255, 255, 255))
+        #... 
+        
+        # si le vaisseau choisi le texte hard
+        if rectTexteHard.colliderect(vaisseau):             
+            if pressed[pygame.K_SPACE]:
+                ChoixMode = "Hard"
+                TexteModeHard = font3.render("→ HARD ←", 1, (255, 255, 255))
+        #... 
+        
+        # remettre les texte par defaut si il ne sont pas selectionné
+        if ChoixMode == "Facile":
+                TexteModeNormal = font3.render("Normal", 1, (255, 255, 255))  
+                TexteModeHard = font3.render("Hard", 1, (255, 255, 255))
+                       
+        if ChoixMode == "Normal":
+                TexteModeFacile = font3.render("Easy", 1, (255, 255, 255))   
+                TexteModeHard = font3.render("Hard", 1, (255, 255, 255))    
+
+        if ChoixMode == "Hard": 
+            TexteModeFacile = font3.render("Easy", 1, (255, 255, 255))   
+            TexteModeNormal = font3.render("Normal", 1, (255, 255, 255))  
         #...
         #...
 #...
