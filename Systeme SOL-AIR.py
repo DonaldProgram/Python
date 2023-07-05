@@ -27,6 +27,11 @@ font5 = pygame.font.SysFont('Monaco', 30)
 #...
 
 
+# variable pour connaitre le mode choisi
+ChoixMode = None
+#...
+
+
 
 
 
@@ -70,6 +75,10 @@ def BoutonBack(phases):
 TexteLancer = font5.render("Lancer", 1, (0, 0, 0))
 #...
 
+# creer le texte quand aucun mode n'est choisir
+TexteChoisirMode = font2.render("Choisir un mode", 1, (255, 255, 255))
+#...
+
 # creer le rect autour du bouton
 rectLancer = pygame.Rect(930, 780, 70, 20)
 #...
@@ -88,11 +97,13 @@ def BoutonLancerPhase(phases):
     #...
     
     if rectLancer.colliderect(vaisseau):
-        screen.blit(textFlecheSpace, ((850, 700)))
-        if pressed[pygame.K_SPACE]:
-            phase = phases
+        if ChoixMode == None:
+            screen.blit(TexteChoisirMode, (800, 700))
+        else:
+            screen.blit(textFlecheSpace, ((850, 700)))
+            if pressed[pygame.K_SPACE]:
+                phase = phases
 #...
-
 
 
 
@@ -356,10 +367,6 @@ rectTexteHard.y = 400
 rectTexteCreatif = TexteModeCreatif.get_rect()
 rectTexteCreatif.x = 550
 rectTexteCreatif.y = 400
-#...
-
-# variable pour connaitre le mode choisi
-ChoixMode = None
 #...
 
 def ChoixDifficulté():
