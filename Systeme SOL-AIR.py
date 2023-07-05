@@ -23,6 +23,7 @@ font = pygame.font.SysFont('monospace', 50)
 font2 = pygame.font.SysFont('monospace', 20)
 font3 = pygame.font.SysFont('monospace', 40)
 font4 = pygame.font.SysFont('monospace', 10)
+font5 = pygame.font.SysFont('Monaco', 30)
 #...
 
 
@@ -57,6 +58,39 @@ def BoutonBack(phases):
     # afficher la fleche
     screen.blit(TexteQUITTER, (30, 0))
     #...
+#...
+
+
+
+
+
+
+# fonction pour afficher le bouton lancer
+# creer le texte du bouton lancer
+TexteLancer = font5.render("Lancer", 1, (0, 0, 0))
+#...
+
+# creer le rect autour du bouton
+rectLancer = pygame.Rect(930, 780, 70, 20)
+#...
+
+textFlecheSpace = font2.render("Press Space", 1, (255, 255, 255))
+
+def BoutonLancer(phases):
+    global textFlecheSpace, TexteLancer, phase
+    
+    # afficher le rect autour du texte
+    pygame.draw.rect(screen, (255, 255, 255), rectLancer)
+    #...
+    
+    # afficher le texte sur le rect
+    screen.blit(TexteLancer, (930, 780))
+    #...
+    
+    if rectLancer.colliderect(vaisseau):
+        screen.blit(textFlecheSpace, ((800, 700)))
+        if pressed[pygame.K_SPACE]:
+            phase = phases
 #...
 
 
@@ -161,8 +195,6 @@ def afficher_fleche_tuto_vaisseau():
 TexteTitreMenu = font.render("SYSTEME SOL-AIR", 1, (255, 255, 255))
 texteLancerJeu = font.render("Explorer L'Infinie", 1, (255, 255, 255))
 textInfoJeu = font.render("Info", 1, (255, 255, 255))
-
-textFlecheSpace = font2.render("Press Space", 1, (255, 255, 255))
 #...
 
 # creer les rects des textes du menu
@@ -333,7 +365,11 @@ ChoixMode = None
 def ChoixDifficulté():
     global phase, ChoixMode, TexteModeFacile,  TexteModeNormal, TexteModeHard, TexteModeCreatif
     if phase == 'ChoixDifficulté':
-    
+        
+        # afficher le bouton pour lancer
+        BoutonLancer('MenuLancerJeu')
+        #...
+        
         # fonction pour gerer le vaisseau
         move_vaisseau()
         #...
@@ -341,7 +377,6 @@ def ChoixDifficulté():
         # afficher la fleche pour quitter le menu
         BoutonBack("MenuLancerJeu")
         #...
-        
         
         # afficher les textes a l'ecran
         # mode easy
@@ -465,7 +500,7 @@ while running:
     afficher_etoile()
     #...
     
-    
+
     
     # mettre a jour l'ecran
     pygame.display.flip()
