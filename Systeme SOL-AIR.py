@@ -76,7 +76,7 @@ rectLancer = pygame.Rect(930, 780, 70, 20)
 
 textFlecheSpace = font2.render("Press Space", 1, (255, 255, 255))
 
-def BoutonLancer(phases):
+def BoutonLancerPhase(phases):
     global textFlecheSpace, TexteLancer, phase
     
     # afficher le rect autour du texte
@@ -88,7 +88,7 @@ def BoutonLancer(phases):
     #...
     
     if rectLancer.colliderect(vaisseau):
-        screen.blit(textFlecheSpace, ((800, 700)))
+        screen.blit(textFlecheSpace, ((850, 700)))
         if pressed[pygame.K_SPACE]:
             phase = phases
 #...
@@ -367,7 +367,7 @@ def ChoixDifficulté():
     if phase == 'ChoixDifficulté':
         
         # afficher le bouton pour lancer
-        BoutonLancer('MenuLancerJeu')
+        BoutonLancerPhase('MenuLancerJeu')
         #...
         
         # fonction pour gerer le vaisseau
