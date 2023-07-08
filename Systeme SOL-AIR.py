@@ -12,6 +12,10 @@ icon = pygame.image.load("icon.jpg")
 pygame.display.set_icon(icon)
 #...
 
+# importer les images du jeu
+TablettePetite = pygame.image.load("tablettepetite.png")
+#...
+
 
 # variable pour savoir quel menu doit etre afficher 
 phase = 'MenuLancerJeu'
@@ -225,7 +229,10 @@ def MenuStartGame():
     # verifier si le menu doit etre afficher
     if phase == 'MenuLancerJeu':
     #...
-        
+        # mettre l'ecran en noir
+        screen.fill((0, 0, 0))        
+        #...   
+
         # fonction gerer le vaisseau
         move_vaisseau()
         #...
@@ -289,6 +296,11 @@ def InfoJeu():
     global phase
     # verifier si la fenetre de l'info du jeu doit etre afficher
     if phase == 'info jeu':
+
+        # mettre l'ecran en noir
+        screen.fill((0, 0, 0))        
+        #...
+
         # gerer le vaisseau
         move_vaisseau()
         #...
@@ -369,12 +381,20 @@ rectTexteCreatif.x = 550
 rectTexteCreatif.y = 400
 #...
 
+# definir la variable gerant le nombre de credit du joueur
+AC = 0
+#...
+
 def ChoixDifficulté():
-    global phase, ChoixMode, TexteModeFacile,  TexteModeNormal, TexteModeHard, TexteModeCreatif
+    global phase, ChoixMode, TexteModeFacile,  TexteModeNormal, TexteModeHard, TexteModeCreatif, AC
     if phase == 'ChoixDifficulté':
         
+        # mettre l'ecran en noir
+        screen.fill((0, 0, 0))        
+        #...
+
         # afficher le bouton pour lancer
-        BoutonLancerPhase('MenuLancerJeu')
+        BoutonLancerPhase('StartGame')
         #...
         
         # fonction pour gerer le vaisseau
@@ -419,7 +439,7 @@ def ChoixDifficulté():
        # si le vaisseau choisi le texte easy
         if rectTexteFacile.colliderect(vaisseau):     
             if pressed[pygame.K_SPACE]:
-                ChoixMode = "Facile"
+                ChoixMode = "easy"
                 TexteModeFacile = font3.render("→ EASY ←", 1, (255, 255, 255))
         #... 
         
@@ -445,34 +465,110 @@ def ChoixDifficulté():
         #... 
         
         # remettre les texte par defaut si il ne sont pas selectionné
-        if ChoixMode == "Facile":
+        if ChoixMode == "easy":
                 TexteModeNormal = font3.render("Normal", 1, (255, 255, 255))  
                 TexteModeHard = font3.render("Hard", 1, (255, 255, 255))
                 TexteModeCreatif = font3.render("Creatif", 1, (255, 255, 255))
+                AC = 5000000
                        
         if ChoixMode == "Normal":
                 TexteModeFacile = font3.render("Easy", 1, (255, 255, 255))   
                 TexteModeHard = font3.render("Hard", 1, (255, 255, 255))    
                 TexteModeCreatif = font3.render("Creatif", 1, (255, 255, 255))
+                AC = 3000000
                 
         if ChoixMode == "Hard": 
             TexteModeFacile = font3.render("Easy", 1, (255, 255, 255))   
             TexteModeNormal = font3.render("Normal", 1, (255, 255, 255))  
             TexteModeCreatif = font3.render("Creatif", 1, (255, 255, 255))
-        
+            AC = 1000000
+
         if ChoixMode == "Creatif":
             TexteModeFacile = font3.render("Easy", 1, (255, 255, 255))   
             TexteModeNormal = font3.render("Normal", 1, (255, 255, 255))
-            TexteModeHard = font3.render("Hard", 1, (255, 255, 255))    
+            TexteModeHard = font3.render("Hard", 1, (255, 255, 255))  
+            AC = '∞'
         #...
         #...
 #...
         
         
+    
+    
+    
+    
+
         
 
 
 
+# fonction pour gerer l'achat d'objet dans le magasin et aussi le coté graphique
+def Shop():
+    # mettre l'ecran en noir
+    screen.fill((0, 0, 0))        
+    #...
+#...
+    
+
+
+
+
+
+# fonction pour gerer ce qui se passe lors de la partie
+# Initialiser le nombre de AC
+ACtexte = font5.render(f"{AC} AC", 1, (255, 255, 255))
+#...
+
+# definir le rect de la TablettePetite
+rectTablette = TablettePetite.get_rect()
+rectTablette.x = 40
+rectTablette.y = 770
+#...
+def Partie():
+    global AC, ACtexte, phase
+    if phase == 'StartGame':      
+
+        # mettre l'ecran en noir
+        screen.fill((0, 0, 0))        
+        #... 
+
+        # afficher le nombre de AC
+        if AC == '∞':
+            ACtexte = font2.render("∞ AC", 1, (255, 255, 255))
+        else:
+            ACtexte = font5.render(f"{AC} AC", 1, (255, 255, 255))
+        screen.blit(ACtexte, (0, 0))
+        #...
+
+        if vaisseau.colliderect(rectTablette):
+            screen.blit(TablettePetite, (40, 735))
+            rectTablette.x = 40
+            rectTablette.y = 735
+            screen.blit(textFlecheSpace, ((10, 700)))
+            if pressed[pygame.K_SPACE]:
+                phase = 'tablette'
+        else:
+            screen.blit(TablettePetite, (40, 770))
+            rectTablette.x = 40
+            rectTablette.y = 770
+
+        # afficher le vaisseau
+        move_vaisseau()
+        #...
+#...
+
+
+
+
+
+
+# fonction pour gerer la TablettePetite
+def tablette():
+    if phase == 'tablette':
+        # mettre l'ecran en noir
+        screen.fill((0, 0, 0))        
+        #...
+#...
 
 
 
@@ -490,9 +586,7 @@ while running:
 
     pressed = pygame.key.get_pressed()
 
-    # mettre l'ecran en noir
-    screen.fill((0, 0, 0))        
-    #...
+
         
     
      
@@ -501,13 +595,13 @@ while running:
     MenuStartGame()
     InfoJeu()
     ChoixDifficulté()
+    Partie()
+    tablette()
     #...
     
     # afficher les etoiles a l'ecran
     afficher_etoile()
     #...
-    
-
     
     # mettre a jour l'ecran
     pygame.display.flip()
