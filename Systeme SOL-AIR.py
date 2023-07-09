@@ -232,7 +232,11 @@ def MenuStartGame():
         # mettre l'ecran en noir
         screen.fill((0, 0, 0))        
         #...   
-
+    
+        # afficher les etoiles a l'ecran
+        afficher_etoile()
+        #...
+        
         # fonction gerer le vaisseau
         move_vaisseau()
         #...
@@ -299,6 +303,10 @@ def InfoJeu():
 
         # mettre l'ecran en noir
         screen.fill((0, 0, 0))        
+        #...
+
+        # afficher les etoiles a l'ecran
+        afficher_etoile()
         #...
 
         # gerer le vaisseau
@@ -391,6 +399,10 @@ def ChoixDifficulté():
         
         # mettre l'ecran en noir
         screen.fill((0, 0, 0))        
+        #...
+
+        # afficher les etoiles a l'ecran
+        afficher_etoile()
         #...
 
         # afficher le bouton pour lancer
@@ -532,6 +544,10 @@ def Partie():
         screen.fill((0, 0, 0))        
         #... 
 
+        # afficher les etoiles a l'ecran
+        afficher_etoile()
+        #...
+
         # afficher le nombre de AC
         if AC == '∞':
             ACtexte = font2.render("∞ AC", 1, (255, 255, 255))
@@ -563,10 +579,14 @@ def Partie():
 
 
 # fonction pour gerer la TablettePetite
+# definir les rects des apps
+rectSystemeSOLAIRE = ...
+#...
+
 def tablette():
     if phase == 'tablette':
         # mettre l'ecran en noir
-        screen.fill((0, 0, 0))        
+        screen.fill((0, 191, 191))        
         #...
 #...
 
@@ -599,9 +619,7 @@ while running:
     tablette()
     #...
     
-    # afficher les etoiles a l'ecran
-    afficher_etoile()
-    #...
+
     
     # mettre a jour l'ecran
     pygame.display.flip()
