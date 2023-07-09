@@ -8,14 +8,16 @@ pygame.display.set_caption("SOL-AIR")
 #
 
 # changer l'icone de la fenetre
-icon = pygame.image.load("icon.jpg")
-pygame.display.set_icon(icon)
+systeme_sol_air = pygame.image.load("systeme_sol_air.jpg")
+pygame.display.set_icon(systeme_sol_air)
 #...
 
 # importer les images du jeu
-TablettePetite = pygame.image.load("tablettepetite.png")
+Tablette = pygame.image.load("tablette.png")
+soleil_app = pygame.image.load('soleil_app.png')
+impots_app = pygame.image.load("impots_app.png")
+population_app = pygame.image.load("population_app.png")
 #...
-
 
 # variable pour savoir quel menu doit etre afficher 
 phase = 'MenuLancerJeu'
@@ -531,8 +533,8 @@ def Shop():
 ACtexte = font5.render(f"{AC} AC", 1, (255, 255, 255))
 #...
 
-# definir le rect de la TablettePetite
-rectTablette = TablettePetite.get_rect()
+# definir le rect de la Tablette
+rectTablette = Tablette.get_rect()
 rectTablette.x = 40
 rectTablette.y = 770
 #...
@@ -557,14 +559,14 @@ def Partie():
         #...
 
         if vaisseau.colliderect(rectTablette):
-            screen.blit(TablettePetite, (40, 735))
+            screen.blit(Tablette, (40, 735))
             rectTablette.x = 40
             rectTablette.y = 735
             screen.blit(textFlecheSpace, ((10, 700)))
             if pressed[pygame.K_SPACE]:
                 phase = 'tablette'
         else:
-            screen.blit(TablettePetite, (40, 770))
+            screen.blit(Tablette, (40, 770))
             rectTablette.x = 40
             rectTablette.y = 770
 
@@ -578,17 +580,78 @@ def Partie():
 
 
 
-# fonction pour gerer la TablettePetite
+
+# fonction pour gerer la Tablette
 # definir les rects des apps
-rectSystemeSOLAIRE = ...
+soleil_app2 = pygame.transform.scale(soleil_app, (int(soleil_app.get_width()*1.2), int(soleil_app.get_height()*1.2)))
+rectSoleil_app = soleil_app.get_rect()
+rectSoleil_app.x = 150
+rectSoleil_app.y = 130
+
+impots_app2 = pygame.transform.scale(impots_app, (int(impots_app.get_width()*1.2), int(impots_app.get_height()*1.2)))
+rectImpots_app = impots_app.get_rect()
+rectImpots_app.x = 0
+rectImpots_app.y = 0
+
+population_app2 = pygame.transform.scale(population_app, (int(population_app.get_width()*1.2), int(population_app.get_height()*1.2)))
+rectPopulation_app = population_app.get_rect()
+rectPopulation_app.x = 0
+rectPopulation_app.y = 0
 #...
 
 def tablette():
+    global rectSoleil_app, rectImpots_app, rectPopulation_app
     if phase == 'tablette':
         # mettre l'ecran en noir
         screen.fill((0, 191, 191))        
         #...
+
+        # afficher l'icon de l'app systeme solaire
+        if rectSoleil_app.colliderect(vaisseau):
+            screen.blit(soleil_app2, (146, 126))
+            rectSoleil_app = soleil_app2.get_rect()
+            rectSoleil_app.x = 146
+            rectSoleil_app.y = 126
+        else:   
+            screen.blit(soleil_app, (150, 130))
+            rectSoleil_app = soleil_app.get_rect()
+            rectSoleil_app.x = 150
+            rectSoleil_app.y = 130
+        #...
+
+        # afficher l'icon de l'app impots
+        if rectImpots_app.colliderect(vaisseau):
+            screen.blit(impots_app2, (246, 126))
+            rectImpots_app = impots_app2.get_rect()
+            rectImpots_app.x = 246
+            rectImpots_app.y = 126
+        else:   
+            screen.blit(impots_app, (250, 130))
+            rectImpots_app = impots_app.get_rect()
+            rectImpots_app.x = 250
+            rectImpots_app.y = 130
+        #...
+
+        # afficher l'icon de l'app gestion population
+        if rectPopulation_app.colliderect(vaisseau):
+            screen.blit(population_app2, (346, 126))
+            rectPopulation_app = population_app2.get_rect()
+            rectPopulation_app.x = 346
+            rectPopulation_app.y = 126
+        else:   
+            screen.blit(population_app, (350, 130))
+            rectPopulation_app = population_app.get_rect()
+            rectPopulation_app.x = 350
+            rectPopulation_app.y = 130
+        #...
+
+        # afficher le vaisseau
+        move_vaisseau()
+        #...
 #...
+
+
+
 
 
 
