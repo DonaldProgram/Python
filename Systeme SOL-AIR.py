@@ -17,6 +17,9 @@ Tablette = pygame.image.load("tablette.png")
 soleil_app = pygame.image.load('soleil_app.png')
 impots_app = pygame.image.load("impots_app.png")
 population_app = pygame.image.load("population_app.png")
+defi_app = pygame.image.load("defi_app.png")
+parametre_app = pygame.image.load("parametre_app.png")
+shop_app = pygame.image.load("shop_app.png")
 #...
 
 # variable pour savoir quel menu doit etre afficher 
@@ -293,7 +296,7 @@ TexteInfo4 = font2.render("- Vous pouvez vous aidez de Jupiter pour avoir du gaz
 TexteInfo5 = font2.render("- Vous pouvez vous aidez de Neptune pour avoir de l'eau.", 1, (255, 255, 255))
 TexteInfo6_1 = font2.render("N'oubliez pas de bien choisir le mode que", 1, (255, 255, 255))
 TexteInfo6_2 = font2.render("vous voulez (changement de difficulté.)", 1, (255, 255, 255))
-TexteInfo7 = font2.render("La monnaie des étoiles et le AC ou AstroCredit.", 1, (255, 255, 255))
+TexteInfo7 = font2.render("La monnaie des étoiles est le AC ou AstroCredit.", 1, (255, 255, 255))
 TexteInfo8 = font2.render("Bonne chance !", 1, (255, 255, 255))
 #...
 
@@ -585,22 +588,25 @@ def Partie():
 # definir les rects des apps
 soleil_app2 = pygame.transform.scale(soleil_app, (int(soleil_app.get_width()*1.2), int(soleil_app.get_height()*1.2)))
 rectSoleil_app = soleil_app.get_rect()
-rectSoleil_app.x = 150
-rectSoleil_app.y = 130
 
 impots_app2 = pygame.transform.scale(impots_app, (int(impots_app.get_width()*1.2), int(impots_app.get_height()*1.2)))
 rectImpots_app = impots_app.get_rect()
-rectImpots_app.x = 0
-rectImpots_app.y = 0
 
 population_app2 = pygame.transform.scale(population_app, (int(population_app.get_width()*1.2), int(population_app.get_height()*1.2)))
 rectPopulation_app = population_app.get_rect()
-rectPopulation_app.x = 0
-rectPopulation_app.y = 0
+
+defi_app2 = pygame.transform.scale(defi_app, (int(defi_app.get_width()*1.2), int(defi_app.get_height()*1.2)))
+rectDefi_app = defi_app.get_rect()
+
+parametre_app2 = pygame.transform.scale(parametre_app, (int(parametre_app.get_width()*1.2), int(parametre_app.get_height()*1.2)))
+rectParametre_app = parametre_app.get_rect()
+
+shop_app2 = pygame.transform.scale(shop_app, (int(shop_app.get_width()*1.2), int(shop_app.get_height()*1.2)))
+rectShop_app = shop_app.get_rect()
 #...
 
 def tablette():
-    global rectSoleil_app, rectImpots_app, rectPopulation_app
+    global rectSoleil_app, rectImpots_app, rectPopulation_app, rectDefi_app, rectParametre_app, rectShop_app
     if phase == 'tablette':
         # mettre l'ecran en noir
         screen.fill((0, 191, 191))        
@@ -643,6 +649,45 @@ def tablette():
             rectPopulation_app = population_app.get_rect()
             rectPopulation_app.x = 350
             rectPopulation_app.y = 130
+        #...
+
+        # afficher l'icon de l'app des defis
+        if rectDefi_app.colliderect(vaisseau):
+            screen.blit(defi_app2, (446, 126))
+            rectDefi_app = defi_app2.get_rect()
+            rectDefi_app.x = 446
+            rectDefi_app.y = 126
+        else:   
+            screen.blit(defi_app, (450, 130))
+            rectDefi_app = defi_app.get_rect()
+            rectDefi_app.x = 450
+            rectDefi_app.y = 130
+        #...
+
+        # afficher l'icon de l'app magasin
+        if rectShop_app.colliderect(vaisseau):
+            screen.blit(shop_app2, (546, 126))
+            rectShop_app = shop_app2.get_rect()
+            rectShop_app.x = 546
+            rectShop_app.y = 126
+        else:   
+            screen.blit(shop_app, (550, 130))
+            rectShop_app = shop_app.get_rect()
+            rectShop_app.x = 550
+            rectShop_app.y = 130
+        #...
+
+        # afficher l'icon de l'app parametre
+        if rectParametre_app.colliderect(vaisseau):
+            screen.blit(parametre_app2, (646, 126))
+            rectParametre_app = parametre_app2.get_rect()
+            rectParametre_app.x = 646
+            rectParametre_app.y = 126
+        else:   
+            screen.blit(parametre_app, (650, 130))
+            rectParametre_app = parametre_app.get_rect()
+            rectParametre_app.x = 650
+            rectParametre_app.y = 130
         #...
 
         # afficher le vaisseau
