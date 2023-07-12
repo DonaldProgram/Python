@@ -605,6 +605,10 @@ shop_app2 = pygame.transform.scale(shop_app, (int(shop_app.get_width()*1.2), int
 rectShop_app = shop_app.get_rect()
 #...
 
+# creer une variable pour gerer plus facilement les coordonnés de toutes les apps
+app_x = 200
+#...
+
 def tablette():
     global rectSoleil_app, rectImpots_app, rectPopulation_app, rectDefi_app, rectParametre_app, rectShop_app
     if phase == 'tablette':
@@ -614,79 +618,79 @@ def tablette():
 
         # afficher l'icon de l'app systeme solaire
         if rectSoleil_app.colliderect(vaisseau):
-            screen.blit(soleil_app2, (146, 126))
+            screen.blit(soleil_app2, (app_x-4, 126))
             rectSoleil_app = soleil_app2.get_rect()
-            rectSoleil_app.x = 146
+            rectSoleil_app.x = app_x-4
             rectSoleil_app.y = 126
         else:   
-            screen.blit(soleil_app, (150, 130))
+            screen.blit(soleil_app, (app_x, 130))
             rectSoleil_app = soleil_app.get_rect()
-            rectSoleil_app.x = 150
+            rectSoleil_app.x = app_x
             rectSoleil_app.y = 130
         #...
 
         # afficher l'icon de l'app impots
         if rectImpots_app.colliderect(vaisseau):
-            screen.blit(impots_app2, (246, 126))
+            screen.blit(impots_app2, (app_x+96, 126))
             rectImpots_app = impots_app2.get_rect()
-            rectImpots_app.x = 246
+            rectImpots_app.x = app_x + 96
             rectImpots_app.y = 126
         else:   
-            screen.blit(impots_app, (250, 130))
+            screen.blit(impots_app, (app_x+100, 130))
             rectImpots_app = impots_app.get_rect()
-            rectImpots_app.x = 250
+            rectImpots_app.x = app_x + 100
             rectImpots_app.y = 130
         #...
 
         # afficher l'icon de l'app gestion population
         if rectPopulation_app.colliderect(vaisseau):
-            screen.blit(population_app2, (346, 126))
+            screen.blit(population_app2, (app_x+196, 126))
             rectPopulation_app = population_app2.get_rect()
-            rectPopulation_app.x = 346
+            rectPopulation_app.x = app_x + 196
             rectPopulation_app.y = 126
         else:   
-            screen.blit(population_app, (350, 130))
+            screen.blit(population_app, (app_x+200, 130))
             rectPopulation_app = population_app.get_rect()
-            rectPopulation_app.x = 350
+            rectPopulation_app.x = app_x + 200
             rectPopulation_app.y = 130
         #...
 
         # afficher l'icon de l'app des defis
         if rectDefi_app.colliderect(vaisseau):
-            screen.blit(defi_app2, (446, 126))
+            screen.blit(defi_app2, (app_x+296, 126))
             rectDefi_app = defi_app2.get_rect()
-            rectDefi_app.x = 446
+            rectDefi_app.x = app_x + 296
             rectDefi_app.y = 126
         else:   
-            screen.blit(defi_app, (450, 130))
+            screen.blit(defi_app, (app_x+300, 130))
             rectDefi_app = defi_app.get_rect()
-            rectDefi_app.x = 450
+            rectDefi_app.x = app_x + 300
             rectDefi_app.y = 130
         #...
 
         # afficher l'icon de l'app magasin
         if rectShop_app.colliderect(vaisseau):
-            screen.blit(shop_app2, (546, 126))
+            screen.blit(shop_app2, (app_x+396, 126))
             rectShop_app = shop_app2.get_rect()
-            rectShop_app.x = 546
+            rectShop_app.x = app_x + 396
             rectShop_app.y = 126
         else:   
-            screen.blit(shop_app, (550, 130))
+            screen.blit(shop_app, (app_x+400, 130))
             rectShop_app = shop_app.get_rect()
-            rectShop_app.x = 550
+            rectShop_app.x = app_x + 400
             rectShop_app.y = 130
         #...
 
         # afficher l'icon de l'app parametre
         if rectParametre_app.colliderect(vaisseau):
-            screen.blit(parametre_app2, (646, 126))
+            screen.blit(parametre_app2, (app_x+496, 126))
             rectParametre_app = parametre_app2.get_rect()
-            rectParametre_app.x = 646
+            rectParametre_app.x = app_x + 496
             rectParametre_app.y = 126
         else:   
-            screen.blit(parametre_app, (650, 130))
+            screen.blit(parametre_app, (app_x+500, 130))
             rectParametre_app = parametre_app.get_rect()
-            rectParametre_app.x = 650
+            rectParametre_app.x = app_x + 500
             rectParametre_app.y = 130
         #...
 
