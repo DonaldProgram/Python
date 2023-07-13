@@ -9,6 +9,7 @@ pygame.display.set_caption("SOL-AIR")
 
 # changer l'icone de la fenetre
 systeme_sol_air = pygame.image.load("systeme_sol_air.jpg")
+systeme_sol_air2 = pygame.image.load("systeme_sol_air2.jpg")
 pygame.display.set_icon(systeme_sol_air)
 #...
 
@@ -53,13 +54,17 @@ TexteQUITTER = font.render("←", 1, (255, 255, 255))
 
 # creer le rect du texte 'quit'
 rectQUIT = TexteQUITTER.get_rect()
-rectQUIT.x = 30
-rectQUIT.y = 0
 #...
 
-def BoutonBack(phases):
+def BoutonBack(phases, x, y):
     global phase, TexteQUITTER
-    # verifier si le vaisseau QUIT le menu info
+
+    # definir l'endroit ou le rect doit se mettre
+    rectQUIT.x = x
+    rectQUIT.y = y
+    #...
+
+    # verifier si le vaisseau touche la fleche
     if rectQUIT.colliderect(vaisseau):
         screen.blit(textFlecheSpace, ((1000-textFlecheSpace.get_width())/2, 40))
         TexteQUITTER = font.render("←", 1, (255, 255, 255))
@@ -70,7 +75,8 @@ def BoutonBack(phases):
     #...
     
     # afficher la fleche
-    screen.blit(TexteQUITTER, (30, 0))
+
+    screen.blit(TexteQUITTER, (x, y))
     #...
 #...
 
@@ -323,7 +329,7 @@ def InfoJeu():
         #...
         
         # afficher le bouton de retour
-        BoutonBack('MenuLancerJeu')
+        BoutonBack('MenuLancerJeu', 0, -20)
         #...
 
 
@@ -419,7 +425,7 @@ def ChoixDifficulté():
         #...
             
         # afficher la fleche pour quitter le menu
-        BoutonBack("MenuLancerJeu")
+        BoutonBack("MenuLancerJeu", 0, -20)
         #...
         
         # afficher les textes a l'ecran
@@ -512,20 +518,6 @@ def ChoixDifficulté():
         
     
     
-    
-    
-
-        
-
-
-
-# fonction pour gerer l'achat d'objet dans le magasin et aussi le coté graphique
-def Shop():
-    # mettre l'ecran en noir
-    screen.fill((0, 0, 0))        
-    #...
-#...
-    
 
 
 
@@ -610,7 +602,8 @@ app_x = 200
 #...
 
 def tablette():
-    global rectSoleil_app, rectImpots_app, rectPopulation_app, rectDefi_app, rectParametre_app, rectShop_app
+    global phase, rectSoleil_app, rectImpots_app, rectPopulation_app, rectDefi_app, rectParametre_app, rectShop_app
+    
     if phase == 'tablette':
         # mettre l'ecran en noir
         screen.fill((0, 191, 191))        
@@ -622,6 +615,8 @@ def tablette():
             rectSoleil_app = soleil_app2.get_rect()
             rectSoleil_app.x = app_x-4
             rectSoleil_app.y = 126
+            if pressed[pygame.K_SPACE]:
+                phase = "carte systeme solaire"
         else:   
             screen.blit(soleil_app, (app_x, 130))
             rectSoleil_app = soleil_app.get_rect()
@@ -635,6 +630,8 @@ def tablette():
             rectImpots_app = impots_app2.get_rect()
             rectImpots_app.x = app_x + 96
             rectImpots_app.y = 126
+            if pressed[pygame.K_SPACE]:
+                phase = "gestion taxe"
         else:   
             screen.blit(impots_app, (app_x+100, 130))
             rectImpots_app = impots_app.get_rect()
@@ -648,6 +645,8 @@ def tablette():
             rectPopulation_app = population_app2.get_rect()
             rectPopulation_app.x = app_x + 196
             rectPopulation_app.y = 126
+            if pressed[pygame.K_SPACE]:
+                phase = "gestion population"
         else:   
             screen.blit(population_app, (app_x+200, 130))
             rectPopulation_app = population_app.get_rect()
@@ -661,6 +660,8 @@ def tablette():
             rectDefi_app = defi_app2.get_rect()
             rectDefi_app.x = app_x + 296
             rectDefi_app.y = 126
+            if pressed[pygame.K_SPACE]:
+                phase = "defi"
         else:   
             screen.blit(defi_app, (app_x+300, 130))
             rectDefi_app = defi_app.get_rect()
@@ -674,6 +675,8 @@ def tablette():
             rectShop_app = shop_app2.get_rect()
             rectShop_app.x = app_x + 396
             rectShop_app.y = 126
+            if pressed[pygame.K_SPACE]:
+                phase = "shop buy"
         else:   
             screen.blit(shop_app, (app_x+400, 130))
             rectShop_app = shop_app.get_rect()
@@ -687,6 +690,8 @@ def tablette():
             rectParametre_app = parametre_app2.get_rect()
             rectParametre_app.x = app_x + 496
             rectParametre_app.y = 126
+            if pressed[pygame.K_SPACE]:
+                phase = "parametre"
         else:   
             screen.blit(parametre_app, (app_x+500, 130))
             rectParametre_app = parametre_app.get_rect()
@@ -694,8 +699,52 @@ def tablette():
             rectParametre_app.y = 130
         #...
 
+        # afficher le bouton de retour au menu precedent
+        BoutonBack("StartGame", 0, -20)
+        #...
+
         # afficher le vaisseau
         move_vaisseau()
+        #...
+#...
+
+
+
+
+
+
+# fonction pour gerer l'affichage de la map du systeme solaire
+def carte_systeme_solaire():
+    global phase, TexteQUITTER
+    if phase == "carte systeme solaire":
+        # mettre l'ecran en noir
+        screen.fill((0, 0, 0))
+        #...
+
+        # afficher la carte du systeme solaire
+        screen.blit(systeme_sol_air2, (0, 0))
+        #...
+
+        # afficher le bouton pour retourner au menu precedent
+        BoutonBack("tablette", 967, -20)
+        #...
+
+        # afficher le vaisseau
+        move_vaisseau()
+        #...
+#...
+
+
+
+
+
+
+# fonction pour gerer l'achat d'objet dans le magasin et aussi le coté graphique
+def Shop():
+    global phase
+    if phase == "shop buy":
+        # mettre l'ecran en noir
+        screen.fill((0, 0, 0))        
         #...
 #...
 
@@ -729,6 +778,8 @@ while running:
     ChoixDifficulté()
     Partie()
     tablette()
+    carte_systeme_solaire()
+    Shop()
     #...
     
 
