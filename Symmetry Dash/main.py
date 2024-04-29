@@ -6,64 +6,61 @@ screen = pygame.display.set_mode((1280, 720))
 pygame.display.set_caption('Symmetry Dash')
 
 
+# variable servant a savoir la phase de jeu en cours
+phase = 'Menu Principal'
+
 # créer toutes les polices
-font_15_arial_black = pygame.font.SysFont('Arial Black', 15)
-font_40_arial_black = pygame.font.SysFont('Arial Black', 40)
-font_45_arial_black = pygame.font.SysFont('Arial Black', 45)
+font_arial_black_15 = pygame.font.SysFont('Arial Black', 15)
+font_arial_black_25 = pygame.font.SysFont('Arial Black', 25)
+font_orbitron_40 = pygame.font.SysFont('Orbitron', 40)
+font_arial_black_50 = pygame.font.SysFont('Arial Black', 50)
 
-# MENU PRINCIPAL
-# raccourcis couleur
-BLANC = (255, 255, 255)
-NOIR = (0, 0, 0)
-BLEU = (0, 0, 255)
-ROUGE = (255, 0, 0)
-ORANGE = (255, 165, 0)
-BLEU_CLAIR = (135, 206, 235)
 
-# texte pas mis a jour
-symmetry_dash_texte = font_45_arial_black.render('SYMMETRY DASH', 1, NOIR) # titre
-version_actuel_texte = font_15_arial_black.render('V0.0 (only FRENCH)', 1, ROUGE) # bouton lancer
 
-# fonction affichant le menu principal
+# Gerer le 'menu principal'
+# créer tous les textes
+texte_nom_jeu = font_orbitron_40.render('Symmetry Dash', 1, (0, 0, 0)) # texte du nom du jeu
+texte_jouer = font_arial_black_50.render('GO', 1, (0, 0, 0)) # texte du bouton permettant de lancer le jeu
+texte_version_actuel = font_arial_black_15.render('V0.1 FRENCH', 1, (0, 0, 0)) # texte de la version actuel du jeu
+texte_info_plus = font_arial_black_15.render('?', 1, (0, 0, 0))
+
+# Fonction affichant les objets sur le menu principal
 def menu_principal():
-    screen.fill(BLEU_CLAIR) # couleur du fond
+    # si la phase est la bonne
+    if phase == 'Menu Principal':
 
-    # créer les textes
-    # bouton pour lancer le jeu
-    bouton_play_texte = font_40_arial_black.render('>GO>', 1, NOIR) # texte du bouton lancer
-    bouton_play_x = (1280 - bouton_play_texte.get_width()) / 2
-    bouton_play_y = 100
-    bouton_play_rect = pygame.Rect(bouton_play_x-10, bouton_play_y-10, bouton_play_texte.get_width()+20, bouton_play_texte.get_height()+20)
+        # couleur du BG
+        screen.fill((255, 255, 255))
+        # nom de la fenêtre
+        pygame.display.set_caption(f'Symmetry Dash ({phase})')
 
-    if bouton_play_rect.collidepoint(pos): # si collision avec le bouton lancer
-        bouton_play_texte = font_45_arial_black.render('>GO>', 1, NOIR)  # texte du bouton lancer
-        bouton_play_x = (1280 - bouton_play_texte.get_width()) / 2
-        bouton_play_rect.width += 20
-        # bouton_play_rect.height += 20
-        bouton_play_rect.x -= 10
-        # bouton_play_rect.y -= 10
+        # afficher les boutons
+        pygame.draw.rect(screen, (255, 165, 0), ((screen.get_width()-250)/2, 90, 250, 200), 0, 15) # bouton permettant de lancer le jeu
+        pygame.draw.rect(screen, (0, 0, 255), (162, 190, 200, 180), 0, 15) # bouton permettant de changer de mode de jeu
+        pygame.draw.rect(screen, (255, 0, 0), (screen.get_width()-20, screen.get_height()-20, 20, 20), 0, 4 ) # bouton permettant d'acceder au info plus
 
-    # affichage texte
-    screen.blit(symmetry_dash_texte, ((1280-symmetry_dash_texte.get_width())/2, 0)) # titre 'Symmetry Dash'
-    screen.blit(version_actuel_texte, (0, 720-version_actuel_texte.get_height())) # version actuel du jeu
+        # afficher les textes
+        screen.blit(texte_nom_jeu, ((screen.get_width()-texte_nom_jeu.get_width())/2, 0)) # texte du nom du jeu
+        screen.blit(texte_jouer, ((screen.get_width()-texte_jouer.get_width())/2, 90+(200-texte_jouer.get_height())/2)) # texte du bouton permettant de lancer le jeu
+        screen.blit(texte_version_actuel, (0, screen.get_height()-texte_version_actuel.get_height()+4)) # texte de la version actuel du jeu
+        screen.blit(texte_info_plus, (screen.get_width()-texte_info_plus.get_width()-4, screen.get_height()-texte_info_plus.get_height()+1)) # texte des infos bonus
 
-    pygame.draw.rect(screen, ORANGE, bouton_play_rect, 0, 10) # rectangle autour du bouton '<GO>'
-    screen.blit(bouton_play_texte, (bouton_play_x, bouton_play_y)) # bouton '<GO>'
 
 
 # boucle du jeu
 running = True
 while running:
-    # recuperer tous les evenements du jeu
+    # recuperer tous les evenements de la fenetre
     for event in pygame.event.get():
+        # fermer la fenêtre
         if event.type == pygame.QUIT:
             running = False
 
     # recuperer la position de la souris
     pos = pygame.mouse.get_pos()
 
-    # afficher le menu
+    # afficher le menu principal
     menu_principal()
 
-    # mettre a jouer l'écran
+    # mettre a jour la fenetre
     pygame.display.flip()
