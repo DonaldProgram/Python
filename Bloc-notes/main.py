@@ -54,7 +54,7 @@ texte_aide_rect = texte_aide.get_rect()
 texte_aide_rect.x = x_bouton_rect
 
 # fonction servant a gerer tous les boutons du jeu
-def bouton():
+def bloc_notes_bouton():
     global phase
 
     # Afficher tous les textes des boutons
@@ -102,30 +102,79 @@ def bouton():
 
 
 
+# Gerer l'ecriture dans le Bloc-notes
+liste_texte = []
+
+# fonctions servant a gerer l'ecriture du texte dans le Bloc-notes
+def bloc_notes_ecrire():
+    global phase, liste_texte
+
+    # créer le rect permettant de retourner en mode écriture
+    rect_bloc_notes_ecriture = pygame.Rect((0, texte_fichier.get_height() + 2, screen.get_width(), screen.get_height()))
+    # passer la phase en mode ecriture
+    if rect_bloc_notes_ecriture.collidepoint(pos):
+        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+            phase = 'Bloc-notes-ecriture'
+
+
+    if phase == 'Bloc-notes-ecriture':
+        # ajouter les touches pressés au textes
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_BACKSPACE and len(liste_texte) > 0:
+                liste_texte.pop()
+            if event.unicode.isprintable() and event.unicode != '':
+                liste_texte.append(event.unicode)
+
+# fonctions servant a gerer l'affichage du texte dans le Bloc-notes
+dernier_temps = pygame.time.get_ticks()
+curseur_visible = True
+def bloc_notes_affichage():
+    global dernier_temps, curseur_visible
+
+    # afficher les textes a l'écran
+    texte_bloc_notes_ecriture = ''.join(liste_texte)
+    texte = font.render(texte_bloc_notes_ecriture, 1, (255, 255, 255))
+    screen.blit(texte, (0, texte_fichier.get_height()+2))
+
+    # afficher le curseur permettant de savoir ou on est entrain d'écrire
+    temps_actuel = pygame.time.get_ticks()
+    if temps_actuel-dernier_temps >= 500:
+        curseur_visible = not curseur_visible
+        dernier_temps = pygame.time.get_ticks()
+    if curseur_visible:
+        pygame.draw.rect(screen, (255, 255, 255), (texte.get_width(), texte_fichier.get_height()+4, 1, texte.get_height()-2))
+
 
 # mettre le nb de FPS
 clock = pygame.time.Clock()
-
 # boucle du jeu
 running = True
 while running:
+
+    # recuperer la position de la souris
+    pos = pygame.mouse.get_pos()
+
+    # couleur du BG
+    screen.fill((30, 30, 30))
+
     # recuperer tous les evenements de la fenetre
     for event in pygame.event.get():
         # fermer la fenetre
         if event.type == pygame.QUIT:
             running = False
 
-    # couleur du BG
-    screen.fill((30, 30, 30))
+        # pouvoir écrire dans le Bloc-notes
+        bloc_notes_ecrire()
 
-    # recuperer la position de la souris
-    pos = pygame.mouse.get_pos()
+    # afficher tous les boutons a l'écran
+    bloc_notes_bouton()
+
+    # afficher les textes a l'écran
+    bloc_notes_affichage()
+
 
     # changer le nom de la fenetre
     pygame.display.set_caption(f'{nom_fichier} - Bloc-notes')
-
-    # afficher tous les boutons a l'écran
-    bouton()
 
     # mettre le nb de FPS
     clock.tick(60)
